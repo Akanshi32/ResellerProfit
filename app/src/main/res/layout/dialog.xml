@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+
+    android:layout_margin="15dp"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Product ID: "/>
+        <EditText
+            android:id="@+id/productid"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter product id"
+            android:layout_weight="0.70"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Cost Price: "/>
+        <EditText
+            android:id="@+id/costprice"
+            android:layout_width="0dp"
+            android:hint="Enter cost price"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.70"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.50"
+            android:text="Stock Quantity: "/>
+        <EditText
+            android:id="@+id/stock"
+            android:layout_width="0dp"
+            android:hint="Enter quantity"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.70"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:paddingTop="3sp">
+
+        <Button
+            android:id="@+id/dialog_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.50"
+            android:background="#F44330"
+            android:text="Cancel"/>
+
+        <Button
+            android:id="@+id/dialog_submit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.50"
+            android:background="#2196F3"
+            android:text="Submit"/>
+    </LinearLayout>
+</LinearLayout>
