@@ -19,7 +19,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 
 public class MainActivity extends AppCompatActivity
@@ -28,6 +34,7 @@ public class MainActivity extends AppCompatActivity
     int width,height;
     Button cancel,submit;
     ImageView addButton;
+    private String codeFormat,codeContent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,10 +86,11 @@ public class MainActivity extends AppCompatActivity
         dialog.setContentView(R.layout.dialog);
         Button cancel=(Button) dialog.findViewById(R.id.dialog_cancel);
         Button submit=(Button) dialog.findViewById(R.id.dialog_submit);
+        EditText productid=(EditText) dialog.findViewById(R.id.productid);
         dialog.setTitle("Product Details");
         dialog.getWindow().setLayout(width*90/100, height*50/100);
         dialog.show();
-
+        productid.setText(codeContent);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +100,33 @@ public class MainActivity extends AppCompatActivity
            }
 
 
+
+    public void scanNow(View view){
+        IntentIntegrator integrator = new IntentIntegrator(this);
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
+        integrator.setPrompt(this.getString(R.string.scan_bar_code));
+        integrator.setResultDisplayDuration(0);
+        integrator.setWide();  // Wide scanning rectangle, may work better for 1D barcodes
+        integrator.setCameraId(0);  // Use a specific camera of the device
+        integrator.initiateScan();
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        //retrieve scan result
+        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+
+        if (scanningResult != null) {
+            //we have a result
+            codeContent = scanningResult.getContents();
+            codeFormat = scanningResult.getFormatName();
+
+            // display it on screen
+
+        }else{
+            Toast toast = Toast.makeText(getApplicationContext(),"No scan data received!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
 
     @Override
     public void onBackPressed() {

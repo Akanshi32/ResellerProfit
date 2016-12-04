@@ -7,12 +7,24 @@
     android:layout_margin="15dp"
     android:layout_height="match_parent">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_scan_now"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:onClick="scanNow"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:id="@+id/btn_scan_now" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="3dp"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -64,6 +76,8 @@
         android:layout_width="match_parent"
         android:layout_height="40sp"
         android:paddingTop="3sp">
+
+
 
         <Button
             android:id="@+id/dialog_cancel"
