@@ -18,6 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Calendar" android:label="Sales-Datewise"></activity>
     </application>
 
 </manifest>
