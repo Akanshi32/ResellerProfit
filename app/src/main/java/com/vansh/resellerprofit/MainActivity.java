@@ -1,13 +1,19 @@
 package com.vansh.resellerprofit;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Point;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.view.Display;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -34,12 +40,18 @@ public class MainActivity extends AppCompatActivity
     int width,height;
     Button cancel,submit;
     ImageView addButton;
-    private String codeFormat,codeContent;
+    public String codeFormat,codeContent,c;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        int PERMISSION_ALL = 1;
+        String[] PERMISSIONS = {Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_SMS, Manifest.permission.CAMERA};
+
+        if(!hasPermissions(this, PERMISSIONS)){
+            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -86,11 +98,24 @@ public class MainActivity extends AppCompatActivity
         dialog.setContentView(R.layout.dialog);
         Button cancel=(Button) dialog.findViewById(R.id.dialog_cancel);
         Button submit=(Button) dialog.findViewById(R.id.dialog_submit);
-        EditText productid=(EditText) dialog.findViewById(R.id.productid);
+        Button scan=(Button) dialog.findViewById(R.id.btn_scan_now);
+        final EditText productid=(EditText) dialog.findViewById(R.id.productid);
         dialog.setTitle("Product Details");
         dialog.getWindow().setLayout(width*90/100, height*50/100);
         dialog.show();
         productid.setText(codeContent);
+
+        scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                scanNow(v);
+            }
+        });
+
+
+
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,9 +124,21 @@ public class MainActivity extends AppCompatActivity
         });
            }
 
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 
 
     public void scanNow(View view){
+
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
         integrator.setPrompt(this.getString(R.string.scan_bar_code));
@@ -121,6 +158,9 @@ public class MainActivity extends AppCompatActivity
             codeFormat = scanningResult.getFormatName();
 
             // display it on screen
+            openDialog();
+
+
 
         }else{
             Toast toast = Toast.makeText(getApplicationContext(),"No scan data received!", Toast.LENGTH_SHORT);
