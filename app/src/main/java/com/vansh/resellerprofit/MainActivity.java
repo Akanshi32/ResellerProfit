@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity
         openDialog();
 
         ImageView addButton = (ImageView) findViewById(R.id.imageView2);
+
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,13 +77,21 @@ public class MainActivity extends AppCompatActivity
     public void openDialog(){
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog);
-        Button cancel=(Button) findViewById(R.id.dialog_cancel);
-        Button submit=(Button) findViewById(R.id.dialog_submit);
+        Button cancel=(Button) dialog.findViewById(R.id.dialog_cancel);
+        Button submit=(Button) dialog.findViewById(R.id.dialog_submit);
         dialog.setTitle("Product Details");
         dialog.getWindow().setLayout(width*90/100, height*50/100);
         dialog.show();
 
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
            }
+
+
 
     @Override
     public void onBackPressed() {
