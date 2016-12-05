@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "236374937836",
+    "project_id": "resellerprofit"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236374937836:android:420d67e931187873",
+        "android_client_info": {
+          "package_name": "com.vansh.resellerprofit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236374937836-5155cc8m7suboou3gsat0hooomjki4am.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vansh.resellerprofit",
+            "certificate_hash": "090F09E902EA95A7274F02DA455CA8F27C2A7737"
+          }
+        },
+        {
+          "client_id": "236374937836-0bcsq17t7pcj576c2bvr4lilrc4qf5ca.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaRfLPvSPrBfimVGdHy-6daDTserdfpZ8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

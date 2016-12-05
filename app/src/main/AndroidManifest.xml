@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vansh.resellerprofit">
+    <uses-permission android:name="android.permission.INTERNET" />
 
 
     <application
@@ -20,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Calendar" android:label="Sales-Datewise"></activity>
+        <activity android:name=".Glogin" android:label="Google Login"></activity>
     </application>
 
 </manifest>

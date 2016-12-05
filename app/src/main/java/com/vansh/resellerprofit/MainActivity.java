@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        openDialog();
 
         ImageView addButton = (ImageView) findViewById(R.id.imageView2);
 
@@ -207,6 +206,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
+            Intent it = new Intent(MainActivity.this, Glogin.class);
+            startActivity(it);
             // Handle the camera action
         } else if (id == R.id.nav_calendar) {
             Intent it = new Intent(MainActivity.this, Calendar.class);
