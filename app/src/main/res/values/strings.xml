@@ -6,6 +6,7 @@
     <string name="scan">Scan</string>
     <string name="action_settings">Settings</string>
     <string name="loading">Loading</string>
+    <string name="server_client_id">236374937836-0bcsq17t7pcj576c2bvr4lilrc4qf5ca.apps.googleusercontent.com</string>
 
     <!-- Button text -->
     <string name="btn_logout_from_google">Logout from Google</string>

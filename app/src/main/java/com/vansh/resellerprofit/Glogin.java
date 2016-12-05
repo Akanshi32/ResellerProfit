@@ -43,7 +43,7 @@ public class Glogin extends AppCompatActivity implements
     private Button btnSignOut, btnRevokeAccess;
     private LinearLayout llProfileLayout;
     private ImageView imgProfilePic;
-    private TextView txtName, txtEmail;
+    private TextView txtName, txtEmail,mIdTokenTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +57,16 @@ public class Glogin extends AppCompatActivity implements
         imgProfilePic = (ImageView) findViewById(R.id.imgProfilePic);
         txtName = (TextView) findViewById(R.id.txtName);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
+        mIdTokenTextView = (TextView) findViewById(R.id.mIdTokenTextView);
 
         btnSignIn.setOnClickListener(this);
         btnSignOut.setOnClickListener(this);
         btnRevokeAccess.setOnClickListener(this);
 
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
+                .requestIdToken(getString(R.string.server_client_id))
                 .build();
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -103,6 +106,8 @@ public class Glogin extends AppCompatActivity implements
                 });
     }
 
+
+
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
@@ -110,10 +115,15 @@ public class Glogin extends AppCompatActivity implements
             GoogleSignInAccount acct = result.getSignInAccount();
 
             Log.e(TAG, "display name: " + acct.getDisplayName());
+            Log.e(TAG, "Token ID: " + acct.getIdToken());
 
             String personName = acct.getDisplayName();
             String personPhotoUrl = acct.getPhotoUrl().toString();
             String email = acct.getEmail();
+
+            String idToken = acct.getIdToken();
+            mIdTokenTextView.setText("ID Token: ok");
+            // TODO(user): send token to server and validate server-side
 
             Log.e(TAG, "Name: " + personName + ", email: " + email
                     + ", Image: " + personPhotoUrl);
@@ -129,6 +139,8 @@ public class Glogin extends AppCompatActivity implements
             updateUI(true);
         } else {
             // Signed out, show unauthenticated UI.
+            mIdTokenTextView.setText("ID Token: null");
+
             updateUI(false);
         }
     }
