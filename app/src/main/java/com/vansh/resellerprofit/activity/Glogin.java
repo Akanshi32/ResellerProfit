@@ -1,4 +1,4 @@
-package com.vansh.resellerprofit;
+package com.vansh.resellerprofit.activity;
 
 /**
  * Created by vansh on 05-Dec-16.
@@ -28,6 +28,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.vansh.resellerprofit.R;
 
 public class Glogin extends AppCompatActivity implements
         View.OnClickListener,

@@ -1,7 +1,6 @@
-package com.vansh.resellerprofit;
+package com.vansh.resellerprofit.activity;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.Dialog;
 
 import android.content.Context;
@@ -27,12 +26,13 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.vansh.resellerprofit.R;
 
 
 public class MainActivity extends AppCompatActivity
@@ -75,14 +75,27 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+
+        // Setup drawer view
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        View headerview = navigationView.getHeaderView(0);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+
+        LinearLayout header = (LinearLayout) headerview.findViewById(R.id.header);
+        header.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(MainActivity.this, Glogin.class);
+                startActivity(it);
+            }
+        });
 
 
 
@@ -202,8 +215,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            Intent it = new Intent(MainActivity.this, Glogin.class);
-            startActivity(it);
+
             // Handle the camera action
 
         } else if (id == R.id.nav_stock) {

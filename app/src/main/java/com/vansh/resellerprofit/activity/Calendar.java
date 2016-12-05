@@ -1,4 +1,4 @@
-package com.vansh.resellerprofit;
+package com.vansh.resellerprofit.activity;
 
 import android.graphics.Color;
 import android.os.Build;
@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
+import com.vansh.resellerprofit.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
