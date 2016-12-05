@@ -6,6 +6,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.Point;
 
 import android.os.Build;
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity
                 openDialog();
             }
         });
+        fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d50000")));
 
 
         // Setup drawer view

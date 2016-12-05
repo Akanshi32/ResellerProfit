@@ -51,6 +51,7 @@
             android:id="@+id/costprice"
             android:layout_width="0dp"
             android:hint="Enter cost price"
+            android:inputType="number"
             android:layout_height="wrap_content"
             android:layout_weight="0.70"/>
     </LinearLayout>
@@ -68,6 +69,7 @@
             android:id="@+id/stock"
             android:layout_width="0dp"
             android:hint="Enter quantity"
+            android:inputType="number"
             android:layout_height="wrap_content"
             android:layout_weight="0.70"/>
     </LinearLayout>
