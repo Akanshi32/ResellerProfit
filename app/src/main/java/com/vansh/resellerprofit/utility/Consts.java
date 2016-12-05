@@ -10,7 +10,7 @@ public class Consts {
 
     //SHARED PREFS VARIABLES
 
-    public static final String SP_NAME = "DocWatchSP";
+    public static final String SP_NAME = "ResellerProfitSP";
 
     public static final String REGNO_SP_KEY = "regno";
     public static final String PASS_SP_KEY = "pass";

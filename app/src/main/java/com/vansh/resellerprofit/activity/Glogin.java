@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -29,6 +30,17 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.vansh.resellerprofit.R;
+import com.vansh.resellerprofit.model.LoginResponse;
+import com.vansh.resellerprofit.rest.ApiClient;
+import com.vansh.resellerprofit.rest.ApiInterface;
+import com.vansh.resellerprofit.utility.Consts;
+import com.vansh.resellerprofit.utility.Preferences;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Glogin extends AppCompatActivity implements
         View.OnClickListener,
@@ -79,6 +91,10 @@ public class Glogin extends AppCompatActivity implements
         btnSignIn.setSize(SignInButton.SIZE_STANDARD);
         btnSignIn.setScopes(gso.getScopeArray());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
+
     }
 
 
@@ -123,7 +139,7 @@ public class Glogin extends AppCompatActivity implements
             String personPhotoUrl = acct.getPhotoUrl().toString();
             String email = acct.getEmail();
 
-            String idToken = acct.getIdToken();
+            final String idToken = acct.getIdToken();
             mIdTokenTextView.setText("ID Token: ok");
             // TODO(user): send token to server and validate server-side
 
@@ -138,6 +154,39 @@ public class Glogin extends AppCompatActivity implements
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imgProfilePic);
 
+            Preferences.setPrefs(Consts.TOKEN_SP_KEY,idToken ,Glogin.this);
+            Log.e(TAG, "SP KEY: " + Preferences.getPrefs(Consts.TOKEN_SP_KEY,Glogin.this));
+
+
+
+            final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
+            Call<LoginResponse> loginResponseCall = apiInterface.getResponse(new HashMap<String, String>());
+            loginResponseCall.enqueue(new Callback<LoginResponse>() {
+                @Override
+                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+
+                    if (response.body().getSuccess()){
+                        Toast.makeText(getBaseContext(),response.body().getMessage(), Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(Glogin.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                    else
+
+                    {Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+                    }
+
+
+
+                }
+
+                @Override
+                public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+                }
+            });
+
+
             updateUI(true);
         } else {
             // Signed out, show unauthenticated UI.
@@ -146,6 +195,8 @@ public class Glogin extends AppCompatActivity implements
             updateUI(false);
         }
     }
+
+
 
     @Override
     public void onClick(View v) {

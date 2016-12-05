@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.text.Editable;
 import android.view.Display;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -33,6 +34,14 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.vansh.resellerprofit.R;
+import com.vansh.resellerprofit.model.StockRequest;
+import com.vansh.resellerprofit.rest.ApiClient;
+import com.vansh.resellerprofit.rest.ApiInterface;
+
+import butterknife.Bind;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity
@@ -44,6 +53,7 @@ public class MainActivity extends AppCompatActivity
     Button cancel,submit;
     ImageView addButton;
     public String codeFormat,codeContent,c;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +118,11 @@ public class MainActivity extends AppCompatActivity
         Button submit=(Button) dialog.findViewById(R.id.dialog_submit);
         Button scan=(Button) dialog.findViewById(R.id.btn_scan_now);
         final EditText productid=(EditText) dialog.findViewById(R.id.productid);
+
+        final EditText stock=(EditText) dialog.findViewById(R.id.stock);
+        final EditText costprice=(EditText) dialog.findViewById(R.id.costprice);
+
+
         dialog.setTitle("Product Details");
         dialog.getWindow().setLayout(width*90/100, height*65/100);
         dialog.show();
@@ -118,6 +133,43 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 dialog.dismiss();
                 scanNow(v);
+            }
+        });
+
+        final StockRequest stockRequest = new StockRequest();
+        final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
+
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                stockRequest.setItemId(productid.getText().toString());
+                String text = stock.getText().toString();
+                int number = Integer.parseInt(text);
+                stockRequest.setStock(number);
+                stockRequest.setCostPrice(costprice.getText().toString());
+
+
+                Call<StockRequest> call = apiInterface.Stock(stockRequest);
+
+
+                call.enqueue(new Callback<StockRequest>() {
+                    @Override
+                    public void onResponse(Call<StockRequest> call, Response<StockRequest> response) {
+
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<StockRequest> call, Throwable t) {
+                    }
+                });
+
+
+                dialog.dismiss();
             }
         });
 
