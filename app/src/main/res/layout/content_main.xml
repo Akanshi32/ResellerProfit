@@ -50,6 +50,7 @@
         <EditText
             android:id="@+id/costprice"
             android:layout_width="0dp"
+            android:inputType="number"
             android:hint="Enter selling price"
             android:layout_height="wrap_content"
             android:layout_weight="0.70"/>
@@ -71,6 +72,7 @@
             android:layout_width="0dp"
             android:hint="Enter quantity"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:layout_weight="0.70"/>
     </LinearLayout>
 
