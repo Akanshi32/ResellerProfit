@@ -27,6 +27,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,8 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private Spinner spinner;
 
     int width,height;
     Button cancel,submit;
@@ -67,8 +70,8 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Snackbar.make(view, "Enter Product Details", Snackbar.LENGTH_LONG);
+                openDialog();
             }
         });
 
@@ -81,14 +84,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ImageView addButton = (ImageView) findViewById(R.id.imageView2);
 
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openDialog();
-            }
-        });
 
 
     }
@@ -100,7 +96,7 @@ public class MainActivity extends AppCompatActivity
         Button scan=(Button) dialog.findViewById(R.id.btn_scan_now);
         final EditText productid=(EditText) dialog.findViewById(R.id.productid);
         dialog.setTitle("Product Details");
-        dialog.getWindow().setLayout(width*90/100, height*50/100);
+        dialog.getWindow().setLayout(width*90/100, height*65/100);
         dialog.show();
         productid.setText(codeContent);
 
@@ -205,21 +201,30 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_home) {
             Intent it = new Intent(MainActivity.this, Glogin.class);
             startActivity(it);
             // Handle the camera action
+
+        } else if (id == R.id.nav_stock) {
+            Intent it = new Intent(MainActivity.this, Stock.class);
+            startActivity(it);
+
+        } else if (id == R.id.nav_sold) {
+            Intent it = new Intent(MainActivity.this, Sold.class);
+            startActivity(it);
+
         } else if (id == R.id.nav_calendar) {
             Intent it = new Intent(MainActivity.this, Calendar.class);
             startActivity(it);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_faq) {
+            Intent it = new Intent(MainActivity.this, FaqActivity.class);
+            startActivity(it);
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_contact) {
+            Intent it = new Intent(MainActivity.this, ContactUs.class);
+            startActivity(it);
 
         }
 

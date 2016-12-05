@@ -158,6 +158,7 @@ public class Calendar extends AppCompatActivity {
 
         // uncomment below to open onCreate
         //openCalendarOnCreate(v);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 

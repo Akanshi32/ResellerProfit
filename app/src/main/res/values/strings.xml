@@ -13,4 +13,7 @@
     <string name="btn_revoke_access">Revoke Access</string>
     <string name="btn_scan_now">Scan Now</string>
     <string name="scan_bar_code">Scan a Bar Code</string>
+    <string name="title_activity_sold">Sold</string>
+    <string name="title_activity_faq">FaqActivity</string>
+    <string name="title_activity_contact_us">ContactUs</string>
 </resources>

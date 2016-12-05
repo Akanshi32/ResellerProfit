@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_main"
@@ -9,22 +9,79 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_margin="15dp"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.vansh.resellerprofit.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:padding="3dp"
+        android:orientation="horizontal">
 
-    <ImageView
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:text="Product ID:"/>
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_weight="0.5"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:text="Selling Price: "/>
+        <EditText
+            android:id="@+id/costprice"
+            android:layout_width="0dp"
+            android:hint="Enter selling price"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.70"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.50"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:text="Quantity: "/>
+        <EditText
+            android:id="@+id/stock"
+            android:layout_width="0dp"
+            android:hint="Enter quantity"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.70"/>
+    </LinearLayout>
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:src="@drawable/add"
-        android:id="@+id/imageView2"
-        />
-</RelativeLayout>
+        android:text="ADD"
+
+
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:id="@+id/sold" />
+
+
+</LinearLayout>
