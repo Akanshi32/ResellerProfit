@@ -12,7 +12,6 @@ public class Sold extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sold);
 
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

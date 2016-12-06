@@ -49,14 +49,14 @@
         </android.support.design.widget.TextInputLayout>
 -->
 
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/btn_sign_in"
+        <!--<com.google.android.gms.common.SignInButton
+            android:id="@+id/btn_sign_ini"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"/>
-
+-->
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_sign_in"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"

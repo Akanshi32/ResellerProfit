@@ -27,10 +27,6 @@ public class SignupActivity extends AppCompatActivity {
 
     @Bind(R.id.username)
     EditText _nameText;
-    @Bind(R.id.input_password)
-    EditText _passwordText;
-    @Bind(R.id.input_confirm_password)
-    EditText _confirmpasswordText;
     @Bind(R.id.btn_signup)
     Button _signupButton;
     @Bind(R.id.link_login)
@@ -55,7 +51,6 @@ public class SignupActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 signUpRequest.setName(_nameText.getText().toString());
-
                 signUpRequest.setEmail(_email.getText().toString());
                 signUpRequest.setCompanyName(_company.getText().toString());
                 signUpRequest.setPhone(_mobile.getText().toString());
@@ -67,6 +62,8 @@ public class SignupActivity extends AppCompatActivity {
                        // if (response.body().getCode().equals(Consts.SUCCESS)){
                          //   Toast.makeText(getBaseContext(), "Username exists", Toast.LENGTH_LONG).show();
                         signup();
+                        Intent intent = new Intent(SignupActivity.this, Glogin.class);
+                        startActivity(intent);
                     }
 
                     @Override
@@ -114,8 +111,7 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.show();
 
         String name = _nameText.getText().toString();
-        String email = _passwordText.getText().toString();
-        String password = _confirmpasswordText.getText().toString();
+
 
         // TODO: Implement your own signup logic here.
 
@@ -149,8 +145,6 @@ public class SignupActivity extends AppCompatActivity {
         boolean valid = true;
 
         String name = _nameText.getText().toString();
-        String password = _passwordText.getText().toString();
-        String confirmpassword = _confirmpasswordText.getText().toString();
 
         if (name.isEmpty() || name.length() < 3) {
             _nameText.setError("at least 3 characters");
@@ -159,19 +153,6 @@ public class SignupActivity extends AppCompatActivity {
             _nameText.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            _passwordText.setError("enter a valid password");
-            valid = false;
-        } else {
-            _passwordText.setError(null);
-        }
-
-        if (confirmpassword.isEmpty() || password.length() < 4 || password.length() > 10) {
-            _confirmpasswordText.setError("enter a valid password");
-            valid = false;
-        } else {
-            _confirmpasswordText.setError(null);
-        }
 
         return valid;
     }

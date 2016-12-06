@@ -38,51 +38,47 @@ import com.vansh.resellerprofit.utility.Preferences;
 
 import java.util.HashMap;
 
-import javax.microedition.khronos.opengles.GL;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Glogin extends AppCompatActivity implements
+public class ProfileActivity extends AppCompatActivity implements
         View.OnClickListener,
         GoogleApiClient.OnConnectionFailedListener {
 
-    private static final String TAG = Glogin.class.getSimpleName();
+    private static final String TAG = ProfileActivity.class.getSimpleName();
     private static final int RC_SIGN_IN = 007;
 
     private GoogleApiClient mGoogleApiClient;
     private ProgressDialog mProgressDialog;
 
-    private Button btnSignIn;
+    private SignInButton btnSignIn;
     private Button btnSignOut, btnRevokeAccess;
     private LinearLayout llProfileLayout;
     private ImageView imgProfilePic;
     private TextView txtName, txtEmail,mIdTokenTextView;
-    @Bind(R.id.link_signup)
-    TextView _signupLink;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
+        setContentView(R.layout.g_login);
 
 
-        btnSignIn = (Button) findViewById(R.id.btn_sign_in);
-     /*   btnSignOut = (Button) findViewById(R.id.btn_sign_out);
+        btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
+        btnSignOut = (Button) findViewById(R.id.btn_sign_out);
         btnRevokeAccess = (Button) findViewById(R.id.btn_revoke_access);
         llProfileLayout = (LinearLayout) findViewById(R.id.llProfile);
         imgProfilePic = (ImageView) findViewById(R.id.imgProfilePic);
         txtName = (TextView) findViewById(R.id.txtName);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
-        mIdTokenTextView = (TextView) findViewById(R.id.mIdTokenTextView);*/
+        mIdTokenTextView = (TextView) findViewById(R.id.mIdTokenTextView);
 
         btnSignIn.setOnClickListener(this);
-//        btnSignOut.setOnClickListener(this);
- //       btnRevokeAccess.setOnClickListener(this);
+        btnSignOut.setOnClickListener(this);
+       btnRevokeAccess.setOnClickListener(this);
 
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -96,19 +92,9 @@ public class Glogin extends AppCompatActivity implements
                 .build();
 
         // Customizing G+ button
-      //  btnSignIn.setSize(SignInButton.SIZE_STANDARD);
-      //  btnSignIn.setScopes(gso.getScopeArray());
+      btnSignIn.setSize(SignInButton.SIZE_STANDARD);
+      btnSignIn.setScopes(gso.getScopeArray());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        _signupLink.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Start the Signup activity
-                Intent intent = new Intent(Glogin.this, SignupActivity.class);
-                startActivity(intent);
-            }
-        });
 
 
     }
@@ -161,16 +147,17 @@ public class Glogin extends AppCompatActivity implements
             Log.e(TAG, "Name: " + personName + ", email: " + email
                     + ", Image: " + personPhotoUrl);
 
-           /* txtName.setText(personName);
+            txtName.setText(personName);
             txtEmail.setText(email);
+
             Glide.with(getApplicationContext()).load(personPhotoUrl)
                     .thumbnail(0.5f)
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(imgProfilePic);*/
+                    .into(imgProfilePic);
 
-            Preferences.setPrefs(Consts.TOKEN_SP_KEY,idToken ,Glogin.this);
-            Log.e(TAG, "SP KEY: " + Preferences.getPrefs(Consts.TOKEN_SP_KEY,Glogin.this));
+            Preferences.setPrefs(Consts.TOKEN_SP_KEY,idToken ,ProfileActivity.this);
+            Log.e(TAG, "SP KEY: " + Preferences.getPrefs(Consts.TOKEN_SP_KEY,ProfileActivity.this));
 
 
             final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
@@ -182,14 +169,12 @@ public class Glogin extends AppCompatActivity implements
                     if (response.body().getSuccess()){
                         Toast.makeText(getBaseContext(),response.body().getMessage(), Toast.LENGTH_LONG).show();
 
-                        Intent intent = new Intent(Glogin.this, MainActivity.class);
-                        startActivity(intent);
                     }
                     else
 
                     {Toast.makeText(getBaseContext(), "Login failed, you might wanna signup", Toast.LENGTH_LONG).show();
 
-                        Intent intent = new Intent(Glogin.this, SignupActivity.class);
+                        Intent intent = new Intent(ProfileActivity.this, SignupActivity.class);
                         startActivity(intent);
                     }
 
@@ -204,12 +189,11 @@ public class Glogin extends AppCompatActivity implements
             });
 
 
-           // updateUI(true);
+           updateUI(true);
         } else {
             // Signed out, show unauthenticated UI.
             Log.e(TAG, "error");
-
-            // updateUI(false);
+            updateUI(false);
         }
     }
 

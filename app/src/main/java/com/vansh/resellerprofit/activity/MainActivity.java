@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity
         header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(MainActivity.this, Glogin.class);
+                Intent it = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(it);
             }
         });

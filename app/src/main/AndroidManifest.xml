@@ -70,6 +70,8 @@
                 android:name=".PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <activity android:name=".activity.SignupActivity" android:label="Sign up"></activity>
+        <activity android:name=".activity.ProfileActivity" android:label="Profile"></activity>
     </application>
 
 </manifest>

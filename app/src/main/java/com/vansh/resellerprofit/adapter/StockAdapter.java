@@ -56,7 +56,9 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.MovieViewHol
     @Override
     public void onBindViewHolder(MovieViewHolder holder, final int position) {
         holder.productid.setText(stock.get(position).getItemId());
-        holder.stock.setText(stock.get(position).getStock().toString());
+        holder.stock.setText("₹" + stock.get(position).getCostPrice().toString()+ "/unit");
+        holder.rating.setText(stock.get(position).getStock().toString());
+
 
     }
 
