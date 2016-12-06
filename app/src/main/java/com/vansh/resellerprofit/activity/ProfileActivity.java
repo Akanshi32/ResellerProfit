@@ -78,7 +78,7 @@ public class ProfileActivity extends AppCompatActivity implements
 
         btnSignIn.setOnClickListener(this);
         btnSignOut.setOnClickListener(this);
-       btnRevokeAccess.setOnClickListener(this);
+        btnRevokeAccess.setOnClickListener(this);
 
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
