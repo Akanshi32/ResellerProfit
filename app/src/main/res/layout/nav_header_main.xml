@@ -19,7 +19,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:paddingTop="15dp"
-        android:src="@drawable/icon"
+        android:src="@drawable/logo"
         android:layout_weight="0.24" />
 
     <TextView
