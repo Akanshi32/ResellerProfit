@@ -3,6 +3,7 @@ package com.vansh.resellerprofit.rest;
 import com.vansh.resellerprofit.model.LoginResponse;
 import com.vansh.resellerprofit.model.SignUpRequest;
 import com.vansh.resellerprofit.model.StockRequest;
+import com.vansh.resellerprofit.model.StockResponse;
 
 import java.util.Map;
 
@@ -22,4 +23,8 @@ public interface ApiInterface {
 
     @POST("/stock")
     Call<StockRequest> Stock(@Body StockRequest stockRequest);
+
+    @GET("/stock")
+    Call<StockResponse> stockResponse(@QueryMap Map<String, String> params);
+
 }

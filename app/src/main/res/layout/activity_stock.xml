@@ -11,9 +11,10 @@
     tools:context="com.vansh.resellerprofit.activity.Stock">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_events"
+        android:id="@+id/stock_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp" />
+        android:scrollbars="vertical"
+         />
+
 </LinearLayout>

@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class StockResponse {
+
     @SerializedName("stock")
     @Expose
     private List<Stock> stock = null;
