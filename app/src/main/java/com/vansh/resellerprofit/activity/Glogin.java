@@ -158,7 +158,6 @@ public class Glogin extends AppCompatActivity implements
             Log.e(TAG, "SP KEY: " + Preferences.getPrefs(Consts.TOKEN_SP_KEY,Glogin.this));
 
 
-
             final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
             Call<LoginResponse> loginResponseCall = apiInterface.getResponse(new HashMap<String, String>());
             loginResponseCall.enqueue(new Callback<LoginResponse>() {
