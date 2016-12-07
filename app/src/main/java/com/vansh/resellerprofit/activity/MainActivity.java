@@ -17,9 +17,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
 import android.util.Log;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -29,13 +29,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,19 +40,18 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.vansh.resellerprofit.R;
 import com.vansh.resellerprofit.adapter.SpinnerStockAdapter;
-import com.vansh.resellerprofit.adapter.StockAdapter;
 import com.vansh.resellerprofit.model.SoldRequest;
 import com.vansh.resellerprofit.model.StockRequest;
 import com.vansh.resellerprofit.model.StockResponse;
 import com.vansh.resellerprofit.rest.ApiClient;
 import com.vansh.resellerprofit.rest.ApiInterface;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import okhttp3.internal.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -78,7 +74,9 @@ public class MainActivity extends AppCompatActivity
     int width,height;
     Button cancel,submit;
     ImageView addButton;
+    TextView selected;
     public String codeFormat,codeContent,c;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,8 +100,9 @@ public class MainActivity extends AppCompatActivity
         width = size.x;
 
 
-
-
+/*
+        Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        String text = spinner.getSelectedItem().toString();*/
 
         _selectbutt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,6 +210,20 @@ public class MainActivity extends AppCompatActivity
         final RecyclerView recyclerView = (RecyclerView) dialog.findViewById(R.id.stock_recycler_view_spinner);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        /*recyclerView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final TextView txtStatusChange = (TextView)v.findViewById(R.id.text15);
+                txtStatusChange.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.e(TAG, "hello text " + txtStatusChange.getText().toString() + " TAG " + txtStatusChange.getTag().toString());
+
+                    }
+                });
+                return false;
+            }
+        });*/
 
         ApiInterface apiService =
                 ApiClient.getClient(this).create(ApiInterface.class);
@@ -221,9 +234,12 @@ public class MainActivity extends AppCompatActivity
             public void onResponse(Call<StockResponse> call, Response<StockResponse> response) {
                 int statusCode = response.code();
                 List<com.vansh.resellerprofit.model.Stock> stock = response.body().getStock();
-                recyclerView.setAdapter(new SpinnerStockAdapter(stock, R.layout.list_item_stock_spinner, getApplicationContext()));
+                recyclerView.setAdapter(new SpinnerStockAdapter(stock, R.layout.list_item_stock_spinner, getApplicationContext(),true));
 
-            }
+
+
+                 }
+
 
             @Override
             public void onFailure(Call<StockResponse> call, Throwable t) {
@@ -300,6 +316,7 @@ public class MainActivity extends AppCompatActivity
                 });
 
 
+
                 dialog.dismiss();
             }
         });
@@ -325,6 +342,7 @@ public class MainActivity extends AppCompatActivity
         }
         return true;
     }
+
 
 
 

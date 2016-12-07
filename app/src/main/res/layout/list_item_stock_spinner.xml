@@ -22,7 +22,7 @@
             android:layout_gravity="top"
             android:paddingRight="16dp"
             android:textStyle="bold"
-
+            android:background="?android:attr/selectableItemBackground"
             android:textSize="16sp" />
 
 
