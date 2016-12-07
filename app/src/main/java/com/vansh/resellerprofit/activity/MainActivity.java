@@ -15,7 +15,10 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -26,6 +29,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,9 +41,16 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.vansh.resellerprofit.R;
+import com.vansh.resellerprofit.adapter.StockAdapter;
+import com.vansh.resellerprofit.model.SoldRequest;
 import com.vansh.resellerprofit.model.StockRequest;
+import com.vansh.resellerprofit.model.StockResponse;
 import com.vansh.resellerprofit.rest.ApiClient;
 import com.vansh.resellerprofit.rest.ApiInterface;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import butterknife.Bind;
 import retrofit2.Call;
@@ -49,7 +61,18 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Spinner spinner;
+    @Bind(R.id.stock)
+    EditText _stock;
+    @Bind(R.id.sellingprice)
+    EditText _sellingprice;
+    @Bind(R.id.spinner)
+    Spinner _spinner;
+    @Bind(R.id.add)
+    Button _add;
+
+
+    ArrayAdapter<String> adapterBusinessType;
+
 
     int width,height;
     Button cancel,submit;
@@ -75,6 +98,109 @@ public class MainActivity extends AppCompatActivity
         display.getSize(size);
         height = size.y;
         width = size.x;
+
+
+
+        //TO CHECK THIS PART
+
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stock_recycler_view_spinner);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        ApiInterface apiService =
+                ApiClient.getClient(this).create(ApiInterface.class);
+
+        Call<StockResponse> call = apiService.stockResponse(new HashMap<String, String>());
+        call.enqueue(new Callback<StockResponse>() {
+            @Override
+            public void onResponse(Call<StockResponse> call, Response<StockResponse> response) {
+                int statusCode = response.code();
+                List<com.vansh.resellerprofit.model.Stock> stock = response.body().getStock();
+
+                String[] stockArr = new String[stock.size()];
+                stockArr = stock.toArray(stockArr);
+                String[] arraySpinner =stockArr;
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                        android.R.layout.simple_spinner_item, arraySpinner);
+                _spinner.setAdapter(adapter);
+
+          /*      recyclerView.setAdapter(new StockAdapter(stock, R.layout.list_item_stock, getApplicationContext()));
+
+                adapterBusinessType = new ArrayAdapter<String>(this,
+                        R.layout.list_item_stock_spinner,);
+                adapterBusinessType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                _spinner.setAdapter(adapterBusinessType);*/
+
+
+            }
+
+            @Override
+            public void onFailure(Call<StockResponse> call, Throwable t) {
+                // Log error here since request failed
+                Log.e("Error", t.toString());
+            }
+        });
+
+
+        _spinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), "Item number: " + position, Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
+
+
+
+
+
+        //TILL HERE
+
+
+
+
+
+
+        final SoldRequest soldRequest = new SoldRequest();
+        final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
+
+
+
+        _add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                soldRequest.setItemId(_spinner.getSelectedItem().toString());
+                String text1 = _stock.getText().toString();
+                int number = Integer.parseInt(text1);
+                soldRequest.setQuantity(number);
+
+                soldRequest.setSellingPrice(_sellingprice.getText().toString());
+
+
+                Call<SoldRequest> call = apiInterface.Sold(soldRequest);
+
+
+                call.enqueue(new Callback<SoldRequest>() {
+                    @Override
+                    public void onResponse(Call<SoldRequest> call, Response<SoldRequest> response) {
+
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<SoldRequest> call, Throwable t) {
+                    }
+                });
+
+
+                Snackbar.make(view, "Congrats on selling the product", Snackbar.LENGTH_LONG);
+
+            }
+        });
 
 
 
@@ -114,6 +240,10 @@ public class MainActivity extends AppCompatActivity
 
 
     }
+
+
+
+
     public void openDialog(){
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog);

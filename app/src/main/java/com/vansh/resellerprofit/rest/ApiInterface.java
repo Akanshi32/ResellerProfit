@@ -2,6 +2,7 @@ package com.vansh.resellerprofit.rest;
 
 import com.vansh.resellerprofit.model.LoginResponse;
 import com.vansh.resellerprofit.model.SignUpRequest;
+import com.vansh.resellerprofit.model.SoldRequest;
 import com.vansh.resellerprofit.model.StockRequest;
 import com.vansh.resellerprofit.model.StockResponse;
 
@@ -26,5 +27,10 @@ public interface ApiInterface {
 
     @GET("/stock")
     Call<StockResponse> stockResponse(@QueryMap Map<String, String> params);
+
+     @POST("/sold")
+    Call<SoldRequest> Sold(@Body SoldRequest soldRequest);
+
+
 
 }

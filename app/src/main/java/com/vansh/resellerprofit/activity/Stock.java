@@ -41,7 +41,6 @@ public class Stock extends AppCompatActivity {
             public void onResponse(Call<StockResponse> call, Response<StockResponse> response) {
                 int statusCode = response.code();
                 List<com.vansh.resellerprofit.model.Stock> stock = response.body().getStock();
-
                 recyclerView.setAdapter(new StockAdapter(stock, R.layout.list_item_stock, getApplicationContext()));
                             }
 

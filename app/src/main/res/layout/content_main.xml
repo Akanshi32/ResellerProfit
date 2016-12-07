@@ -28,11 +28,21 @@
             android:textSize="20sp"
             android:textColor="#000000"
             android:text="Product ID:"/>
+
+
         <Spinner
             android:id="@+id/spinner"
             android:layout_weight="0.5"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"></Spinner>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/stock_recycler_view_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            />
 
     </LinearLayout>
     <LinearLayout
@@ -48,7 +58,7 @@
             android:textColor="#000000"
             android:text="Selling Price: "/>
         <EditText
-            android:id="@+id/costprice"
+            android:id="@+id/sellingprice"
             android:layout_width="0dp"
             android:inputType="number"
             android:hint="Enter selling price"
@@ -80,10 +90,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ADD"
-
-
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:id="@+id/sold" />
+        android:id="@+id/add" />
 
 
 </LinearLayout>
