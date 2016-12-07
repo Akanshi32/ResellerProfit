@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity
     EditText _stock;
     @Bind(R.id.sellingprice)
     EditText _sellingprice;
-    @Bind(R.id.slt)
+    @Bind(R.id.select)
     Button _selectbutt;
     @Bind(R.id.add)
     Button _add;

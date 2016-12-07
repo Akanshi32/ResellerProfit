@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:text="Select ID"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:id="@+id/slt" />
+            android:id="@+id/select" />
 
 
 
