@@ -36,11 +36,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.vansh.resellerprofit.R;
+import com.vansh.resellerprofit.adapter.SpinnerStockAdapter;
 import com.vansh.resellerprofit.adapter.StockAdapter;
 import com.vansh.resellerprofit.model.SoldRequest;
 import com.vansh.resellerprofit.model.StockRequest;
@@ -53,6 +55,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -65,13 +68,11 @@ public class MainActivity extends AppCompatActivity
     EditText _stock;
     @Bind(R.id.sellingprice)
     EditText _sellingprice;
-    @Bind(R.id.spinner)
-    Spinner _spinner;
+    @Bind(R.id.slt)
+    Button _selectbutt;
     @Bind(R.id.add)
     Button _add;
 
-
-    ArrayAdapter<String> adapterBusinessType;
 
 
     int width,height;
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         int PERMISSION_ALL = 1;
         String[] PERMISSIONS = {Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_SMS, Manifest.permission.CAMERA};
@@ -101,62 +103,17 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        //TO CHECK THIS PART
 
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stock_recycler_view_spinner);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ApiInterface apiService =
-                ApiClient.getClient(this).create(ApiInterface.class);
-
-        Call<StockResponse> call = apiService.stockResponse(new HashMap<String, String>());
-        call.enqueue(new Callback<StockResponse>() {
+        _selectbutt.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<StockResponse> call, Response<StockResponse> response) {
-                int statusCode = response.code();
-                List<com.vansh.resellerprofit.model.Stock> stock = response.body().getStock();
-
-                String[] stockArr = new String[stock.size()];
-                stockArr = stock.toArray(stockArr);
-                String[] arraySpinner =stockArr;
-
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                        android.R.layout.simple_spinner_item, arraySpinner);
-                _spinner.setAdapter(adapter);
-
-          /*      recyclerView.setAdapter(new StockAdapter(stock, R.layout.list_item_stock, getApplicationContext()));
-
-                adapterBusinessType = new ArrayAdapter<String>(this,
-                        R.layout.list_item_stock_spinner,);
-                adapterBusinessType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                _spinner.setAdapter(adapterBusinessType);*/
-
-
-            }
-
-            @Override
-            public void onFailure(Call<StockResponse> call, Throwable t) {
-                // Log error here since request failed
-                Log.e("Error", t.toString());
-            }
-        });
-
-
-        _spinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "Item number: " + position, Toast.LENGTH_LONG).show();
+            public void onClick(View view) {
+                openDialogSelect();
             }
         });
 
 
 
-
-
-
-
-
-        //TILL HERE
 
 
 
@@ -172,7 +129,6 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
 
-                soldRequest.setItemId(_spinner.getSelectedItem().toString());
                 String text1 = _stock.getText().toString();
                 int number = Integer.parseInt(text1);
                 soldRequest.setQuantity(number);
@@ -242,6 +198,48 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    public void openDialogSelect(){
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_productid);
+
+        dialog.setTitle("Product Details");
+        dialog.getWindow().setLayout(width*90/100, height*65/100);
+        dialog.show();
+
+        //TO CHECK THIS PART
+
+        final RecyclerView recyclerView = (RecyclerView) dialog.findViewById(R.id.stock_recycler_view_spinner);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+        ApiInterface apiService =
+                ApiClient.getClient(this).create(ApiInterface.class);
+
+        Call<StockResponse> call = apiService.stockResponse(new HashMap<String, String>());
+        call.enqueue(new Callback<StockResponse>() {
+            @Override
+            public void onResponse(Call<StockResponse> call, Response<StockResponse> response) {
+                int statusCode = response.code();
+                List<com.vansh.resellerprofit.model.Stock> stock = response.body().getStock();
+                recyclerView.setAdapter(new SpinnerStockAdapter(stock, R.layout.list_item_stock_spinner, getApplicationContext()));
+
+            }
+
+            @Override
+            public void onFailure(Call<StockResponse> call, Throwable t) {
+                // Log error here since request failed
+                Log.e("Error", t.toString());
+            }
+        });
+
+
+        //TILL HERE
+
+
+
+
+
+    }
 
 
     public void openDialog(){
