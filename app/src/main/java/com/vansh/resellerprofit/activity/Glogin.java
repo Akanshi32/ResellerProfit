@@ -98,7 +98,7 @@ public class Glogin extends AppCompatActivity implements
         // Customizing G+ button
       //  btnSignIn.setSize(SignInButton.SIZE_STANDARD);
       //  btnSignIn.setScopes(gso.getScopeArray());
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         _signupLink.setOnClickListener(new View.OnClickListener() {
 
