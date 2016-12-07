@@ -19,7 +19,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Display;
-import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -51,7 +50,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import okhttp3.internal.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -131,6 +129,8 @@ public class MainActivity extends AppCompatActivity
         _add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                soldRequest.setItemId(_selected.getText().toString());
 
                 String text1 = _stock.getText().toString();
                 int number = Integer.parseInt(text1);
@@ -426,7 +426,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(it);
 
         } else if (id == R.id.nav_sold) {
-            Intent it = new Intent(MainActivity.this, Sold.class);
+            Intent it = new Intent(MainActivity.this, SoldActivity.class);
             startActivity(it);
 
         } else if (id == R.id.nav_calendar) {
