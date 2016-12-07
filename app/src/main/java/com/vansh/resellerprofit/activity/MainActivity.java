@@ -68,13 +68,14 @@ public class MainActivity extends AppCompatActivity
     Button _selectbutt;
     @Bind(R.id.add)
     Button _add;
+    @Bind(R.id.selected)
+    TextView _selected;
 
 
 
     int width,height;
     Button cancel,submit;
     ImageView addButton;
-    TextView selected;
     public String codeFormat,codeContent,c;
 
 
@@ -113,6 +114,9 @@ public class MainActivity extends AppCompatActivity
 
 
 
+        Intent intent = getIntent();
+        String stringData= intent.getStringExtra("name");
+        _selected.setText(stringData);
 
 
 
@@ -234,9 +238,7 @@ public class MainActivity extends AppCompatActivity
             public void onResponse(Call<StockResponse> call, Response<StockResponse> response) {
                 int statusCode = response.code();
                 List<com.vansh.resellerprofit.model.Stock> stock = response.body().getStock();
-                recyclerView.setAdapter(new SpinnerStockAdapter(stock, R.layout.list_item_stock_spinner, getApplicationContext(),true));
-
-
+                recyclerView.setAdapter(new SpinnerStockAdapter(stock, R.layout.list_item_stock_spinner, getApplicationContext()));
 
                  }
 
