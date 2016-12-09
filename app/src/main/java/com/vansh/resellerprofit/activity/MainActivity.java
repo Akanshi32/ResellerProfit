@@ -3,6 +3,7 @@ package com.vansh.resellerprofit.activity;
 import android.Manifest;
 import android.app.Dialog;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -44,6 +45,7 @@ import com.vansh.resellerprofit.model.StockRequest;
 import com.vansh.resellerprofit.model.StockResponse;
 import com.vansh.resellerprofit.rest.ApiClient;
 import com.vansh.resellerprofit.rest.ApiInterface;
+import com.vansh.resellerprofit.utility.DialogUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -141,17 +143,29 @@ public class MainActivity extends AppCompatActivity
 
                 Call<SoldRequest> call = apiInterface.Sold(soldRequest);
 
+                final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+                dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                dialog.setMessage("Congrats! You Just Sold An Item..");
+                dialog.setIndeterminate(true);
+                dialog.setCanceledOnTouchOutside(false);
+                dialog.show();
 
                 call.enqueue(new Callback<SoldRequest>() {
                     @Override
                     public void onResponse(Call<SoldRequest> call, Response<SoldRequest> response) {
 
-
+                    dialog.hide();
 
                     }
 
                     @Override
                     public void onFailure(Call<SoldRequest> call, Throwable t) {
+                        dialog.hide();
+                        DialogUtil.createDialog("Oops! Please check your internet connection!", MainActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                            @Override
+                            public void onClick() {
+                            }
+                        });
                     }
                 });
 
@@ -167,7 +181,6 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Enter Product Details", Snackbar.LENGTH_LONG);
                 openDialog();
             }
         });
@@ -233,18 +246,33 @@ public class MainActivity extends AppCompatActivity
                 ApiClient.getClient(this).create(ApiInterface.class);
 
         Call<StockResponse> call = apiService.stockResponse(new HashMap<String, String>());
+
+        final ProgressDialog dialog1 = new ProgressDialog(MainActivity.this);
+        dialog1.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog1.setMessage("Select The Item From Your Stock");
+        dialog1.setIndeterminate(true);
+        dialog1.setCanceledOnTouchOutside(false);
+        dialog1.show();
+
         call.enqueue(new Callback<StockResponse>() {
             @Override
             public void onResponse(Call<StockResponse> call, Response<StockResponse> response) {
                 int statusCode = response.code();
                 List<com.vansh.resellerprofit.model.Stock> stock = response.body().getStock();
                 recyclerView.setAdapter(new SpinnerStockAdapter(stock, R.layout.list_item_stock_spinner, getApplicationContext()));
-
+                dialog1.hide();
                  }
 
 
             @Override
             public void onFailure(Call<StockResponse> call, Throwable t) {
+                dialog1.hide();
+                DialogUtil.createDialog("Oops! Please check your internet connection!", MainActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                    @Override
+                    public void onClick() {
+                    }
+                });
+
                 // Log error here since request failed
                 Log.e("Error", t.toString());
             }
@@ -289,6 +317,7 @@ public class MainActivity extends AppCompatActivity
         final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
 
 
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -303,17 +332,30 @@ public class MainActivity extends AppCompatActivity
 
                 Call<StockRequest> call = apiInterface.Stock(stockRequest);
 
+                final ProgressDialog dialog2 = new ProgressDialog(MainActivity.this);
+                dialog2.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                dialog2.setMessage("Adding the item to your inventory");
+                dialog2.setIndeterminate(true);
+                dialog2.setCanceledOnTouchOutside(false);
+                dialog2.show();
+
 
                 call.enqueue(new Callback<StockRequest>() {
                     @Override
                     public void onResponse(Call<StockRequest> call, Response<StockRequest> response) {
-
+                    dialog2.hide();
 
 
                     }
 
                     @Override
                     public void onFailure(Call<StockRequest> call, Throwable t) {
+                        dialog2.hide();
+                        DialogUtil.createDialog("Oops! Please check your internet connection!", MainActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                            @Override
+                            public void onClick() {
+                            }
+                        });
                     }
                 });
 
