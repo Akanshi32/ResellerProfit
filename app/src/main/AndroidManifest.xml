@@ -24,8 +24,7 @@
         </activity>
         <activity
             android:name=".activity.Glogin"
-            android:label="Google Login"
-           />
+            android:label="Google Login" />
         <activity
             android:name=".activity.SplashScreenActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -66,8 +65,15 @@
         <activity
             android:name=".activity.ProfileActivity"
             android:label="Profile" />
-
-        <activity android:name=".activity.SoldActivity"
+        <activity
+            android:name=".activity.SoldActivity"
+            android:parentActivityName=".activity.MainActivity">
+            <meta-data
+                android:name=".PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".activity.BillActivity"
             android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name=".PARENT_ACTIVITY"

@@ -13,6 +13,7 @@ import android.graphics.Point;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -29,6 +30,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -55,6 +57,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
 
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -77,9 +80,11 @@ public class MainActivity extends AppCompatActivity
     TextView _selected;
     @Bind(R.id.profit_tv)
     TextView _profit;
+    @Bind(R.id.show)
+     Button showprofit;
 
 
-
+    static int TIME_OUT=2000;
     int width,height;
     Button cancel,submit;
     ImageView addButton;
@@ -120,9 +125,16 @@ public class MainActivity extends AppCompatActivity
 
         call.enqueue(new Callback<ProfitResponse>() {
             @Override
-            public void onResponse(Call<ProfitResponse> call, Response<ProfitResponse> response) {
+            public void onResponse(Call<ProfitResponse> call, final Response<ProfitResponse> response) {
+
+                showprofit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
 
                 _profit.setText(response.body().getProfit().toString());
+                    }
+                });
 
             }
 
@@ -141,6 +153,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 openDialogSelect();
+                _profit.setText("");
             }
         });
 
@@ -163,6 +176,12 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
 
+                InputMethodManager inputManager = (InputMethodManager)
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
+
                 soldRequest.setItemId(_selected.getText().toString());
 
                 String text1 = _stock.getText().toString();
@@ -176,7 +195,7 @@ public class MainActivity extends AppCompatActivity
 
                 final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
                 dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                dialog.setMessage("Congrats! You Just Sold An Item..");
+                dialog.setMessage("Congrats! You Just Sold An Item.");
                 dialog.setIndeterminate(true);
                 dialog.setCanceledOnTouchOutside(false);
                 dialog.show();
@@ -202,6 +221,15 @@ public class MainActivity extends AppCompatActivity
 
 
                 Snackbar.make(view, "Congrats on selling the product", Snackbar.LENGTH_LONG);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent i = new Intent(MainActivity.this, BillActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+                }, TIME_OUT);
+
 
             }
         });
