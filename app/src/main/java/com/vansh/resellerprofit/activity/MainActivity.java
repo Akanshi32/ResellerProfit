@@ -40,6 +40,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.vansh.resellerprofit.R;
 import com.vansh.resellerprofit.adapter.SpinnerStockAdapter;
+import com.vansh.resellerprofit.model.ProfitResponse;
 import com.vansh.resellerprofit.model.SoldRequest;
 import com.vansh.resellerprofit.model.StockRequest;
 import com.vansh.resellerprofit.model.StockResponse;
@@ -47,8 +48,12 @@ import com.vansh.resellerprofit.rest.ApiClient;
 import com.vansh.resellerprofit.rest.ApiInterface;
 import com.vansh.resellerprofit.utility.DialogUtil;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TimeZone;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -70,6 +75,8 @@ public class MainActivity extends AppCompatActivity
     Button _add;
     @Bind(R.id.selected)
     TextView _selected;
+    @Bind(R.id.profit_tv)
+    TextView _profit;
 
 
 
@@ -101,9 +108,34 @@ public class MainActivity extends AppCompatActivity
         width = size.x;
 
 
-/*
-        Spinner spinner = (Spinner)findViewById(R.id.spinner);
-        String text = spinner.getSelectedItem().toString();*/
+        TimeZone tz = TimeZone.getTimeZone("UTC");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'"); // Quoted "Z" to indicate UTC, no timezone offset
+        df.setTimeZone(tz);
+        String nowAsISO = df.format(new Date());
+
+        ApiInterface apiService =
+                ApiClient.getClient(this).create(ApiInterface.class);
+
+        Call<ProfitResponse> call = apiService.profitResponse(nowAsISO);
+
+        call.enqueue(new Callback<ProfitResponse>() {
+            @Override
+            public void onResponse(Call<ProfitResponse> call, Response<ProfitResponse> response) {
+
+                _profit.setText(response.body().getProfit().toString());
+
+            }
+
+
+            @Override
+            public void onFailure(Call<ProfitResponse> call, Throwable t) {
+                // Log error here since request failed
+                Log.e("Error", t.toString());
+            }
+        });
+
+
+
 
         _selectbutt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +143,6 @@ public class MainActivity extends AppCompatActivity
                 openDialogSelect();
             }
         });
-
 
 
         Intent intent = getIntent();
@@ -222,27 +253,11 @@ public class MainActivity extends AppCompatActivity
         dialog.getWindow().setLayout(width*90/100, height*65/100);
         dialog.show();
 
-        //TO CHECK THIS PART
 
         final RecyclerView recyclerView = (RecyclerView) dialog.findViewById(R.id.stock_recycler_view_spinner);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        /*recyclerView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                final TextView txtStatusChange = (TextView)v.findViewById(R.id.text15);
-                txtStatusChange.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.e(TAG, "hello text " + txtStatusChange.getText().toString() + " TAG " + txtStatusChange.getTag().toString());
-
-                    }
-                });
-                return false;
-            }
-        });*/
-
-        ApiInterface apiService =
+            ApiInterface apiService =
                 ApiClient.getClient(this).create(ApiInterface.class);
 
         Call<StockResponse> call = apiService.stockResponse(new HashMap<String, String>());
@@ -277,12 +292,6 @@ public class MainActivity extends AppCompatActivity
                 Log.e("Error", t.toString());
             }
         });
-
-
-        //TILL HERE
-
-
-
 
 
     }
