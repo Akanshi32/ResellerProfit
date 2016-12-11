@@ -115,8 +115,10 @@ public class Glogin extends AppCompatActivity implements
 
 
     private void signIn() {
+        showProgressDialog();
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
+
     }
 
 
@@ -151,9 +153,10 @@ public class Glogin extends AppCompatActivity implements
             Log.e(TAG, "display name: " + acct.getDisplayName());
             Log.e(TAG, "Token ID: " + acct.getIdToken());
 
-            String personName = acct.getDisplayName();
+            final String personName = acct.getDisplayName();
             String personPhotoUrl = acct.getPhotoUrl().toString();
-            String email = acct.getEmail();
+            final String email = acct.getEmail();
+
 
             final String idToken = acct.getIdToken();
             // TODO(user): send token to server and validate server-side
@@ -162,6 +165,7 @@ public class Glogin extends AppCompatActivity implements
                     + ", Image: " + personPhotoUrl);
 
            /* txtName.setText(personName);
+
             txtEmail.setText(email);
             Glide.with(getApplicationContext()).load(personPhotoUrl)
                     .thumbnail(0.5f)
@@ -173,22 +177,28 @@ public class Glogin extends AppCompatActivity implements
             Log.e(TAG, "SP KEY: " + Preferences.getPrefs(Consts.TOKEN_SP_KEY,Glogin.this));
 
 
+
             final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
             Call<LoginResponse> loginResponseCall = apiInterface.getResponse(new HashMap<String, String>());
             loginResponseCall.enqueue(new Callback<LoginResponse>() {
                 @Override
                 public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-
                     if (response.body().getSuccess()){
+                        hideProgressDialog();
                         Toast.makeText(getBaseContext(),response.body().getMessage(), Toast.LENGTH_LONG).show();
-
                         Intent intent = new Intent(Glogin.this, MainActivity.class);
+
+                        Intent em=new Intent(Glogin.this, SignupActivity.class).putExtra("ema", email);
+                        startActivity(em);
+                        Intent nam=new Intent(Glogin.this, SignupActivity.class).putExtra("name", personName);
+                        startActivity(nam);
+
                         startActivity(intent);
                     }
                     else
 
-                    {Toast.makeText(getBaseContext(), "Login failed, you might wanna signup", Toast.LENGTH_LONG).show();
-
+                    {
+                        Toast.makeText(getBaseContext(),"Welcome", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(Glogin.this, SignupActivity.class);
                         startActivity(intent);
                     }
@@ -249,7 +259,7 @@ public class Glogin extends AppCompatActivity implements
     public void onStart() {
         super.onStart();
 
-        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
+      /*  OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
         if (opr.isDone()) {
             // If the user's cached credentials are valid, the OptionalPendingResult will be "done"
             // and the GoogleSignInResult will be available instantly.
@@ -268,7 +278,7 @@ public class Glogin extends AppCompatActivity implements
                     handleSignInResult(googleSignInResult);
                 }
             });
-        }
+        }*/
     }
 
     @Override

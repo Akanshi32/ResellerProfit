@@ -167,7 +167,6 @@ public class ProfileActivity extends AppCompatActivity implements
                 public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
                     if (response.body().getSuccess()){
-                        Toast.makeText(getBaseContext(),response.body().getMessage(), Toast.LENGTH_LONG).show();
 
                     }
                     else

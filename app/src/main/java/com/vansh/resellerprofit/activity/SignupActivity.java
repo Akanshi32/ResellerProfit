@@ -46,6 +46,12 @@ public class SignupActivity extends AppCompatActivity {
         final SignUpRequest signUpRequest = new SignUpRequest();
         final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
 
+        String s= getIntent().getStringExtra("name");
+        String d= getIntent().getStringExtra("ema");
+
+        _nameText.setText(s);
+        _email.setText(d);
+
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +68,7 @@ public class SignupActivity extends AppCompatActivity {
                        // if (response.body().getCode().equals(Consts.SUCCESS)){
                          //   Toast.makeText(getBaseContext(), "Username exists", Toast.LENGTH_LONG).show();
                         signup();
-                        Intent intent = new Intent(SignupActivity.this, Glogin.class);
+                        Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                         startActivity(intent);
                     }
 

@@ -1,6 +1,7 @@
 package com.vansh.resellerprofit.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 
 import android.app.ProgressDialog;
@@ -67,6 +68,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private ProgressDialog mProgressDialog;
 
     @Bind(R.id.stock)
     EditText _stock;
@@ -113,6 +115,7 @@ public class MainActivity extends AppCompatActivity
         width = size.x;
 
 
+
         TimeZone tz = TimeZone.getTimeZone("UTC");
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'"); // Quoted "Z" to indicate UTC, no timezone offset
         df.setTimeZone(tz);
@@ -121,7 +124,7 @@ public class MainActivity extends AppCompatActivity
         ApiInterface apiService =
                 ApiClient.getClient(this).create(ApiInterface.class);
 
-        Call<ProfitResponse> call = apiService.profitResponse(nowAsISO);
+        Call<ProfitResponse> call = apiService.profitDaily(nowAsISO);
 
         call.enqueue(new Callback<ProfitResponse>() {
             @Override
@@ -166,10 +169,8 @@ public class MainActivity extends AppCompatActivity
 
 
 
-
         final SoldRequest soldRequest = new SoldRequest();
         final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
-
 
 
         _add.setOnClickListener(new View.OnClickListener() {
@@ -515,7 +516,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(it);
 
         } else if (id == R.id.nav_calendar) {
-            Intent it = new Intent(MainActivity.this, Calendar.class);
+            Intent it = new Intent(MainActivity.this, CalendarActivity.class);
             startActivity(it);
 
         } else if (id == R.id.nav_faq) {
@@ -532,5 +533,23 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+    private void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage(getString(R.string.loading));
+            mProgressDialog.setIndeterminate(true);
+        }
+
+        mProgressDialog.show();
+    }
+
+    private void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.hide();
+        }
+    }
+
 
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import com.vansh.resellerprofit.R;
 import com.vansh.resellerprofit.adapter.StockAdapter;
@@ -25,6 +26,9 @@ import retrofit2.Response;
 
 public class Stock extends AppCompatActivity {
 
+    private ProgressDialog mProgressDialog;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +43,7 @@ public class Stock extends AppCompatActivity {
 
         Call<StockResponse> call = apiService.stockResponse(new HashMap<String, String>());
 
-        final ProgressDialog dialog = new ProgressDialog(Stock.this);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMessage("Loading Your Stock...");
-        dialog.setIndeterminate(true);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
-
+        showProgressDialog();
         call.enqueue(new Callback<StockResponse>() {
             @Override
             public void onResponse(Call<StockResponse> call, Response<StockResponse> response) {
@@ -53,7 +51,8 @@ public class Stock extends AppCompatActivity {
 
                 List<com.vansh.resellerprofit.model.Stock> stock = response.body().getStock();
                 recyclerView.setAdapter(new StockAdapter(stock, R.layout.list_item_stock, getApplicationContext()));
-                dialog.hide();
+
+                hideProgressDialog();
 
             }
 
@@ -62,7 +61,8 @@ public class Stock extends AppCompatActivity {
 
                 // Log error here since request failed
                 Log.e("Error", t.toString());
-                dialog.hide();
+
+                hideProgressDialog();
                 DialogUtil.createDialog("Oops! Please check your internet connection!", Stock.this, new DialogUtil.OnPositiveButtonClick() {
                     @Override
                     public void onClick() {
@@ -72,6 +72,25 @@ public class Stock extends AppCompatActivity {
         });
 
     }
+
+
+    private void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage("Loading Your Stock...");
+            mProgressDialog.setIndeterminate(true);
+        }
+
+        mProgressDialog.show();
+    }
+
+
+    private void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.hide();
+        }
+    }
+
 
 
 }

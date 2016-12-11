@@ -1,6 +1,5 @@
 package com.vansh.resellerprofit.activity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,7 +24,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.TimeZone;
 
 public class Calendar extends AppCompatActivity {
 
@@ -160,7 +158,6 @@ public class Calendar extends AppCompatActivity {
 
         // uncomment below to open onCreate
         //openCalendarOnCreate(v);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 

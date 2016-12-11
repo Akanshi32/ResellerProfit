@@ -57,4 +57,8 @@ public interface ApiInterface {
     Call<ProfitResponse> profitResponse(@Query("date") String date);
 
 
+    @GET("/profit/day")
+    Call<ProfitResponse> profitDaily(@Query("date") String day);
+
+
 }
