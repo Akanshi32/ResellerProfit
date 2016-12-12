@@ -6,54 +6,76 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/top_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="#FFFFFF"
+            android:layout_alignParentTop="true"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:background="@color/colorPrimary">
 
-            <TextView
-                android:id="@+id/tv_toolbar_title"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="18sp"/>
+                android:orientation="vertical">
 
-            <com.github.sundeepk.compactcalendarview.CompactCalendarView
-                android:id="@+id/compactcalendar_view"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_gravity="center_horizontal"
-                app:compactCalendarBackgroundColor="@color/colorPrimary"
-                app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
-                app:compactCalendarCurrentDayIndicatorStyle="fill_large_indicator"
-                app:compactCalendarCurrentSelectedDayBackgroundColor="#ffbd5f5f"
-                app:compactCalendarEventIndicatorStyle="small_indicator"
-                app:compactCalendarOtherMonthDaysTextColor="#534c4c"
-                app:compactCalendarTargetHeight="250dp"
-                app:compactCalendarTextColor="#fff"
-                app:compactCalendarTextSize="12sp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="hello"
-                android:id="@+id/pro"/>
+                <TextView
+                    android:id="@+id/tv_toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="18sp"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"/>
+
+                <com.github.sundeepk.compactcalendarview.CompactCalendarView
+                    android:id="@+id/compactcalendar_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_gravity="center_horizontal"
+                    app:compactCalendarBackgroundColor="@color/colorPrimary"
+                    app:compactCalendarCurrentDayBackgroundColor="@color/colorPrimaryDark"
+                    app:compactCalendarCurrentDayIndicatorStyle="fill_large_indicator"
+                    app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorPrimaryDark"
+                    app:compactCalendarEventIndicatorStyle="small_indicator"
+                    app:compactCalendarOtherMonthDaysTextColor="#534c4c"
+                    app:compactCalendarTargetHeight="250dp"
+                    app:compactCalendarTextColor="#fff"
+                    app:compactCalendarTextSize="12sp" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.Toolbar>
 
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/profit"
+            android:layout_width="match_parent"
+            android:text="This Day's Profit:"
+            android:textSize="30dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar" />
+        <TextView
+            android:id="@+id/pro"
+            android:layout_width="match_parent"
+            android:text="Profit"
+            android:textSize="25dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar" />
+    </LinearLayout>
 
-    </android.support.v7.widget.Toolbar>
 
-   <!-- <android.support.v7.widget.RecyclerView
-        android:id="@+id/bookings_listview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar" />-->
 
 </RelativeLayout>

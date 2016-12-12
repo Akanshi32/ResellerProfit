@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
@@ -38,12 +40,14 @@ public class CalendarActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     TextView pro;
+    private Toolbar toptoolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-
+        pro=(TextView)findViewById(R.id.pro);
         JodaTimeAndroid.init(this);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -51,12 +55,16 @@ public class CalendarActivity extends AppCompatActivity {
         toolbar.setTitle("");
         pro=(TextView)findViewById(R.id.pro);
 
+        toptoolbar = (Toolbar) findViewById(R.id.top_toolbar);
+        setSupportActionBar(toptoolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toptoolbar.setTitle("");
+
+
 
         final CompactCalendarView compactCalendarView = (CompactCalendarView) toolbar.findViewById(R.id.compactcalendar_view);
         final TextView calendarTV = (TextView) toolbar.findViewById(R.id.tv_toolbar_title);
-       /* recyclerView = (RecyclerView) findViewById(R.id.bookings_listview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-*/
+
 
         final ProgressDialog dialog = new ProgressDialog(this);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -89,7 +97,6 @@ public class CalendarActivity extends AppCompatActivity {
                     public void onResponse(Call<ProfitResponse> call, final Response<ProfitResponse> response) {
 
                                 dialog.hide();
-
                                 pro.setText(response.body().getProfit().toString());
 
 
@@ -110,6 +117,10 @@ public class CalendarActivity extends AppCompatActivity {
                 calendarTV.setText(dateFormatForMonth.format(firstDayOfNewMonth));
             }
         });
+
+        compactCalendarView.showCalendar();
+
     }
+
 
 }
