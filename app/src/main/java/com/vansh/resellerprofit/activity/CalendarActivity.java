@@ -75,7 +75,8 @@ public class CalendarActivity extends AppCompatActivity {
         final ApiInterface apiService =
                 ApiClient.getClient(this).create(ApiInterface.class);
 
-        calendarTV.setText(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
+
+
 
         compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
@@ -97,7 +98,8 @@ public class CalendarActivity extends AppCompatActivity {
                     public void onResponse(Call<ProfitResponse> call, final Response<ProfitResponse> response) {
 
                                 dialog.hide();
-                                pro.setText(response.body().getProfit().toString());
+                        compactCalendarView.showCalendarWithAnimation();
+                        pro.setText(response.body().getProfit().toString());
 
 
                     }
@@ -117,10 +119,12 @@ public class CalendarActivity extends AppCompatActivity {
                 calendarTV.setText(dateFormatForMonth.format(firstDayOfNewMonth));
             }
         });
-
         compactCalendarView.showCalendar();
+        calendarTV.setText(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
+
 
     }
-
-
+    public void onBackPressed() {
+        finish();
+    }
 }

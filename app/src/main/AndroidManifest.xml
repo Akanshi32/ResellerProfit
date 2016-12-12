@@ -64,7 +64,8 @@
             android:label="Sign up" />
         <activity
             android:name=".activity.ProfileActivity"
-            android:label="Profile" />
+            android:label="Profile"
+            android:parentActivityName=".activity.MainActivity"/>
         <activity
             android:name=".activity.SoldActivity"
             android:parentActivityName=".activity.MainActivity">

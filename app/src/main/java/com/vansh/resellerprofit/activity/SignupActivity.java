@@ -89,7 +89,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void startActivitySplash(){
-        Intent splashActivityIntent = new Intent(SignupActivity.this, Glogin.class);
+        Intent splashActivityIntent = new Intent(SignupActivity.this, MainActivity.class);
         startActivity(splashActivityIntent);
         finish();
     }

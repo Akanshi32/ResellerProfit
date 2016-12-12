@@ -137,9 +137,9 @@ public class ProfileActivity extends AppCompatActivity implements
             Log.e(TAG, "display name: " + acct.getDisplayName());
             Log.e(TAG, "Token ID: " + acct.getIdToken());
 
-            String personName = acct.getDisplayName();
-            String personPhotoUrl = acct.getPhotoUrl().toString();
-            String email = acct.getEmail();
+            final String personName = acct.getDisplayName();
+            final String personPhotoUrl = acct.getPhotoUrl().toString();
+            final String email = acct.getEmail();
 
             final String idToken = acct.getIdToken();
             // TODO(user): send token to server and validate server-side
@@ -171,10 +171,13 @@ public class ProfileActivity extends AppCompatActivity implements
                     }
                     else
 
-                    {Toast.makeText(getBaseContext(), "Login failed, you might wanna signup", Toast.LENGTH_LONG).show();
+                    {Toast.makeText(getBaseContext(), "Welcome", Toast.LENGTH_LONG).show();
 
-                        Intent intent = new Intent(ProfileActivity.this, SignupActivity.class);
-                        startActivity(intent);
+                        {Intent it = new Intent(ProfileActivity.this, SignupActivity.class);
+                            it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            it.putExtra("name",personName);
+                            it.putExtra("ema",email);
+                            startActivity(it);}
                     }
 
 

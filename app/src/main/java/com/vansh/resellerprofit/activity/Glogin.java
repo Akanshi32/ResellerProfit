@@ -188,10 +188,6 @@ public class Glogin extends AppCompatActivity implements
                         Toast.makeText(getBaseContext(),response.body().getMessage(), Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(Glogin.this, MainActivity.class);
 
-                        Intent em=new Intent(Glogin.this, SignupActivity.class).putExtra("ema", email);
-                        startActivity(em);
-                        Intent nam=new Intent(Glogin.this, SignupActivity.class).putExtra("name", personName);
-                        startActivity(nam);
 
                         startActivity(intent);
                     }
@@ -199,8 +195,15 @@ public class Glogin extends AppCompatActivity implements
 
                     {
                         Toast.makeText(getBaseContext(),"Welcome", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(Glogin.this, SignupActivity.class);
-                        startActivity(intent);
+
+
+
+                        {Intent it = new Intent(Glogin.this, SignupActivity.class);
+                        it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        it.putExtra("name",personName);
+                        it.putExtra("ema",email);
+                        startActivity(it);}
+
                     }
 
 
