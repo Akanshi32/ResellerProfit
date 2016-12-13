@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/colorPrimary">
+    android:background="@color/logo">
 
     <LinearLayout
         android:focusable="true"
@@ -12,15 +12,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="56dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
 
 
         <ImageView android:src="@drawable/logo"
-            android:layout_width="wrap_content"
-            android:layout_height="72dp"
-            android:layout_marginBottom="24dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="10dp"
             android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_title"
+            android:textColor="#FFFFFF"
+            android:textSize="40dp"
+
+            android:textAlignment="center"
+           />
 
       <!--  &lt;!&ndash;  Email Label &ndash;&gt;
         <android.support.design.widget.TextInputLayout
@@ -59,24 +68,22 @@
             android:id="@+id/btn_sign_in"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
-            android:padding="12dp"
+            android:background="#FFFFFF"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="20dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:padding="10dp"
             android:text="Login Using Google"/>
 
         <TextView android:id="@+id/link_signup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:text="No account yet? Create one"
+            android:text="@string/create_account"
             android:gravity="center"
+            android:textColor="#FFFFFF"
             android:textSize="16dip"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Skip >>"
-            android:background="@color/colorPrimaryDark"
-            android:id="@+id/b3"/>
+
     </LinearLayout>
 </ScrollView>
