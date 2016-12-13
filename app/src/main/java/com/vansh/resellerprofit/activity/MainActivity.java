@@ -280,7 +280,7 @@ public class MainActivity extends AppCompatActivity
         dialog.setContentView(R.layout.dialog_productid);
 
         dialog.setTitle("Product Details");
-        dialog.getWindow().setLayout(width*90/100, height*65/100);
+        dialog.getWindow().setLayout(width*90/100, height*100/100);
         dialog.show();
 
 
