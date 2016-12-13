@@ -8,6 +8,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 
 import com.vansh.resellerprofit.R;
 import com.vansh.resellerprofit.adapter.StockAdapter;
@@ -27,6 +30,7 @@ import retrofit2.Response;
 public class Stock extends AppCompatActivity {
 
     private ProgressDialog mProgressDialog;
+
 
 
     @Override
@@ -96,5 +100,6 @@ public class Stock extends AppCompatActivity {
     public void onBackPressed() {
         finish();
     }
+
 
 }

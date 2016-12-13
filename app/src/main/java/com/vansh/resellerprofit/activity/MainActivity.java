@@ -1,6 +1,7 @@
 package com.vansh.resellerprofit.activity;
 
 import android.Manifest;
+import android.animation.Animator;
 import android.app.Activity;
 import android.app.Dialog;
 
@@ -501,7 +502,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+
+
         int id = item.getItemId();
+
 
         if (id == R.id.nav_home) {
 
@@ -510,6 +514,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_stock) {
             Intent it = new Intent(MainActivity.this, Stock.class);
             startActivity(it);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 
         } else if (id == R.id.nav_sold) {
             Intent it = new Intent(MainActivity.this, SoldActivity.class);

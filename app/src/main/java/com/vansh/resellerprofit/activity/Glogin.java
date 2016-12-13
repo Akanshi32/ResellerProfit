@@ -187,9 +187,9 @@ public class Glogin extends AppCompatActivity implements
                         hideProgressDialog();
                         Toast.makeText(getBaseContext(),response.body().getMessage(), Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(Glogin.this, MainActivity.class);
-
-
                         startActivity(intent);
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+
                     }
                     else
 
