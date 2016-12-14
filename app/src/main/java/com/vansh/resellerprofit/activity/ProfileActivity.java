@@ -81,6 +81,7 @@ public class ProfileActivity extends AppCompatActivity implements
         btnRevokeAccess.setOnClickListener(this);
 
 
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .requestIdToken(getString(R.string.server_client_id))

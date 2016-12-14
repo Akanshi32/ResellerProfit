@@ -64,8 +64,11 @@
             android:label="Sign up" />
         <activity
             android:name=".activity.ProfileActivity"
-            android:label="Profile"
-            android:parentActivityName=".activity.MainActivity"/>
+            android:label="Profile" android:parentActivityName=".activity.MainActivity">
+            <meta-data
+                android:name=".PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".activity.SoldActivity"
             android:parentActivityName=".activity.MainActivity">
@@ -80,11 +83,15 @@
                 android:name=".PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-
         <activity
             android:name=".activity.CalendarActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".activity.MainActivity">
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name=".PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".activity.BillSetting" android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name=".PARENT_ACTIVITY"
                 android:value=".MainActivity" />
