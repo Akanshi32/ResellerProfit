@@ -21,6 +21,7 @@ public class BillActivity extends AppCompatActivity {
     TextView date,time;
     Button bill;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

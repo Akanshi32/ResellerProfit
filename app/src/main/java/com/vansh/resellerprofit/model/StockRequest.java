@@ -14,6 +14,15 @@ public class StockRequest {
     @SerializedName("cost_price")
     @Expose
     private String costPrice;
+    @SerializedName("invoice_no")
+    @Expose
+    private String invoiceNo;
+    @SerializedName("purchase_date")
+    @Expose
+    private String purchaseDate;
+    @SerializedName("vendor_name")
+    @Expose
+    private String vendorName;
 
     /**
      *
@@ -67,6 +76,60 @@ public class StockRequest {
      */
     public void setCostPrice(String costPrice) {
         this.costPrice = costPrice;
+    }
+
+    /**
+     *
+     * @return
+     * The invoiceNo
+     */
+    public String getInvoiceNo() {
+        return invoiceNo;
+    }
+
+    /**
+     *
+     * @param invoiceNo
+     * The invoice_no
+     */
+    public void setInvoiceNo(String invoiceNo) {
+        this.invoiceNo = invoiceNo;
+    }
+
+    /**
+     *
+     * @return
+     * The purchaseDate
+     */
+    public String getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    /**
+     *
+     * @param purchaseDate
+     * The purchase_date
+     */
+    public void setPurchaseDate(String purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
+
+    /**
+     *
+     * @return
+     * The vendorName
+     */
+    public String getVendorName() {
+        return vendorName;
+    }
+
+    /**
+     *
+     * @param vendorName
+     * The vendor_name
+     */
+    public void setVendorName(String vendorName) {
+        this.vendorName = vendorName;
     }
 
 }
