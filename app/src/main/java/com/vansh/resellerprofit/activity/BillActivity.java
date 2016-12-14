@@ -8,8 +8,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.vansh.resellerprofit.R;
-import com.vansh.resellerprofit.model.BillGeneratedFragment;
-import com.vansh.resellerprofit.model.BillGeneratedFragment;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -30,11 +28,11 @@ public class BillActivity extends AppCompatActivity {
         time = (TextView) findViewById(R.id.time_bill);
         bill = (Button) findViewById(R.id.generate);
 
-
+/*
         BillGeneratedFragment noteFragment = BillGeneratedFragment.newInstance();
         android.support.v4.app.FragmentTransaction fragTransaction= this.getSupportFragmentManager().beginTransaction();
         fragTransaction.replace(R.id.container, noteFragment);
-        fragTransaction.commit();
+        fragTransaction.commit();*/
 
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         date.setText(currentDate);

@@ -2,9 +2,11 @@ package com.vansh.resellerprofit.activity;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -74,7 +76,14 @@ public class BillSetting extends AppCompatActivity {
         select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 openDialogSelect();
+
+                Intent intent = getIntent();
+                String stringData= intent.getStringExtra("name");
+                sold.setText(stringData);
+                list.add(sold.getText().toString());
             }
         });
 
@@ -87,12 +96,6 @@ public class BillSetting extends AppCompatActivity {
                 soldRequest.setAddress(address.getText().toString());
                 soldRequest.setCstTin(cst.getText().toString());
                 soldRequest.setVatTin(vattin.getText().toString());
-
-                Intent intent = getIntent();
-                String stringData= intent.getStringExtra("name");
-                sold.setText(stringData);
-
-                list.add(sold.getText().toString());
                 soldRequest.setSoldId(list);
 
 
@@ -140,28 +143,26 @@ public class BillSetting extends AppCompatActivity {
     }
 
     public void openDialogSelect(){
-        final Dialog dialog3 = new Dialog(this);
-        dialog3.setContentView(R.layout.dialog_productid);
 
-        dialog3.setTitle("Product Details");
+        Dialog dialog3 = new Dialog(this);
+        dialog3.setContentView(R.layout.dialog_sold);
+
+        dialog3.setTitle("Sold Items");
         dialog3.getWindow().setLayout(width*90/100, height*100/100);
         dialog3.show();
 
 
-        final RecyclerView recyclerView = (RecyclerView) dialog3.findViewById(R.id.stock_recycler_view_spinner);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        final RecyclerView recyclerView = (RecyclerView) dialog3.findViewById(R.id.sold_recycler_view_spinner);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(dialog3.getContext());
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(layoutManager);
 
         ApiInterface apiService =
                 ApiClient.getClient(this).create(ApiInterface.class);
 
         Call<SoldViewResponse> call = apiService.soldViewResonse(new HashMap<String, String>());
 
-        final ProgressDialog dialog1 = new ProgressDialog(BillSetting.this);
-        dialog1.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog1.setMessage("Select The Item From Your Stock");
-        dialog1.setIndeterminate(true);
-        dialog1.setCanceledOnTouchOutside(false);
-        dialog1.show();
+
 
         call.enqueue(new Callback<SoldViewResponse>() {
             @Override
@@ -169,13 +170,11 @@ public class BillSetting extends AppCompatActivity {
                 int statusCode = response.code();
                 List<com.vansh.resellerprofit.model.Sold> sold = response.body().getSold();
                 recyclerView.setAdapter(new SpinnerSoldAdapter(sold, R.layout.list_item_stock_spinner, getApplicationContext()));
-                dialog1.hide();
             }
 
 
             @Override
             public void onFailure(Call<SoldViewResponse> call, Throwable t) {
-                dialog1.hide();
                 DialogUtil.createDialog("Oops! Please check your internet connection!", BillSetting.this, new DialogUtil.OnPositiveButtonClick() {
                     @Override
                     public void onClick() {
@@ -190,4 +189,5 @@ public class BillSetting extends AppCompatActivity {
 
     }
 
-}
+    }
+
