@@ -23,6 +23,7 @@
             android:id="@+id/nav_bill"
             android:icon="@drawable/ic_bill_black_24dp"
             android:title="Bill Settings" />
+
     </group>
     <item android:title="Communicate">
         <menu>

@@ -41,7 +41,7 @@
             android:layout_weight="0.5"
             android:text="Address: "/>
         <EditText
-            android:id="@+id/address"
+            android:id="@+id/c_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Enter address"
@@ -94,11 +94,21 @@
             android:layout_weight="0.50"
             android:text="Product ID: "/>
         <EditText
-            android:id="@+id/product_id"
+            android:id="@+id/product_i"
             android:layout_width="0dp"
             android:hint="Enter Product ID"
             android:inputType="number"
             android:layout_height="wrap_content"
             android:layout_weight="0.70"/>
     </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sub"
+        android:text="Submit"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/selectt"
+        android:text="select"/>
 </LinearLayout>
