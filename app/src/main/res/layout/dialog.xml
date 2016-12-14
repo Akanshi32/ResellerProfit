@@ -32,9 +32,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
+            android:id="@+id/pur"
             android:paddingLeft="20dp"
-            android:text="Date: "/>
-        <TextView
+            android:text="Date of Purchase: "/>
+        <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
@@ -58,7 +59,7 @@
             android:id="@+id/invoiceno"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Enter product id"
+            android:hint="Enter Invoice Number"
             android:layout_weight="0.70"/>
     </LinearLayout>
     <LinearLayout
@@ -71,12 +72,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="Vendor ID: "/>
+            android:text="Vendor Name: "/>
         <EditText
             android:id="@+id/vendorid"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Enter product id"
+            android:hint="Enter Vendor Name"
             android:layout_weight="0.70"/>
     </LinearLayout>
     <LinearLayout
@@ -89,12 +90,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="Product ID: "/>
+            android:text="Product Name(Name|UniqueID): "/>
         <EditText
             android:id="@+id/productid"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Enter product id"
+            android:hint="Enter product name"
             android:layout_weight="0.70"/>
     </LinearLayout>
     <LinearLayout

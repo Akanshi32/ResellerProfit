@@ -1,5 +1,6 @@
 package com.vansh.resellerprofit.rest;
 
+import com.vansh.resellerprofit.model.BillSettingRequest;
 import com.vansh.resellerprofit.model.Expense;
 import com.vansh.resellerprofit.model.ExpenseRequest;
 import com.vansh.resellerprofit.model.LoginResponse;
@@ -46,6 +47,9 @@ public interface ApiInterface {
 
     @POST("/expense")
     Call<ExpenseRequest> expense(@Body ExpenseRequest expenseRequest);
+
+     @POST("/bill")
+    Call<BillSettingRequest> billsetrequest(@Body BillSettingRequest billSettingRequest);
 
 
     @GET("/expense")

@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
+import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.vansh.resellerprofit.R;
 import com.vansh.resellerprofit.model.ProfitResponse;
 import com.vansh.resellerprofit.rest.ApiClient;
@@ -86,10 +87,11 @@ public class CalendarActivity extends AppCompatActivity {
                 Log.i("ds",ook);
                 dialog.show();
 
-                TimeZone tz = TimeZone.getTimeZone("UTC");
-                DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'"); // Quoted "Z" to indicate UTC, no timezone offset
+             /*    TimeZone tz = TimeZone.getTimeZone("UTC");
+               DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'"); // Quoted "Z" to indicate UTC, no timezone offset
                 df.setTimeZone(tz);
-                String nowAsISO = df.format(dateClicked);
+                String nowAsISO = df.format(dateClicked);*/
+                String nowAsISO = ISO8601Utils.format(dateClicked);
 
                 Call<ProfitResponse> call = apiService.profitDaily(nowAsISO);
 

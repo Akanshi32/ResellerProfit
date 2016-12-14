@@ -3,6 +3,7 @@ package com.vansh.resellerprofit.activity;
 import android.Manifest;
 import android.animation.Animator;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 
 import android.app.ProgressDialog;
@@ -34,12 +35,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.vansh.resellerprofit.R;
@@ -54,10 +57,7 @@ import com.vansh.resellerprofit.utility.DialogUtil;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.TimeZone;
+import java.util.*;
 
 
 import butterknife.Bind;
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity
     TextView _profit;
     @Bind(R.id.show)
      Button showprofit;
+    private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("dd - MM - yyyy", Locale.getDefault());
 
 
     static int TIME_OUT=2000;
@@ -337,6 +338,8 @@ public class MainActivity extends AppCompatActivity
 
         final EditText stock=(EditText) dialog.findViewById(R.id.stock);
         final EditText costprice=(EditText) dialog.findViewById(R.id.costprice);
+        final EditText invoiceno=(EditText) dialog.findViewById(R.id.invoiceno);
+        final EditText vendorname=(EditText) dialog.findViewById(R.id.vendorid);
 
 
         dialog.setTitle("Product Details");
@@ -349,6 +352,36 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 dialog.dismiss();
                 scanNow(v);
+
+            }
+        });
+
+        final Button btDate = (Button) dialog.findViewById(R.id.purchase_date);
+
+        final java.util.Calendar myCalendar = java.util.Calendar.getInstance();
+
+        final DatePickerDialog.OnDateSetListener dateDialog = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(java.util.Calendar.YEAR, year);
+                myCalendar.set(java.util.Calendar.MONTH, monthOfYear);
+                myCalendar.set(java.util.Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                btDate.setText(dateFormatForMonth.format(myCalendar.getTime()));
+            }
+
+        };
+
+        btDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                new DatePickerDialog(MainActivity.this, dateDialog, myCalendar
+                        .get(java.util.Calendar.YEAR), myCalendar.get(java.util.Calendar.MONTH),
+                        myCalendar.get(java.util.Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -363,10 +396,13 @@ public class MainActivity extends AppCompatActivity
 
 
                 stockRequest.setItemId(productid.getText().toString());
+                stockRequest.setInvoiceNo(invoiceno.getText().toString());
+                stockRequest.setVendorName(vendorname.getText().toString());
                 String text = stock.getText().toString();
                 int number = Integer.parseInt(text);
                 stockRequest.setStock(number);
                 stockRequest.setCostPrice(costprice.getText().toString());
+                stockRequest.setPurchaseDate(ISO8601Utils.format(myCalendar.getTime()));
 
 
                 Call<StockRequest> call = apiInterface.Stock(stockRequest);
