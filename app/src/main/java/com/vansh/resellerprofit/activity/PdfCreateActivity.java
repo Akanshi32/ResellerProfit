@@ -104,11 +104,11 @@ public class PdfCreateActivity extends AppCompatActivity {
             writer.setLinearPageMode();
             writer.setFullCompression();
             // document header attributes
-            document.addAuthor("idhar company name aayega");
+            document.addAuthor("Reseller Profit");
             document.addCreationDate();
             document.addProducer();
-            document.addCreator("www.skholingua.com");
-            document.addTitle("Skholingua");
+            document.addCreator("RP");
+            document.addTitle("Reseller Profit");
             document.setPageSize(PageSize.A4);
             // left,right,top,bottom
             document.setMargins(36, 36, 36, 36);
@@ -118,7 +118,7 @@ public class PdfCreateActivity extends AppCompatActivity {
 
             //Add content
                /* Create Paragraph and Set Font */
-                Paragraph p1 = new Paragraph("Skholingua Tutorial\nLearn how to create a PDF in android with image and dynamic text form User.");
+                Paragraph p1 = new Paragraph("Company ka title \n Learn how to create a PDF in android with image and dynamic text form User.");
 
                 /* Create Set Font and its Size */
                 Font paraFont= new Font(Font.FontFamily.HELVETICA);
