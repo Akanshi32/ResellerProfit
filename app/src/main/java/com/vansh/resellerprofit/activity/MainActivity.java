@@ -583,6 +583,11 @@ public class MainActivity extends AppCompatActivity
             startActivity(it);
 
         }
+        else if (id == R.id.nav_pdf) {
+            Intent it = new Intent(MainActivity.this, PdfCreateActivity.class);
+            startActivity(it);
+
+        }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

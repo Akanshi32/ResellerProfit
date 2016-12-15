@@ -23,6 +23,10 @@
             android:id="@+id/nav_bill"
             android:icon="@drawable/ic_bill_black_24dp"
             android:title="Bill Settings" />
+        <item
+            android:id="@+id/nav_pdf"
+            android:icon="@drawable/ic_bill_black_24dp"
+            android:title="Bill Generate" />
 
     </group>
     <item android:title="Communicate">

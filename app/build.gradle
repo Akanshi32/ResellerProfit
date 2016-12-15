@@ -10,6 +10,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
     }
     buildTypes {
         release {
@@ -40,7 +42,8 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'net.danlew:android.joda:2.9.5.1'
-    compile 'com.itextpdf:itext-pdfa:5.5.10'
+    compile 'com.itextpdf:itext-pdfa:5.5.8'
+    compile 'com.itextpdf.tool:xmlworker:5.5.8'
     compile 'com.android.support:support-v4:25.0.1'
     testCompile 'junit:junit:4.12'
 }
