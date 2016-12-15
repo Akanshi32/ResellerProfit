@@ -58,7 +58,7 @@ public class PdfCreateActivity extends AppCompatActivity {
     private static final String FILE_FOLDER = "ResellerProfit";
     private static File file;
     private static final String filepath = Environment.getExternalStorageDirectory().getPath();
-    private EditText _pdfBodyEDT;
+    private EditText _pdfBodyEDT1,_pdfBodyEDT2;
     private boolean isPDFFromHTML = false;
 
     @Override
@@ -66,7 +66,8 @@ public class PdfCreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pdf_activity_main);
 
-        _pdfBodyEDT = (EditText) findViewById(R.id.editText);
+        _pdfBodyEDT1 = (EditText) findViewById(R.id.custname);
+        _pdfBodyEDT2 = (EditText) findViewById(R.id.custadd);
     }
 
     public void onClick(View view) {
@@ -118,37 +119,246 @@ public class PdfCreateActivity extends AppCompatActivity {
 
             //Add content
                /* Create Paragraph and Set Font */
-                Paragraph p1 = new Paragraph("Company ka title \n Learn how to create a PDF in android with image and dynamic text form User.");
+             /* Inserting Image in PDF */
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            Bitmap bitmap = BitmapFactory.decodeResource(getBaseContext().getResources(), R.mipmap.ic_launcher);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100 , stream);
+            Image myImg = Image.getInstance(stream.toByteArray());
+            myImg.scaleAbsolute(50,50);
+            myImg.setAlignment(Image.ALIGN_RIGHT);
+
+            //add image to document
+            document.add(myImg);
+                Paragraph p1 = new Paragraph("COMPANY TITLE");
 
                 /* Create Set Font and its Size */
                 Font paraFont= new Font(Font.FontFamily.HELVETICA);
-                paraFont.setSize(16);
-                p1.setAlignment(Paragraph.ALIGN_CENTER);
+                paraFont.setSize(20);
+                p1.setAlignment(Paragraph.ALIGN_LEFT);
                 p1.setFont(paraFont);
+            document.add(p1);
+
+            Paragraph p7 = new Paragraph("COMPANY ADDRESS");
+
+                /* Create Set Font and its Size */
+            Font paraFont7= new Font(Font.FontFamily.HELVETICA);
+            paraFont7.setSize(20);
+            p7.setAlignment(Paragraph.ALIGN_LEFT);
+            p7.setFont(paraFont7);
+
+
 
                 //add paragraph to document
-                document.add(p1);
+                document.add(p7);
 
-                Paragraph p2 = new Paragraph(_pdfBodyEDT.getText().toString().trim());
+            Paragraph p5 = new Paragraph("INVOICE DATE: date");
 
-                /* You can also SET FONT and SIZE like this */
+                /* Create Set Font and its Size */
+            Font paraFont5= new Font(Font.FontFamily.HELVETICA);
+            paraFont5.setSize(14);
+            p5.setAlignment(Paragraph.ALIGN_RIGHT);
+            p5.setFont(paraFont5);
+
+
+
+            //add paragraph to document
+            document.add(p5);
+
+             /*   Paragraph p2 = new Paragraph(_pdfBodyEDT.getText().toString().trim());
+
+                *//* You can also SET FONT and SIZE like this *//*
                 Font paraFont2= new Font(Font.FontFamily.COURIER,14.0f, Color.GREEN);
-                p2.setAlignment(Paragraph.ALIGN_CENTER);
+                p2.setAlignment(Paragraph.ALIGN_LEFT);
                 p2.setFont(paraFont2);
 
                 document.add(p2);
+*/
 
-                /* Inserting Image in PDF */
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                Bitmap bitmap = BitmapFactory.decodeResource(getBaseContext().getResources(), R.mipmap.ic_launcher);
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100 , stream);
-                Image myImg = Image.getInstance(stream.toByteArray());
-                myImg.setAlignment(Image.MIDDLE);
+            Paragraph p3 = new Paragraph("\nNAME");
 
-                //add image to document
-                document.add(myImg);
+                /* Create Set Font and its Size */
+            Font paraFont3= new Font(Font.FontFamily.HELVETICA);
+            paraFont3.setSize(16);
+            p3.setAlignment(Paragraph.ALIGN_LEFT);
+            p3.setFont(paraFont3);
 
-                addContent(document);
+            //add paragraph to document
+            document.add(p3);
+
+
+
+            Paragraph pname = new Paragraph(_pdfBodyEDT1.getText().toString().trim());
+
+                /* You can also SET FONT and SIZE like this */
+            Font paname= new Font(Font.FontFamily.COURIER,14.0f, Color.GREEN);
+            pname.setAlignment(Paragraph.ALIGN_LEFT);
+            pname.setFont(paname);
+
+            document.add(pname);
+
+
+
+            Paragraph p4 = new Paragraph("\nBILLING ADDRESS");
+
+                /* Create Set Font and its Size */
+            Font paraFont4= new Font(Font.FontFamily.HELVETICA);
+            paraFont4.setSize(14);
+            p4.setAlignment(Paragraph.ALIGN_LEFT);
+            p4.setFont(paraFont4);
+
+            //add paragraph to document
+            document.add(p4);
+
+            Paragraph padd = new Paragraph(_pdfBodyEDT2.getText().toString().trim());
+
+                /* You can also SET FONT and SIZE like this */
+            Font paadd= new Font(Font.FontFamily.COURIER,14.0f, Color.GREEN);
+            padd.setAlignment(Paragraph.ALIGN_LEFT);
+            padd.setFont(paadd);
+
+            document.add(padd);
+
+
+
+
+            Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
+                    Font.BOLD);
+            Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
+                    Font.BOLD);
+
+           /* Anchor anchor = new Anchor("First Chapter", catFont);
+            anchor.setName("First Chapter");*/
+            Paragraph p12 = new Paragraph("ORDER NUMBER");
+            Font paraFont12= new Font(Font.FontFamily.HELVETICA);
+            paraFont12.setSize(18);
+            p12.setAlignment(Paragraph.ALIGN_RIGHT);
+            p12.setFont(paraFont12);
+
+            document.add(p12);
+            // Second parameter is the number of the chapter
+            Paragraph p6 = new Paragraph("\n\nBILL:");
+            Font paraFont6= new Font(Font.FontFamily.HELVETICA);
+            paraFont6.setSize(16);
+            p6.setAlignment(Paragraph.ALIGN_LEFT);
+            p6.setFont(paraFont6);
+
+            document.add(p6);
+
+           /* Paragraph subPara = new Paragraph("Subcategory 1", subFont);*/
+           /* Section subCatPart = catPart.addSection(subPara);*/
+            //subCatPart.add(new Paragraph("BILL:"));
+
+           /* subPara = new Paragraph("Subcategory 2", subFont);
+            subCatPart = catPart.addSection(subPara);
+            subCatPart.add(new Paragraph("Paragraph 1"));
+            subCatPart.add(new Paragraph("Paragraph 2"));
+            subCatPart.add(new Paragraph("Paragraph 3"));
+*/
+            // add a list
+            /*createList(subCatPart);*/
+            Paragraph paragraph = new Paragraph();
+            addEmptyLine(paragraph, 5);
+           // subCatPart.add(paragraph);
+
+            // add a table
+          //  createTable(subCatPart);
+
+            // now add all this to the document
+
+
+            PdfPTable table = new PdfPTable(3);
+
+            // t.setBorderColor(BaseColor.GRAY);
+            // t.setPadding(4);
+            // t.setSpacing(4);
+            // t.setBorderWidth(1);
+
+            PdfPCell c1 = new PdfPCell(new Phrase("PRODUCT NAME"));
+            c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(c1);
+
+            c1 = new PdfPCell(new Phrase("QUANTITY"));
+            c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(c1);
+
+            c1 = new PdfPCell(new Phrase("PRICE"));
+            c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(c1);
+
+            c1 = new PdfPCell(new Phrase("TOTAL"));
+            c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(c1);
+            table.setHeaderRows(1);
+
+            table.addCell("1.0");
+            table.addCell("1.1");
+            table.addCell("1.2");
+            table.addCell("1.4");
+            table.addCell("2.1");
+            table.addCell("2.2");
+            table.addCell("2.3");
+            table.addCell("2.4");
+            table.addCell("");
+            table.addCell("SUBTOTAL(in rupees):");
+            table.addCell("");
+            table.addCell("subtotal here");
+            /*table.addCell("VAT %");
+            table.addCell("");
+            table.addCell("in rupees");
+            table.addCell("GRAND TOTAL:");
+            table.addCell("");
+            table.addCell("here");*/
+            document.add(table);
+
+            Paragraph p8 = new Paragraph("\n\nVAT%");
+            Font paraFont8= new Font(Font.FontFamily.HELVETICA);
+            paraFont8.setSize(16);
+            p8.setAlignment(Paragraph.ALIGN_CENTER);
+            p8.setFont(paraFont8);
+
+            document.add(p8);
+            Paragraph p9 = new Paragraph("vat percentage here");
+            Font paraFont9= new Font(Font.FontFamily.HELVETICA);
+            paraFont9.setSize(16);
+            p9.setAlignment(Paragraph.ALIGN_RIGHT);
+            p9.setFont(paraFont9);
+
+            document.add(p9);
+            Paragraph p10 = new Paragraph("\n\nGRAND TOTAL");
+            Font paraFont10= new Font(Font.FontFamily.HELVETICA);
+            paraFont10.setSize(18);
+            p10.setAlignment(Paragraph.ALIGN_CENTER);
+            p10.setFont(paraFont10);
+
+            document.add(p10);
+            Paragraph p11 = new Paragraph("grand total here");
+            Font paraFont11= new Font(Font.FontFamily.HELVETICA);
+            paraFont11.setSize(18);
+            p11.setAlignment(Paragraph.ALIGN_RIGHT);
+            p11.setFont(paraFont11);
+
+            document.add(p11);
+
+
+
+
+            // Next section
+
+
+            // Second parameter is the number of the chapter
+           /* catPart = new Chapter(new Paragraph(anchor), 2);
+
+            subPara = new Paragraph("Subcategory", subFont);
+            subCatPart = catPart.addSection(subPara);
+            subCatPart.add(new Paragraph("This is a very important message"));
+
+            // now add all this to the document
+            document.add(catPart);
+*/
+
+
+              //  addContent(document);
+
 
                 //set footer
                /* Phrase footerText = new Phrase("This is an example of a footer");
@@ -168,51 +378,7 @@ public class PdfCreateActivity extends AppCompatActivity {
 
 
     private static void addContent(Document document) throws DocumentException {
-        Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
-                Font.BOLD);
-        Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
-                Font.BOLD);
-        Anchor anchor = new Anchor("First Chapter", catFont);
-        anchor.setName("First Chapter");
 
-        // Second parameter is the number of the chapter
-        Chapter catPart = new Chapter(new Paragraph(anchor), 1);
-
-        Paragraph subPara = new Paragraph("Subcategory 1", subFont);
-        Section subCatPart = catPart.addSection(subPara);
-        subCatPart.add(new Paragraph("Hello"));
-
-        subPara = new Paragraph("Subcategory 2", subFont);
-        subCatPart = catPart.addSection(subPara);
-        subCatPart.add(new Paragraph("Paragraph 1"));
-        subCatPart.add(new Paragraph("Paragraph 2"));
-        subCatPart.add(new Paragraph("Paragraph 3"));
-
-        // add a list
-        createList(subCatPart);
-        Paragraph paragraph = new Paragraph();
-        addEmptyLine(paragraph, 5);
-        subCatPart.add(paragraph);
-
-        // add a table
-        createTable(subCatPart);
-
-        // now add all this to the document
-        document.add(catPart);
-
-        // Next section
-        anchor = new Anchor("Second Chapter", catFont);
-        anchor.setName("Second Chapter");
-
-        // Second parameter is the number of the chapter
-        catPart = new Chapter(new Paragraph(anchor), 2);
-
-        subPara = new Paragraph("Subcategory", subFont);
-        subCatPart = catPart.addSection(subPara);
-        subCatPart.add(new Paragraph("This is a very important message"));
-
-        // now add all this to the document
-        document.add(catPart);
 
     }
 
@@ -225,15 +391,15 @@ public class PdfCreateActivity extends AppCompatActivity {
         // t.setSpacing(4);
         // t.setBorderWidth(1);
 
-        PdfPCell c1 = new PdfPCell(new Phrase("Table Header 1"));
+        PdfPCell c1 = new PdfPCell(new Phrase("PRODUCT NAME"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
 
-        c1 = new PdfPCell(new Phrase("Table Header 2"));
+        c1 = new PdfPCell(new Phrase("QUANTITY"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
 
-        c1 = new PdfPCell(new Phrase("Table Header 3"));
+        c1 = new PdfPCell(new Phrase("TOTAL"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
         table.setHeaderRows(1);
@@ -244,7 +410,6 @@ public class PdfCreateActivity extends AppCompatActivity {
         table.addCell("2.1");
         table.addCell("2.2");
         table.addCell("2.3");
-
         subCatPart.add(table);
 
     }
