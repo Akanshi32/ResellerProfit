@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-
     android:layout_margin="15dp"
     android:layout_height="match_parent">
 
@@ -11,7 +10,7 @@
         android:id="@+id/sold_recycler_view_spinner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
+        android:scrollbars="horizontal"
         />
 
 

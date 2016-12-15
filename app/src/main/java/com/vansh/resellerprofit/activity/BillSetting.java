@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,6 +43,8 @@ public class BillSetting extends AppCompatActivity {
 
     @Bind(R.id.sub)
     Button sub;
+    @Bind(R.id.add)
+    Button add;
     @Bind(R.id.selectt)
     Button select;
     @Bind(R.id.company_name)
@@ -53,7 +56,7 @@ public class BillSetting extends AppCompatActivity {
     @Bind(R.id.vat_tin)
     EditText vattin;
     @Bind(R.id.product_i)
-    EditText sold;
+    TextView sold;
     static int TIME_OUT = 2000;
     int width,height;
     ArrayAdapter adapter;
@@ -76,17 +79,25 @@ public class BillSetting extends AppCompatActivity {
         select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 openDialogSelect();
 
-                Intent intent = getIntent();
-                String stringData= intent.getStringExtra("name");
-                sold.setText(stringData);
-                list.add(sold.getText().toString());
+
             }
         });
 
+        Intent intent = getIntent();
+        String stringData= intent.getStringExtra("name");
+        sold.setText(stringData);
+
+
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                list.add(sold.getText().toString());
+                sold.setText("");
+            }
+        });
 
         sub.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +159,11 @@ public class BillSetting extends AppCompatActivity {
         dialog3.setContentView(R.layout.dialog_sold);
 
         dialog3.setTitle("Sold Items");
-        dialog3.getWindow().setLayout(width*90/100, height*100/100);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog3.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        dialog3.getWindow().setLayout(lp.width, lp.height);
         dialog3.show();
 
 

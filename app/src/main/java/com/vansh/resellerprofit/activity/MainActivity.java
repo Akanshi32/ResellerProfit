@@ -33,6 +33,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -281,7 +282,11 @@ public class MainActivity extends AppCompatActivity
         dialog.setContentView(R.layout.dialog_productid);
 
         dialog.setTitle("Product Details");
-        dialog.getWindow().setLayout(width*90/100, height*100/100);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        dialog.getWindow().setLayout(lp.width, lp.height);
         dialog.show();
 
 
@@ -343,7 +348,11 @@ public class MainActivity extends AppCompatActivity
 
 
         dialog.setTitle("Product Details");
-        dialog.getWindow().setLayout(width*90/100, height*90/100);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        dialog.getWindow().setLayout(lp.width, lp.height);
         dialog.show();
         productid.setText(codeContent);
 

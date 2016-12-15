@@ -93,13 +93,16 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.50"
             android:text="Product ID: "/>
-        <EditText
+        <TextView
             android:id="@+id/product_i"
             android:layout_width="0dp"
-            android:hint="Enter Product ID"
-            android:inputType="number"
             android:layout_height="wrap_content"
             android:layout_weight="0.70"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/add"
+            android:text="ADD"/>
     </LinearLayout>
     <Button
         android:layout_width="wrap_content"
