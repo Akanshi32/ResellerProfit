@@ -17,15 +17,18 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:titleTextColor="#FFFFFF"
+            app:elevation="4dp"
             android:layout_alignParentTop="true"
             android:background="?attr/colorPrimary"
-            android:elevation="4dp" />
+
+
+            />
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary">
+            android:background="@color/colorPrimaryDark">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -46,10 +49,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:layout_gravity="center_horizontal"
-                    app:compactCalendarBackgroundColor="@color/colorPrimary"
+                    app:compactCalendarBackgroundColor="@color/colorPrimaryDark"
                     app:compactCalendarCurrentDayBackgroundColor="@color/colorPrimaryDark"
                     app:compactCalendarCurrentDayIndicatorStyle="fill_large_indicator"
-                    app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorPrimaryDark"
+                    app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorPrimary"
                     app:compactCalendarEventIndicatorStyle="small_indicator"
                     app:compactCalendarOtherMonthDaysTextColor="#534c4c"
                     app:compactCalendarTargetHeight="250dp"
@@ -59,22 +62,64 @@
             </LinearLayout>
 
         </android.support.v7.widget.Toolbar>
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            >
 
         <TextView
             android:id="@+id/profit"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:text="This Day's Profit:"
-            android:textSize="30dp"
+            android:padding="5dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolbar" />
         <TextView
             android:id="@+id/pro"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:text="Profit"
-            android:textSize="25dp"
+            android:padding="5dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolbar" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Total Profit"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toolbar" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Show Profit"
+                android:padding="5dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:id="@+id/show" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:id="@+id/profit_tv"
+                android:text=""/>
+        </LinearLayout>
+        </LinearLayout>
+
     </LinearLayout>
 
 

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height"
+    android:layout_height="180dp"
     android:id="@+id/header"
     android:background="@drawable/side_nav_bar"
     android:gravity="bottom"
@@ -16,14 +16,13 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="130dp"
-        android:layout_height="60dp"
-        android:paddingTop="15dp"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
         android:src="@drawable/newlogo"
-        android:layout_weight="0.07" />
+        android:layout_weight="0.32" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="5dp"
         android:textSize="20dp"

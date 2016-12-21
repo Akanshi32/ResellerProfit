@@ -37,6 +37,7 @@ import retrofit2.Response;
 
 public class CalendarActivity extends AppCompatActivity {
 
+
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("MMM yyyy", Locale.getDefault());
     private Toolbar toolbar;
     private RecyclerView recyclerView;

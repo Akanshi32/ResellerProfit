@@ -278,10 +278,11 @@ public class MainActivity extends AppCompatActivity
 
 
     public void openDialogSelect(){
-        final Dialog dialog = new Dialog(this);
+        final Dialog dialog = new Dialog(this,R.style.Dialog);
         dialog.setContentView(R.layout.dialog_productid);
 
-        dialog.setTitle("Product Details\n\n\n\n");
+        dialog.setTitle("Product Details");
+
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;

@@ -3,43 +3,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
+    android:layout_margin="7dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_margin="5dp"
-    android:padding="10dp"
+    android:layout_margin="2dp"
+    android:padding="4dp"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:orientation="horizontal">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.4"
-            android:text="@string/btn_scan_now"
-            android:layout_centerHorizontal="true"
 
-
-            android:onClick="scanNow"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:id="@+id/btn_scan_now" />
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.40"
+            android:layout_weight="0.50"
             android:id="@+id/pur"
             android:paddingLeft="20dp"
             android:text="Date of Purchase: "/>
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.20"
+            android:layout_weight="0.50"
             android:id="@+id/purchase_date"
             android:text="date"/>
 
@@ -84,20 +74,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="3dp"
+        android:padding="1dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Product Name(Name|UniqueID): "/>
+            android:layout_weight="0.4"
+            android:padding="0.5dp"
+
+            android:text="Product Name (Name|UniqueID): "/>
         <EditText
             android:id="@+id/productid"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Enter product name"
-            android:layout_weight="0.70"/>
+            android:layout_weight="0.40"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:text="@string/btn_scan_now"
+            android:onClick="scanNow"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:id="@+id/btn_scan_now" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -156,6 +156,8 @@
             android:layout_height="match_parent"
             android:layout_weight="0.50"
             android:text="Submit"/>
+
+
     </LinearLayout>
 
 </LinearLayout>

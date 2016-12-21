@@ -4,6 +4,7 @@
     android:layout_height="fill_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
+
     android:background="@drawable/appbg">
 
     <LinearLayout
@@ -12,7 +13,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="56dp"
+        android:paddingTop="64dp"
         android:paddingLeft="12dp"
         android:paddingRight="12dp">
 
@@ -20,7 +21,7 @@
         <ImageView android:src="@drawable/newlogo"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
             android:paddingLeft="20dp"
             android:layout_gravity="center_horizontal" />
@@ -73,7 +74,7 @@
             android:id="@+id/btn_sign_in"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="180dp"
             android:layout_marginBottom="20dp"
             android:text="Login Using Google" />
 
