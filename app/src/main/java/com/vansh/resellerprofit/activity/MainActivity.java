@@ -281,7 +281,7 @@ public class MainActivity extends AppCompatActivity
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_productid);
 
-        dialog.setTitle("Product Details");
+        dialog.setTitle("Product Details\n\n\n\n");
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
@@ -347,7 +347,8 @@ public class MainActivity extends AppCompatActivity
         final EditText vendorname=(EditText) dialog.findViewById(R.id.vendorid);
 
 
-        dialog.setTitle("Product Details");
+        dialog.setTitle("Product Details\n\n");
+        dialog.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
@@ -564,28 +565,34 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_sold) {
             Intent it = new Intent(MainActivity.this, SoldActivity.class);
             startActivity(it);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 
         } else if (id == R.id.nav_calendar) {
             Intent it = new Intent(MainActivity.this, CalendarActivity.class);
             startActivity(it);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 
         } else if (id == R.id.nav_faq) {
             Intent it = new Intent(MainActivity.this, FaqActivity.class);
             startActivity(it);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 
         } else if (id == R.id.nav_contact) {
             Intent it = new Intent(MainActivity.this, ContactUs.class);
             startActivity(it);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 
         }
         else if (id == R.id.nav_bill) {
             Intent it = new Intent(MainActivity.this, BillSetting.class);
             startActivity(it);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 
         }
         else if (id == R.id.nav_pdf) {
             Intent it = new Intent(MainActivity.this, PdfCreateActivity.class);
             startActivity(it);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 
         }
 

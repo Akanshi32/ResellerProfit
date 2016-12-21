@@ -30,6 +30,7 @@ public class SoldActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sold);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.sold_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

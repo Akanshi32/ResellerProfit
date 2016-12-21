@@ -37,6 +37,7 @@
         </activity>
         <activity
             android:name=".activity.Stock"
+            android:label="Stock"
             android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name=".PARENT_ACTIVITY"
@@ -44,7 +45,7 @@
         </activity>
         <activity
             android:name=".activity.FaqActivity"
-            android:label="@string/title_activity_faq"
+            android:label="FAQs"
             android:parentActivityName=".activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -53,7 +54,7 @@
         </activity>
         <activity
             android:name=".activity.ContactUs"
-            android:label="@string/title_activity_contact_us"
+            android:label="Contact Us"
             android:parentActivityName=".activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -79,6 +80,7 @@
         </activity>
         <activity
             android:name=".activity.SoldActivity"
+            android:label="Sold"
             android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name=".PARENT_ACTIVITY"
@@ -86,6 +88,7 @@
         </activity>
         <activity
             android:name=".activity.BillActivity"
+            android:label="Bill "
             android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name=".PARENT_ACTIVITY"
@@ -93,13 +96,16 @@
         </activity>
         <activity
             android:name=".activity.CalendarActivity"
+            android:label="Sales-Datewise"
             android:parentActivityName=".activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name=".PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".activity.BillSetting" android:parentActivityName=".activity.MainActivity">
+        <activity android:name=".activity.BillSetting"
+            android:label="Bill Setting"
+            android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name=".PARENT_ACTIVITY"
                 android:value=".MainActivity" />
