@@ -2,6 +2,7 @@
 <android.support.v4.widget.NestedScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,31 +15,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="3dp"
+
         android:orientation="horizontal">
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_weight="0.4"
             android:text="@string/btn_scan_now"
             android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:layout_gravity="center"
+
+
             android:onClick="scanNow"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:id="@+id/btn_scan_now" />
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.25"
+            android:layout_weight="0.40"
             android:id="@+id/pur"
             android:paddingLeft="20dp"
             android:text="Date of Purchase: "/>
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.25"
+            android:layout_weight="0.20"
             android:id="@+id/purchase_date"
             android:text="date"/>
 
@@ -138,7 +139,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40sp"
-        android:paddingTop="3sp">
+        android:padding="1sp">
 
 
 
@@ -147,7 +148,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.50"
-            android:background="#F44330"
             android:text="Cancel"/>
 
         <Button
@@ -155,7 +155,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.50"
-            android:background="#2196F3"
             android:text="Submit"/>
     </LinearLayout>
 

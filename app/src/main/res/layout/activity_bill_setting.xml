@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="32dp"
     android:background="@drawable/appbg"
     tools:context="com.vansh.resellerprofit.activity.BillSetting">
 
