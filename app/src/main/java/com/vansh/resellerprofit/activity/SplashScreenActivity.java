@@ -22,13 +22,14 @@ public class SplashScreenActivity extends RevealActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        showRevealEffect(mSavedInstanceState, findViewById(R.id.activity_splash_screen));
-
 
         View decorView = getWindow().getDecorView();
 
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
+
+        showRevealEffect(mSavedInstanceState, findViewById(R.id.activity_splash_screen));
+
 
         new Handler().postDelayed(new Runnable() {
             @Override

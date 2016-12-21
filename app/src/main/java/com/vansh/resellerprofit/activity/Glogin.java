@@ -6,6 +6,7 @@ package com.vansh.resellerprofit.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -56,7 +57,7 @@ public class Glogin extends AppCompatActivity implements
     private GoogleApiClient mGoogleApiClient;
     private ProgressDialog mProgressDialog;
 
-    private Button btnSignIn;
+    private SignInButton btnSignIn;
     private Button btnSignOut, btnRevokeAccess;
     private LinearLayout llProfileLayout;
     private ImageView imgProfilePic;
@@ -70,8 +71,15 @@ public class Glogin extends AppCompatActivity implements
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+        btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
 
-        btnSignIn = (Button) findViewById(R.id.btn_sign_in);
+
+        View decorView = getWindow().getDecorView();
+
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+
+
      /*   btnSignOut = (Button) findViewById(R.id.btn_sign_out);
         btnRevokeAccess = (Button) findViewById(R.id.btn_revoke_access);
         llProfileLayout = (LinearLayout) findViewById(R.id.llProfile);
@@ -94,6 +102,7 @@ public class Glogin extends AppCompatActivity implements
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+        setGooglePlusButtonText(btnSignIn,"LOGIN USING GOOGLE");
 
         // Customizing G+ button
       //  btnSignIn.setSize(SignInButton.SIZE_STANDARD);
@@ -112,6 +121,21 @@ public class Glogin extends AppCompatActivity implements
 
 
     }
+
+    protected void setGooglePlusButtonText(SignInButton signInButton, String buttonText) {
+        // Find the TextView that is inside of the SignInButton and set its text
+        for (int i = 0; i < signInButton.getChildCount(); i++) {
+            View v = signInButton.getChildAt(i);
+
+            if (v instanceof TextView) {
+                TextView tv = (TextView) v;
+                tv.setText(buttonText);
+                tv.setTextColor(Color.BLACK);
+                return;
+            }
+        }
+    }
+
 
 
     private void signIn() {

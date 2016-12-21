@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     android:background="@drawable/appbg">
 
@@ -26,11 +27,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kuch achi si tagline in italics"
+            android:text="Manage Your Profit In Just A Click!"
             android:textStyle="italic"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
-
             android:textAlignment="center"
            />
 
@@ -67,17 +67,16 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"/>
 -->
-        <android.support.v7.widget.AppCompatButton
+
+
+        <com.google.android.gms.common.SignInButton
             android:id="@+id/btn_sign_in"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="200dp"
             android:layout_marginBottom="20dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:padding="10dp"
-            android:text="Login Using Google"/>
+            android:text="Login Using Google" />
+
 
         <TextView android:id="@+id/link_signup"
             android:layout_width="fill_parent"
