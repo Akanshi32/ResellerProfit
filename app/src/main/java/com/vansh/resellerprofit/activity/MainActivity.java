@@ -247,7 +247,7 @@ public class MainActivity extends AppCompatActivity
                 openDialog();
             }
         });
-        fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d50000")));
+        fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#e57373")));
 
 
         // Setup drawer view

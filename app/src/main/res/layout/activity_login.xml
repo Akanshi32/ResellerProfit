@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/logo">
+    android:background="@drawable/appbg">
 
     <LinearLayout
         android:focusable="true"
@@ -16,17 +16,20 @@
         android:paddingRight="12dp">
 
 
-        <ImageView android:src="@drawable/logo"
-            android:layout_width="100dp"
+        <ImageView android:src="@drawable/newlogo"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
+            android:paddingLeft="20dp"
             android:layout_gravity="center_horizontal" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login_title"
+            android:text="Kuch achi si tagline in italics"
+            android:textStyle="italic"
             android:textColor="#FFFFFF"
-            android:textSize="40dp"
+            android:textSize="20dp"
 
             android:textAlignment="center"
            />
@@ -82,7 +85,7 @@
             android:layout_marginBottom="24dp"
             android:text="@string/create_account"
             android:gravity="center"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textSize="16dip"/>
 
     </LinearLayout>
