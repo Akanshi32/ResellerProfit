@@ -1,6 +1,8 @@
 package com.vansh.resellerprofit.rest;
 
+import com.vansh.resellerprofit.model.BillGenerate;
 import com.vansh.resellerprofit.model.BillSettingRequest;
+import com.vansh.resellerprofit.model.BillSettingResponse;
 import com.vansh.resellerprofit.model.Expense;
 import com.vansh.resellerprofit.model.ExpenseRequest;
 import com.vansh.resellerprofit.model.LoginResponse;
@@ -49,7 +51,7 @@ public interface ApiInterface {
     Call<ExpenseRequest> expense(@Body ExpenseRequest expenseRequest);
 
      @POST("/bill")
-    Call<BillSettingRequest> billsetrequest(@Body BillSettingRequest billSettingRequest);
+    Call<BillSettingResponse> billsetrequest(@Body BillSettingRequest billSettingRequest);
 
 
     @GET("/expense")
@@ -59,6 +61,9 @@ public interface ApiInterface {
 
     @GET("/profit/month")
     Call<ProfitResponse> profitResponse(@Query("date") String date);
+
+  @GET("/bill")
+    Call<BillGenerate> generate(@Query("id") String id);
 
 
     @GET("/profit/day")

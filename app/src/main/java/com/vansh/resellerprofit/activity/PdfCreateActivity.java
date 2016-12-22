@@ -18,6 +18,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.github.sundeepk.compactcalendarview.CompactCalendarView;
+import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Chapter;
@@ -37,6 +39,11 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 import com.vansh.resellerprofit.R;
+import com.vansh.resellerprofit.adapter.StockAdapter;
+import com.vansh.resellerprofit.model.*;
+import com.vansh.resellerprofit.rest.ApiClient;
+import com.vansh.resellerprofit.rest.ApiInterface;
+import com.vansh.resellerprofit.utility.DialogUtil;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -48,11 +55,28 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PdfCreateActivity extends AppCompatActivity {
 
+    final ArrayList<String> list = new ArrayList<String>();
+
+    String compname;
+    String vat;
+    String vattin;
+    String csttin;
+    String custname;
+    String custadd;
+    String custmobile;
+    String customeremail;
+    String paymentmethod;
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
     String[] permission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
     private static final String FILE_FOLDER = "ResellerProfit";
@@ -68,6 +92,36 @@ public class PdfCreateActivity extends AppCompatActivity {
 
         _pdfBodyEDT1 = (EditText) findViewById(R.id.custname);
         _pdfBodyEDT2 = (EditText) findViewById(R.id.custadd);
+
+
+
+        final ApiInterface apiService =
+                ApiClient.getClient(this).create(ApiInterface.class);
+
+
+
+
+                Call<BillGenerate> call = apiService.generate("585c1aedc5b4880011f0a3fa");
+
+                call.enqueue(new Callback<BillGenerate>() {
+                    @Override
+                    public void onResponse(Call<BillGenerate> call, final Response<BillGenerate> response) {
+                        java.util.List<Bill> bills = response.body().getBills();
+
+
+                    }
+
+
+                    @Override
+                    public void onFailure(Call<BillGenerate> call, Throwable t) {
+                        // Log error here since request failed
+                        Log.e("Error", t.toString());
+                    }
+                });
+
+
+
+
     }
 
     public void onClick(View view) {
@@ -187,7 +241,7 @@ public class PdfCreateActivity extends AppCompatActivity {
 
 
 
-            Paragraph pname = new Paragraph(_pdfBodyEDT1.getText().toString().trim());
+            Paragraph pname = new Paragraph(custname);
 
                 /* You can also SET FONT and SIZE like this */
             Font paname= new Font(Font.FontFamily.COURIER,14.0f, Color.GREEN);

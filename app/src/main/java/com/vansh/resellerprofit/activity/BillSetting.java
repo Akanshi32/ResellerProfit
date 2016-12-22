@@ -28,6 +28,7 @@ import com.vansh.resellerprofit.rest.ApiInterface;
 import com.vansh.resellerprofit.utility.DialogUtil;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -40,7 +41,7 @@ import retrofit2.Response;
 public class BillSetting extends AppCompatActivity {
 
     final ArrayList<String> list = new ArrayList<String>();
-
+    String prodid;
     @Bind(R.id.sub)
     Button sub;
     @Bind(R.id.add)
@@ -57,6 +58,22 @@ public class BillSetting extends AppCompatActivity {
     EditText vattin;
     @Bind(R.id.product_i)
     TextView sold;
+
+    @Bind(R.id.vat)
+    EditText vat;
+    @Bind(R.id.custname)
+    EditText custnam;
+    @Bind(R.id.custmob)
+    EditText custmob;
+
+    @Bind(R.id.custadd)
+    EditText custadd;
+    @Bind(R.id.custemail)
+    EditText custemail;
+    @Bind(R.id.paymethod)
+    EditText paymethod;
+
+
     static int TIME_OUT = 2000;
     int width,height;
     ArrayAdapter adapter;
@@ -109,8 +126,19 @@ public class BillSetting extends AppCompatActivity {
                 soldRequest.setVatTin(vattin.getText().toString());
                 soldRequest.setSoldId(list);
 
+                Integer myNum = Integer.parseInt(vat.getText().toString());
+                soldRequest.setVatPercent(myNum);
+                Long myNum1 = Long.parseLong(custmob.getText().toString());
+                soldRequest.setCustomerMobile(myNum1);
 
-                Call<BillSettingRequest> call = apiInterface.billsetrequest(soldRequest);
+                soldRequest.setCustomerName(custnam.getText().toString());
+                soldRequest.setCustomerEmail(custemail.getText().toString());
+                soldRequest.setAddress(custadd.getText().toString());
+
+                soldRequest.setPaymentMethod(paymethod.getText().toString());
+
+
+                Call<BillSettingResponse> call = apiInterface.billsetrequest(soldRequest);
 
                 final ProgressDialog dialog = new ProgressDialog(BillSetting.this);
                 dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -119,16 +147,24 @@ public class BillSetting extends AppCompatActivity {
                 dialog.setCanceledOnTouchOutside(false);
                 dialog.show();
 
-                call.enqueue(new Callback<BillSettingRequest>() {
+                call.enqueue(new Callback<BillSettingResponse>() {
                     @Override
-                    public void onResponse(Call<BillSettingRequest> call, Response<BillSettingRequest> response) {
+                    public void onResponse(Call<BillSettingResponse> call, Response<BillSettingResponse> response) {
 
                         dialog.hide();
+                        Data dat=new Data();
+                        Data data=response.body().getData();
+                        prodid=data.getId().toString();
+                        Log.i("DFfdfd",prodid);
+                        {Intent it = new Intent(BillSetting.this, PdfCreateActivity.class);
+                            it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            it.putExtra("prodid",prodid);
+                            startActivity(it);}
 
                     }
 
                     @Override
-                    public void onFailure(Call<BillSettingRequest> call, Throwable t) {
+                    public void onFailure(Call<BillSettingResponse> call, Throwable t) {
                         dialog.hide();
                         DialogUtil.createDialog("Oops! Please check your internet connection!", BillSetting.this, new DialogUtil.OnPositiveButtonClick() {
                             @Override
@@ -137,16 +173,6 @@ public class BillSetting extends AppCompatActivity {
                         });
                     }
                 });
-
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent i = new Intent(BillSetting.this, BillActivity.class);
-                        startActivity(i);
-                        finish();
-                    }
-                }, TIME_OUT);
 
             }
         });

@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/colorPrimary">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_bill_setting"
@@ -46,6 +53,25 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Enter address"
+            android:layout_weight="0.70"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:id="@+id/vat_tv"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="VAT %: "/>
+        <EditText
+            android:id="@+id/vat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter VAT%"
             android:layout_weight="0.70"/>
     </LinearLayout>
     <LinearLayout
@@ -104,15 +130,112 @@
             android:layout_height="wrap_content"
             android:id="@+id/add"
             android:text="ADD"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/selectt"
+            android:text="select"/>
+
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Customer Name: "/>
+        <EditText
+            android:id="@+id/custname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Name"
+            android:layout_weight="0.70"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Customer Address: "/>
+        <EditText
+            android:id="@+id/custadd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Address"
+            android:layout_weight="0.70"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Customer Email Address: "/>
+        <EditText
+            android:id="@+id/custemail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Email Address"
+            android:layout_weight="0.70"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Payment Method: "/>
+        <EditText
+            android:id="@+id/paymethod"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Payment Method"
+            android:layout_weight="0.70"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Customer Mobile: "/>
+        <EditText
+            android:id="@+id/custmob"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Mobile Number"
+            android:layout_weight="0.70"/>
+    </LinearLayout>
+
+
     <Button
         android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:id="@+id/sub"
         android:text="Submit"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/selectt"
-        android:text="select"/>
+
 </LinearLayout>
+</ScrollView>

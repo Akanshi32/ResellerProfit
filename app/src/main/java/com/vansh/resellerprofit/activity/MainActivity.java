@@ -361,8 +361,9 @@ public class MainActivity extends AppCompatActivity
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
                 scanNow(v);
+                dialog.dismiss();
+
 
             }
         });

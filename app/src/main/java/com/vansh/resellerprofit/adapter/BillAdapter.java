@@ -6,20 +6,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vansh.resellerprofit.R;
-import com.vansh.resellerprofit.activity.BillSetting;
 import com.vansh.resellerprofit.activity.MainActivity;
-import com.vansh.resellerprofit.model.Sold;
+import com.vansh.resellerprofit.model.Bill;
+import com.vansh.resellerprofit.model.SoldId;
 import com.vansh.resellerprofit.model.Stock;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class SpinnerSoldAdapter extends RecyclerView.Adapter<SpinnerSoldAdapter.MovieViewHolder> {
-    private List<Sold> sold;
+public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MovieViewHolder> {
+
+    private List<Bill> stock;
     private int rowLayout;
     private Context context;
 
@@ -27,6 +28,7 @@ public class SpinnerSoldAdapter extends RecyclerView.Adapter<SpinnerSoldAdapter.
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
         LinearLayout stockLayout;
         TextView productid;
+
 
 
         public MovieViewHolder(View v) {
@@ -38,35 +40,42 @@ public class SpinnerSoldAdapter extends RecyclerView.Adapter<SpinnerSoldAdapter.
         }
     }
 
-    public SpinnerSoldAdapter(List<Sold> sold, int rowLayout, Context context) {
-        this.sold = sold;
+    public BillAdapter(List<Bill> stock, int rowLayout, Context context) {
+        this.stock = stock;
         this.rowLayout = rowLayout;
         this.context = context;
     }
 
     @Override
-    public SpinnerSoldAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent,
-                                                                  int viewType) {
+    public BillAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent,
+                                                          int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
-        return new SpinnerSoldAdapter.MovieViewHolder(view);
+        return new MovieViewHolder(view);
     }
 
 
     @Override
-    public void onBindViewHolder(final SpinnerSoldAdapter.MovieViewHolder holder, final int position) {
-        holder.productid.setText(sold.get(position).getItemId());
+    public void onBindViewHolder(final MovieViewHolder holder, final int position) {
+        holder.productid.setText(stock.get(position).getCustomerEmail());
+        holder.productid.setText(stock.get(position).getAddress());
+        holder.productid.setText(stock.get(position).getId());
+        holder.productid.setText(stock.get(position).getCompanyName());
+        holder.productid.setText(stock.get(position).getCstTin());
+        holder.productid.setText(stock.get(position).getCustomerMobile());
+        holder.productid.setText(stock.get(position).getPaymentMethod());
+        java.util.List<SoldId> bills = stock.get(position).getSoldId();
+      //  ArrayAdapter<SoldIdAdapter> arr=new ArrayAdapter<>();
+
+
+
+
         holder.stockLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent = new Intent(context, BillSetting.class);
+                Intent intent = new Intent(context, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("name",sold.get(position).getId());
+              //  intent.putExtra("name",stock.get(position).getItemId());
                 context.startActivity(intent);
-
-                ArrayList<String> myList = new ArrayList<String>();
-                myList.add(sold.get(position).getId());
-                intent.putExtra("mylist", myList);
 
             }
         });
@@ -79,6 +88,6 @@ public class SpinnerSoldAdapter extends RecyclerView.Adapter<SpinnerSoldAdapter.
 
     @Override
     public int getItemCount() {
-        return sold.size();
+        return stock.size();
     }
 }

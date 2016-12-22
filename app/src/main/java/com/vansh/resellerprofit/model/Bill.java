@@ -5,9 +5,14 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class BillSettingRequest {
+public class Bill {
 
-
+    @SerializedName("_id")
+    @Expose
+    private String id;
+    @SerializedName("user_id")
+    @Expose
+    private String userId;
     @SerializedName("company_name")
     @Expose
     private String companyName;
@@ -16,7 +21,10 @@ public class BillSettingRequest {
     private Integer vatPercent;
     @SerializedName("sold_id")
     @Expose
-    private List<String> soldId = null;
+    private List<SoldId> soldId = null;
+    @SerializedName("__v")
+    @Expose
+    private Integer v;
     @SerializedName("address")
     @Expose
     private String address;
@@ -31,13 +39,29 @@ public class BillSettingRequest {
     private String customerName;
     @SerializedName("customer_mobile")
     @Expose
-    private Long customerMobile;
+    private String customerMobile;
     @SerializedName("customer_email")
     @Expose
     private String customerEmail;
     @SerializedName("payment_method")
     @Expose
     private String paymentMethod;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getCompanyName() {
         return companyName;
@@ -55,12 +79,20 @@ public class BillSettingRequest {
         this.vatPercent = vatPercent;
     }
 
-    public List<String> getSoldId() {
+    public List<SoldId> getSoldId() {
         return soldId;
     }
 
-    public void setSoldId(List<String> soldId) {
+    public void setSoldId(List<SoldId> soldId) {
         this.soldId = soldId;
+    }
+
+    public Integer getV() {
+        return v;
+    }
+
+    public void setV(Integer v) {
+        this.v = v;
     }
 
     public String getAddress() {
@@ -95,11 +127,11 @@ public class BillSettingRequest {
         this.customerName = customerName;
     }
 
-    public Long getCustomerMobile() {
+    public String getCustomerMobile() {
         return customerMobile;
     }
 
-    public void setCustomerMobile(Long customerMobile) {
+    public void setCustomerMobile(String customerMobile) {
         this.customerMobile = customerMobile;
     }
 

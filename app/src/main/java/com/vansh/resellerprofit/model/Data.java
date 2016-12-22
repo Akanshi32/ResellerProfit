@@ -5,18 +5,20 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class BillSettingRequest {
+public class Data {
 
-
+    @SerializedName("__v")
+    @Expose
+    private Integer v;
+    @SerializedName("user_id")
+    @Expose
+    private String userId;
     @SerializedName("company_name")
     @Expose
     private String companyName;
     @SerializedName("vat_percent")
     @Expose
     private Integer vatPercent;
-    @SerializedName("sold_id")
-    @Expose
-    private List<String> soldId = null;
     @SerializedName("address")
     @Expose
     private String address;
@@ -31,13 +33,35 @@ public class BillSettingRequest {
     private String customerName;
     @SerializedName("customer_mobile")
     @Expose
-    private Long customerMobile;
+    private String customerMobile;
     @SerializedName("customer_email")
     @Expose
     private String customerEmail;
     @SerializedName("payment_method")
     @Expose
     private String paymentMethod;
+    @SerializedName("_id")
+    @Expose
+    private String id;
+    @SerializedName("sold_id")
+    @Expose
+    private List<String> soldId = null;
+
+    public Integer getV() {
+        return v;
+    }
+
+    public void setV(Integer v) {
+        this.v = v;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getCompanyName() {
         return companyName;
@@ -53,14 +77,6 @@ public class BillSettingRequest {
 
     public void setVatPercent(Integer vatPercent) {
         this.vatPercent = vatPercent;
-    }
-
-    public List<String> getSoldId() {
-        return soldId;
-    }
-
-    public void setSoldId(List<String> soldId) {
-        this.soldId = soldId;
     }
 
     public String getAddress() {
@@ -95,11 +111,11 @@ public class BillSettingRequest {
         this.customerName = customerName;
     }
 
-    public Long getCustomerMobile() {
+    public String getCustomerMobile() {
         return customerMobile;
     }
 
-    public void setCustomerMobile(Long customerMobile) {
+    public void setCustomerMobile(String customerMobile) {
         this.customerMobile = customerMobile;
     }
 
@@ -117,6 +133,22 @@ public class BillSettingRequest {
 
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public List<String> getSoldId() {
+        return soldId;
+    }
+
+    public void setSoldId(List<String> soldId) {
+        this.soldId = soldId;
     }
 
 }
