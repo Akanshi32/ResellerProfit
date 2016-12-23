@@ -57,13 +57,13 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MovieViewHolde
     @Override
     public void onBindViewHolder(final MovieViewHolder holder, final int position) {
         holder.productid.setText(stock.get(position).getCustomerEmail());
-        holder.productid.setText(stock.get(position).getAddress());
+        /*holder.productid.setText(stock.get(position).getAddress());
         holder.productid.setText(stock.get(position).getId());
         holder.productid.setText(stock.get(position).getCompanyName());
         holder.productid.setText(stock.get(position).getCstTin());
         holder.productid.setText(stock.get(position).getCustomerMobile());
         holder.productid.setText(stock.get(position).getPaymentMethod());
-        java.util.List<SoldId> bills = stock.get(position).getSoldId();
+        java.util.List<SoldId> bills = stock.get(position).getSoldId();*/
       //  ArrayAdapter<SoldIdAdapter> arr=new ArrayAdapter<>();
 
 
@@ -74,7 +74,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MovieViewHolde
             public void onClick(View view) {
                 Intent intent = new Intent(context, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-              //  intent.putExtra("name",stock.get(position).getItemId());
+                intent.putExtra("name",stock.get(position).getCompanyName());
                 context.startActivity(intent);
 
             }

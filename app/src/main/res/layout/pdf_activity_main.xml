@@ -76,6 +76,12 @@
                 android:layout_weight="0.70"/>
         </LinearLayout>
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/stock_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            />
     </LinearLayout>
 
 

@@ -11,10 +11,13 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -39,6 +42,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 import com.vansh.resellerprofit.R;
+import com.vansh.resellerprofit.adapter.BillAdapter;
 import com.vansh.resellerprofit.adapter.StockAdapter;
 import com.vansh.resellerprofit.model.*;
 import com.vansh.resellerprofit.rest.ApiClient;
@@ -94,6 +98,9 @@ public class PdfCreateActivity extends AppCompatActivity {
         _pdfBodyEDT2 = (EditText) findViewById(R.id.custadd);
 
 
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stock_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
         final ApiInterface apiService =
                 ApiClient.getClient(this).create(ApiInterface.class);
@@ -107,7 +114,9 @@ public class PdfCreateActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<BillGenerate> call, final Response<BillGenerate> response) {
                         java.util.List<Bill> bills = response.body().getBills();
-
+                        recyclerView.setAdapter(new BillAdapter(bills, R.layout.list_item_stock, getApplicationContext()));
+                        compname= getIntent().getStringExtra("name");
+                        Log.i("dsfsd",compname);
 
                     }
 
@@ -241,7 +250,7 @@ public class PdfCreateActivity extends AppCompatActivity {
 
 
 
-            Paragraph pname = new Paragraph(custname);
+            Paragraph pname = new Paragraph(compname);
 
                 /* You can also SET FONT and SIZE like this */
             Font paname= new Font(Font.FontFamily.COURIER,14.0f, Color.GREEN);
