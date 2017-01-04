@@ -46,6 +46,7 @@ dependencies {
     compile 'com.itextpdf.tool:xmlworker:5.5.8'
     compile 'com.android.support:support-v4:25.0.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.github.medyo:fancybuttons:1.8.1'
 }
 
 

@@ -97,7 +97,6 @@ public class BillSetting extends AppCompatActivity {
             public void onClick(View view) {
                 openDialogSelect();
 
-
             }
         });
 

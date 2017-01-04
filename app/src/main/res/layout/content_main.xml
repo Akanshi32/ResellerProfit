@@ -114,6 +114,10 @@
         android:layout_height="wrap_content"
         android:text="Show Profit"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
         android:id="@+id/show" />
 
 
