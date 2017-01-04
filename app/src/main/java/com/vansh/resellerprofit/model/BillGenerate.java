@@ -16,7 +16,7 @@ public class BillGenerate {
     private Boolean success;
     @SerializedName("bills")
     @Expose
-    private List<Bill> bills = null;
+    private Bill bills = null;
 
     public String getCode() {
         return code;
@@ -34,11 +34,11 @@ public class BillGenerate {
         this.success = success;
     }
 
-    public List<Bill> getBills() {
+    public Bill getBills() {
         return bills;
     }
 
-    public void setBills(List<Bill> bills) {
+    public void setBills(Bill bills) {
         this.bills = bills;
     }
 

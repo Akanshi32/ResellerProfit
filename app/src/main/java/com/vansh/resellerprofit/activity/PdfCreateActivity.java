@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
@@ -77,9 +78,10 @@ public class PdfCreateActivity extends AppCompatActivity {
     String vattin;
     String csttin;
     String custname;
-    String custadd;
+    String compadd;
     String custmobile;
     String customeremail;
+    java.util.List<SoldId> uniqueid;
     String paymentmethod;
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
     String[] permission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -113,10 +115,24 @@ public class PdfCreateActivity extends AppCompatActivity {
                 call.enqueue(new Callback<BillGenerate>() {
                     @Override
                     public void onResponse(Call<BillGenerate> call, final Response<BillGenerate> response) {
-                        java.util.List<Bill> bills = response.body().getBills();
-                        recyclerView.setAdapter(new BillAdapter(bills, R.layout.list_item_stock, getApplicationContext()));
-                        compname= getIntent().getStringExtra("name");
-                        Log.i("dsfsd",compname);
+                        Bill bills = response.body().getBills();
+                        custname=bills.getCustomerName().toString();
+                        customeremail=bills.getCustomerEmail().toString();
+                        custmobile=bills.getCustomerMobile().toString();
+
+                        csttin=bills.getCstTin().toString();
+                        vattin=bills.getVatTin().toString();
+                        paymentmethod=bills.getPaymentMethod().toString();
+                        uniqueid=bills.getSoldId();
+
+                            //list here
+
+                        vat=bills.getVatPercent().toString();
+                        compname=bills.getCompanyName().toString();
+                        compadd=bills.getAddress().toString();
+
+
+
 
                     }
 
@@ -250,7 +266,7 @@ public class PdfCreateActivity extends AppCompatActivity {
 
 
 
-            Paragraph pname = new Paragraph(compname);
+            Paragraph pname = new Paragraph(custname);
 
                 /* You can also SET FONT and SIZE like this */
             Font paname= new Font(Font.FontFamily.COURIER,14.0f, Color.GREEN);
