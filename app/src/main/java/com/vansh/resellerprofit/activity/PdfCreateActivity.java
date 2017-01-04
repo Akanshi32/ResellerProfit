@@ -152,9 +152,6 @@ public class PdfCreateActivity extends AppCompatActivity {
                         total=bills.getTotalSp().toString();
                         totalvat=bills.getVatAmount().toString();
 
-
-
-
                     }
 
 

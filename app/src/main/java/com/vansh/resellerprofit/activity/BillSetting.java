@@ -25,7 +25,9 @@ import com.vansh.resellerprofit.adapter.SpinnerStockAdapter;
 import com.vansh.resellerprofit.model.*;
 import com.vansh.resellerprofit.rest.ApiClient;
 import com.vansh.resellerprofit.rest.ApiInterface;
+import com.vansh.resellerprofit.utility.Consts;
 import com.vansh.resellerprofit.utility.DialogUtil;
+import com.vansh.resellerprofit.utility.Preferences;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -88,6 +90,11 @@ public class BillSetting extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        comname.setText(Preferences.getPrefs(Consts.Name,BillSetting.this));
+        address.setText(Preferences.getPrefs(Consts.VAT,BillSetting.this));
+        cst.setText(Preferences.getPrefs(Consts.Address,BillSetting.this));
+        vattin.setText(Preferences.getPrefs(Consts.CST,BillSetting.this));
+
         final BillSettingRequest soldRequest = new BillSettingRequest();
         final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
 
@@ -110,6 +117,7 @@ public class BillSetting extends AppCompatActivity {
         sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 soldRequest.setCompanyName(comname.getText().toString());
                 soldRequest.setAddress(address.getText().toString());

@@ -25,4 +25,9 @@ public class Consts {
     //RESPONSE CODE VARIABLES
 
     public static final String SUCCESS = "0";
+
+    public static final String Name = "companyName";
+    public static final String Address = "companyAddress";
+    public static final String VAT = "VAT";
+    public static final String CST = "CST";
 }
