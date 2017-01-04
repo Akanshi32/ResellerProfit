@@ -19,41 +19,29 @@
     android:background="@drawable/appbg"
     tools:context="com.vansh.resellerprofit.activity.BillSetting">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="3dp"
         android:orientation="horizontal">
-
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Company Name: "/>
-        <EditText
-            android:id="@+id/company_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Enter company name"
-            android:layout_weight="0.70"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:orientation="horizontal">
-
+            android:layout_weight="0.50"
+            android:text="Product ID: "/>
         <TextView
+            android:id="@+id/product_i"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Address: "/>
-        <EditText
-            android:id="@+id/c_address"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Enter address"
             android:layout_weight="0.70"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/selectt"
+            android:text="select"/>
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,69 +61,6 @@
             android:layout_height="wrap_content"
             android:hint="Enter VAT%"
             android:layout_weight="0.70"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="VAT TIN: "/>
-        <EditText
-            android:id="@+id/vat_tin"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Enter VAT TIN"
-            android:layout_weight="0.70"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="CST TIN: "/>
-        <EditText
-            android:id="@+id/cst_tin"
-            android:layout_width="0dp"
-            android:hint="Enter CST TIN"
-            android:inputType="number"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.70"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.50"
-            android:text="Product ID: "/>
-        <TextView
-            android:id="@+id/product_i"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.70"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/add"
-            android:text="ADD"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/selectt"
-            android:text="select"/>
-
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -225,6 +150,82 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Enter Mobile Number"
+            android:layout_weight="0.70"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Company Name: "/>
+        <EditText
+            android:id="@+id/company_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter company name"
+            android:layout_weight="0.70"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Address: "/>
+        <EditText
+            android:id="@+id/c_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter address"
+            android:layout_weight="0.70"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="VAT TIN: "/>
+        <EditText
+            android:id="@+id/vat_tin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter VAT TIN"
+            android:layout_weight="0.70"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="CST TIN: "/>
+        <EditText
+            android:id="@+id/cst_tin"
+            android:layout_width="0dp"
+            android:hint="Enter CST TIN"
+            android:inputType="number"
+            android:layout_height="wrap_content"
             android:layout_weight="0.70"/>
     </LinearLayout>
 

@@ -19,12 +19,6 @@ public class Bill {
     @SerializedName("vat_percent")
     @Expose
     private Integer vatPercent;
-    @SerializedName("sold_id")
-    @Expose
-    private List<SoldId> soldId = null;
-    @SerializedName("__v")
-    @Expose
-    private Integer v;
     @SerializedName("address")
     @Expose
     private String address;
@@ -46,6 +40,21 @@ public class Bill {
     @SerializedName("payment_method")
     @Expose
     private String paymentMethod;
+    @SerializedName("sold_id")
+    @Expose
+    private List<SoldId> soldId = null;
+    @SerializedName("__v")
+    @Expose
+    private Integer v;
+    @SerializedName("selling_price")
+    @Expose
+    private Integer sellingPrice;
+    @SerializedName("vat_amount")
+    @Expose
+    private Integer vatAmount;
+    @SerializedName("total_sp")
+    @Expose
+    private Integer totalSp;
 
     public String getId() {
         return id;
@@ -77,22 +86,6 @@ public class Bill {
 
     public void setVatPercent(Integer vatPercent) {
         this.vatPercent = vatPercent;
-    }
-
-    public List<SoldId> getSoldId() {
-        return soldId;
-    }
-
-    public void setSoldId(List<SoldId> soldId) {
-        this.soldId = soldId;
-    }
-
-    public Integer getV() {
-        return v;
-    }
-
-    public void setV(Integer v) {
-        this.v = v;
     }
 
     public String getAddress() {
@@ -149,6 +142,46 @@ public class Bill {
 
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    public List<SoldId> getSoldId() {
+        return soldId;
+    }
+
+    public void setSoldId(List<SoldId> soldId) {
+        this.soldId = soldId;
+    }
+
+    public Integer getV() {
+        return v;
+    }
+
+    public void setV(Integer v) {
+        this.v = v;
+    }
+
+    public Integer getSellingPrice() {
+        return sellingPrice;
+    }
+
+    public void setSellingPrice(Integer sellingPrice) {
+        this.sellingPrice = sellingPrice;
+    }
+
+    public Integer getVatAmount() {
+        return vatAmount;
+    }
+
+    public void setVatAmount(Integer vatAmount) {
+        this.vatAmount = vatAmount;
+    }
+
+    public Integer getTotalSp() {
+        return totalSp;
+    }
+
+    public void setTotalSp(Integer totalSp) {
+        this.totalSp = totalSp;
     }
 
 }

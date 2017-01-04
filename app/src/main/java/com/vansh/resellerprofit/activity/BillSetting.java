@@ -44,8 +44,7 @@ public class BillSetting extends AppCompatActivity {
     String prodid;
     @Bind(R.id.sub)
     Button sub;
-    @Bind(R.id.add)
-    Button add;
+
     @Bind(R.id.selectt)
     Button select;
     @Bind(R.id.company_name)
@@ -105,16 +104,9 @@ public class BillSetting extends AppCompatActivity {
         Intent intent = getIntent();
         String stringData= intent.getStringExtra("name");
         sold.setText(stringData);
+        list.add(sold.getText().toString());
 
 
-
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                list.add(sold.getText().toString());
-                sold.setText("");
-            }
-        });
 
         sub.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,10 +144,8 @@ public class BillSetting extends AppCompatActivity {
                     public void onResponse(Call<BillSettingResponse> call, Response<BillSettingResponse> response) {
 
                         dialog.hide();
-                        Data dat=new Data();
                         Data data=response.body().getData();
                         prodid=data.getId().toString();
-                        Log.i("DFfdfd",prodid);
                         {Intent it = new Intent(BillSetting.this, PdfCreateActivity.class);
                             it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             it.putExtra("prodid",prodid);

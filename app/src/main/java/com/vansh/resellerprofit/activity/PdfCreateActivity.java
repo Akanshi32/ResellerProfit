@@ -2,6 +2,7 @@ package com.vansh.resellerprofit.activity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -75,10 +76,17 @@ public class PdfCreateActivity extends AppCompatActivity {
 
     String compname;
     String vat;
+    String total;
+    String totalvat;
+
     String vattin;
     String csttin;
     String custname;
     String compadd;
+    String prodsp;
+    String prodname;
+    String prodquan;
+    String billid;
     String custmobile;
     String customeremail;
     java.util.List<SoldId> uniqueid;
@@ -108,9 +116,11 @@ public class PdfCreateActivity extends AppCompatActivity {
                 ApiClient.getClient(this).create(ApiInterface.class);
 
 
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("prodid");
 
 
-                Call<BillGenerate> call = apiService.generate("585c1aedc5b4880011f0a3fa");
+        Call<BillGenerate> call = apiService.generate(id);
 
                 call.enqueue(new Callback<BillGenerate>() {
                     @Override
@@ -120,16 +130,27 @@ public class PdfCreateActivity extends AppCompatActivity {
                         customeremail=bills.getCustomerEmail().toString();
                         custmobile=bills.getCustomerMobile().toString();
 
+
                         csttin=bills.getCstTin().toString();
                         vattin=bills.getVatTin().toString();
                         paymentmethod=bills.getPaymentMethod().toString();
                         uniqueid=bills.getSoldId();
 
-                            //list here
+                        SoldId si;
+                        si=uniqueid.get(0);
+                        custname=si.getId();
+                        prodname=si.getItemId();
+                        prodquan=si.getQuantity().toString();
+                        prodsp=si.getSellingPrice().toString();
+
+                            //list
 
                         vat=bills.getVatPercent().toString();
                         compname=bills.getCompanyName().toString();
                         compadd=bills.getAddress().toString();
+                        billid=bills.getId().toString();
+                        total=bills.getTotalSp().toString();
+                        totalvat=bills.getVatAmount().toString();
 
 
 
