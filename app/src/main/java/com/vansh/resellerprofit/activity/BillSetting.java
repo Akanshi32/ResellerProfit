@@ -177,7 +177,9 @@ public class BillSetting extends AppCompatActivity {
 
         final RecyclerView recyclerView = (RecyclerView) dialog3.findViewById(R.id.sold_recycler_view_spinner);
         LinearLayoutManager layoutManager = new LinearLayoutManager(dialog3.getContext());
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(layoutManager);
 
         ApiInterface apiService =

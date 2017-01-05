@@ -228,7 +228,7 @@ public class MainActivity extends AppCompatActivity
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent i = new Intent(MainActivity.this, BillActivity.class);
+                        Intent i = new Intent(MainActivity.this, BillSetting.class);
                         startActivity(i);
                         finish();
                     }
@@ -292,7 +292,11 @@ public class MainActivity extends AppCompatActivity
 
 
         final RecyclerView recyclerView = (RecyclerView) dialog.findViewById(R.id.stock_recycler_view_spinner);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(dialog.getContext());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(layoutManager);
 
             ApiInterface apiService =
                 ApiClient.getClient(this).create(ApiInterface.class);
@@ -353,7 +357,7 @@ public class MainActivity extends AppCompatActivity
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         dialog.getWindow().setLayout(lp.width, lp.height);
         dialog.show();
         productid.setText(codeContent);

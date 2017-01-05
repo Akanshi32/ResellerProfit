@@ -32,7 +32,11 @@ public class SoldActivity extends AppCompatActivity {
 
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.sold_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(layoutManager);
 
         ApiInterface apiService =
                 ApiClient.getClient(this).create(ApiInterface.class);

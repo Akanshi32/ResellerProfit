@@ -89,14 +89,7 @@
                 android:name=".PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity
-            android:name=".activity.BillActivity"
-            android:label="Bill "
-            android:parentActivityName=".activity.MainActivity">
-            <meta-data
-                android:name=".PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
+
         <activity
             android:name=".activity.CalendarActivity"
             android:label="Sales-Datewise"
@@ -108,7 +101,7 @@
         </activity>
         <activity
             android:name=".activity.BillSetting"
-            android:label="Bill Setting"
+            android:label="Generate Bill"
             android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name=".PARENT_ACTIVITY"
