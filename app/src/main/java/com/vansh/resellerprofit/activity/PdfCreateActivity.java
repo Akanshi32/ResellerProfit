@@ -345,7 +345,7 @@ public class PdfCreateActivity extends AppCompatActivity {
 
             document.add(p12);
             // Second parameter is the number of the chapter
-            Paragraph p6 = new Paragraph("\n\nBILL:");
+            Paragraph p6 = new Paragraph("\nBILL:");
             Font paraFont6= new Font(Font.FontFamily.HELVETICA);
             paraFont6.setSize(16);
             p6.setAlignment(Paragraph.ALIGN_LEFT);
@@ -413,14 +413,14 @@ public class PdfCreateActivity extends AppCompatActivity {
             table.addCell("here");*/
             document.add(table);
 
-            Paragraph p8 = new Paragraph("\n\nVAT%: "+ vat);
+            Paragraph p8 = new Paragraph("\nVAT%: "+ vat);
             Font paraFont8= new Font(Font.FontFamily.HELVETICA);
             paraFont8.setSize(16);
             p8.setAlignment(Paragraph.ALIGN_CENTER);
             p8.setFont(paraFont8);
 
             document.add(p8);
-            Paragraph p9 = new Paragraph("\n\nVAT AMOUNT: "+ totalvat);
+            Paragraph p9 = new Paragraph("\nVAT AMOUNT: "+ totalvat);
             Font paraFont9= new Font(Font.FontFamily.HELVETICA);
             paraFont9.setSize(16);
             p9.setAlignment(Paragraph.ALIGN_CENTER);
