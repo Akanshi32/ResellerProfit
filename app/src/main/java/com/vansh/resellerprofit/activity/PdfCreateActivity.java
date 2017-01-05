@@ -427,7 +427,7 @@ public class PdfCreateActivity extends AppCompatActivity {
             p9.setFont(paraFont9);
             document.add(p9);
 
-            Paragraph p10 = new Paragraph("\n\nGRAND TOTAL : Rs."+total);
+            Paragraph p10 = new Paragraph("\nGRAND TOTAL : Rs."+total);
             Font paraFont10= new Font(Font.FontFamily.HELVETICA);
             paraFont10.setSize(22);
             p10.setAlignment(Paragraph.ALIGN_CENTER);
