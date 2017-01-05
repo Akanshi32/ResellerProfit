@@ -49,14 +49,7 @@ public class BillSetting extends AppCompatActivity {
 
     @Bind(R.id.selectt)
     Button select;
-    @Bind(R.id.company_name)
-    EditText comname;
-    @Bind(R.id.c_address)
-    EditText address;
-    @Bind(R.id.cst_tin)
-    EditText cst;
-    @Bind(R.id.vat_tin)
-    EditText vattin;
+
     @Bind(R.id.product_i)
     TextView sold;
 
@@ -67,8 +60,6 @@ public class BillSetting extends AppCompatActivity {
     @Bind(R.id.custmob)
     EditText custmob;
 
-    @Bind(R.id.custadd)
-    EditText custadd;
     @Bind(R.id.custemail)
     EditText custemail;
     @Bind(R.id.paymethod)
@@ -90,10 +81,6 @@ public class BillSetting extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        comname.setText(Preferences.getPrefs(Consts.Name,BillSetting.this));
-        address.setText(Preferences.getPrefs(Consts.VAT,BillSetting.this));
-        cst.setText(Preferences.getPrefs(Consts.Address,BillSetting.this));
-        vattin.setText(Preferences.getPrefs(Consts.CST,BillSetting.this));
 
         final BillSettingRequest soldRequest = new BillSettingRequest();
         final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
@@ -108,10 +95,10 @@ public class BillSetting extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        String stringData= intent.getStringExtra("name");
-        sold.setText(stringData);
-        list.add(sold.getText().toString());
-
+        String stringData= intent.getStringExtra("id");
+        list.add(stringData);
+        String nameid= intent.getStringExtra("name");
+        sold.setText(nameid);
 
 
         sub.setOnClickListener(new View.OnClickListener() {
@@ -119,10 +106,10 @@ public class BillSetting extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                soldRequest.setCompanyName(comname.getText().toString());
-                soldRequest.setAddress(address.getText().toString());
-                soldRequest.setCstTin(cst.getText().toString());
-                soldRequest.setVatTin(vattin.getText().toString());
+                soldRequest.setCompanyName(Preferences.getPrefs(Consts.Name,BillSetting.this));
+                soldRequest.setAddress(Preferences.getPrefs(Consts.Address,BillSetting.this));
+                soldRequest.setCstTin(Preferences.getPrefs(Consts.CST,BillSetting.this));
+                soldRequest.setVatTin(Preferences.getPrefs(Consts.VAT,BillSetting.this));
                 soldRequest.setSoldId(list);
 
                 Integer myNum = Integer.parseInt(vat.getText().toString());
@@ -132,8 +119,6 @@ public class BillSetting extends AppCompatActivity {
 
                 soldRequest.setCustomerName(custnam.getText().toString());
                 soldRequest.setCustomerEmail(custemail.getText().toString());
-                soldRequest.setAddress(custadd.getText().toString());
-
                 soldRequest.setPaymentMethod(paymethod.getText().toString());
 
 

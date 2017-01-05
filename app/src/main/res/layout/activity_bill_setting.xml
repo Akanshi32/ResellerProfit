@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -10,7 +10,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_bill_setting"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
@@ -80,24 +80,7 @@
             android:hint="Enter Name"
             android:layout_weight="0.70"/>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Customer Address: "/>
-        <EditText
-            android:id="@+id/custadd"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Enter Address"
-            android:layout_weight="0.70"/>
-    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -154,81 +137,6 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Company Name: "/>
-        <EditText
-            android:id="@+id/company_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Enter company name"
-            android:layout_weight="0.70"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Address: "/>
-        <EditText
-            android:id="@+id/c_address"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Enter address"
-            android:layout_weight="0.70"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="VAT TIN: "/>
-        <EditText
-            android:id="@+id/vat_tin"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Enter VAT TIN"
-            android:layout_weight="0.70"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="CST TIN: "/>
-        <EditText
-            android:id="@+id/cst_tin"
-            android:layout_width="0dp"
-            android:hint="Enter CST TIN"
-            android:inputType="number"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.70"/>
-    </LinearLayout>
-
 
     <Button
         android:layout_width="wrap_content"
@@ -239,4 +147,4 @@
         android:text="Submit"/>
 
 </LinearLayout>
-</ScrollView>
+</LinearLayout>

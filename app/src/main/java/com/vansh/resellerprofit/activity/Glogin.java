@@ -210,9 +210,8 @@ public class Glogin extends AppCompatActivity implements
                     if (response.body().getSuccess()){
                         hideProgressDialog();
                         Toast.makeText(getBaseContext(),response.body().getMessage(), Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(Glogin.this, MainActivity.class);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+                        onFinish();
+
 
                     }
                     else
@@ -250,7 +249,27 @@ public class Glogin extends AppCompatActivity implements
         }
     }
 
+    public void onFinish() {
+        Boolean isFirstRun=getSharedPreferences("PREFERENCE",MODE_PRIVATE).getBoolean("isFirstRun",true);
 
+        if(isFirstRun)
+        {
+            //show start activity
+
+            startActivity(new Intent(Glogin.this, CompanyProfile.class));
+            Toast.makeText(Glogin.this, "Welcome!", Toast.LENGTH_LONG)
+                    .show();
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+            getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
+                    .putBoolean("isFirstRun", false).commit();
+        }
+
+        else{
+
+            Intent i = new Intent(Glogin.this, MainActivity.class);
+            startActivity(i);
+            finish();}
+    }
 
     @Override
     public void onClick(View v) {

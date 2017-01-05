@@ -588,14 +588,9 @@ public class MainActivity extends AppCompatActivity
 
 
         }
-        else if (id == R.id.nav_bill) {
-            Intent it = new Intent(MainActivity.this, BillSetting.class);
-            startActivity(it);
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 
-        }
         else if (id == R.id.nav_pdf) {
-            Intent it = new Intent(MainActivity.this, PdfCreateActivity.class);
+            Intent it = new Intent(MainActivity.this, BillSetting.class);
             startActivity(it);
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 

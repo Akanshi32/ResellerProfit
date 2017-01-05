@@ -61,12 +61,14 @@ public class SpinnerSoldAdapter extends RecyclerView.Adapter<SpinnerSoldAdapter.
 
                 Intent intent = new Intent(context, BillSetting.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("name",sold.get(position).getId());
+                intent.putExtra("name",sold.get(position).getItemId());
+                intent.putExtra("id",sold.get(position).getId());
                 context.startActivity(intent);
 
-                ArrayList<String> myList = new ArrayList<String>();
+                /*ArrayList<String> myList = new ArrayList<String>();
                 myList.add(sold.get(position).getId());
-                intent.putExtra("mylist", myList);
+
+                intent.putExtra("mylist", myList);*/
 
             }
         });

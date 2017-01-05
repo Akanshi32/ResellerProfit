@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -74,21 +75,25 @@ public class PdfCreateActivity extends AppCompatActivity {
 
     final ArrayList<String> list = new ArrayList<String>();
 
-    String compname;
     String vat;
     String total;
     String totalvat;
 
     String vattin;
     String csttin;
-    String custname;
     String compadd;
+    String compname;
+
     String prodsp;
     String prodname;
     String prodquan;
     String billid;
+
+    String custname;
     String custmobile;
     String customeremail;
+
+
     java.util.List<SoldId> uniqueid;
     String paymentmethod;
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
@@ -96,7 +101,6 @@ public class PdfCreateActivity extends AppCompatActivity {
     private static final String FILE_FOLDER = "ResellerProfit";
     private static File file;
     private static final String filepath = Environment.getExternalStorageDirectory().getPath();
-    private EditText _pdfBodyEDT1,_pdfBodyEDT2;
     private boolean isPDFFromHTML = false;
 
     @Override
@@ -104,12 +108,6 @@ public class PdfCreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pdf_activity_main);
 
-        _pdfBodyEDT1 = (EditText) findViewById(R.id.custname);
-        _pdfBodyEDT2 = (EditText) findViewById(R.id.custadd);
-
-
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.stock_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
         final ApiInterface apiService =
@@ -117,7 +115,7 @@ public class PdfCreateActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        String id = intent.getStringExtra("prodid");
+        final String id = intent.getStringExtra("prodid");
 
 
         Call<BillGenerate> call = apiService.generate(id);
@@ -138,7 +136,7 @@ public class PdfCreateActivity extends AppCompatActivity {
 
                         SoldId si;
                         si=uniqueid.get(0);
-                        custname=si.getId();
+                        billid=si.getId();
                         prodname=si.getItemId();
                         prodquan=si.getQuantity().toString();
                         prodsp=si.getSellingPrice().toString();
@@ -193,6 +191,7 @@ public class PdfCreateActivity extends AppCompatActivity {
             //Create time stamp
             Date date = new Date() ;
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(date);
+            String timeStamp2 = new SimpleDateFormat("dd/MM/yyyy\nHH:mm:ss", Locale.getDefault()).format(date);
             File myFile = new File(file.getAbsolutePath()+ File.separator + timeStamp + ".pdf");
             myFile.createNewFile();
             OutputStream output = new FileOutputStream(myFile);
@@ -226,7 +225,7 @@ public class PdfCreateActivity extends AppCompatActivity {
 
             //add image to document
             document.add(myImg);
-                Paragraph p1 = new Paragraph("COMPANY TITLE");
+                Paragraph p1 = new Paragraph(compname);
 
                 /* Create Set Font and its Size */
                 Font paraFont= new Font(Font.FontFamily.HELVETICA);
@@ -235,7 +234,7 @@ public class PdfCreateActivity extends AppCompatActivity {
                 p1.setFont(paraFont);
             document.add(p1);
 
-            Paragraph p7 = new Paragraph("COMPANY ADDRESS");
+            Paragraph p7 = new Paragraph(compadd);
 
                 /* Create Set Font and its Size */
             Font paraFont7= new Font(Font.FontFamily.HELVETICA);
@@ -248,7 +247,20 @@ public class PdfCreateActivity extends AppCompatActivity {
                 //add paragraph to document
                 document.add(p7);
 
-            Paragraph p5 = new Paragraph("INVOICE DATE: date");
+            Paragraph p19 = new Paragraph("PAYMENT METHOD:\n"+paymentmethod);
+
+                /* Create Set Font and its Size */
+            Font paraFont19= new Font(Font.FontFamily.HELVETICA);
+            paraFont19.setSize(20);
+            p19.setAlignment(Paragraph.ALIGN_LEFT);
+            p19.setFont(paraFont19);
+
+
+
+                //add paragraph to document
+                document.add(p19);
+
+            Paragraph p5 = new Paragraph("BILLING DATE:"+ timeStamp2);
 
                 /* Create Set Font and its Size */
             Font paraFont5= new Font(Font.FontFamily.HELVETICA);
@@ -271,7 +283,7 @@ public class PdfCreateActivity extends AppCompatActivity {
                 document.add(p2);
 */
 
-            Paragraph p3 = new Paragraph("\nNAME");
+            Paragraph p3 = new Paragraph("\nCUSTOMER DETAILS:");
 
                 /* Create Set Font and its Size */
             Font paraFont3= new Font(Font.FontFamily.HELVETICA);
@@ -295,7 +307,7 @@ public class PdfCreateActivity extends AppCompatActivity {
 
 
 
-            Paragraph p4 = new Paragraph("\nBILLING ADDRESS");
+            Paragraph p4 = new Paragraph(custmobile);
 
                 /* Create Set Font and its Size */
             Font paraFont4= new Font(Font.FontFamily.HELVETICA);
@@ -306,7 +318,7 @@ public class PdfCreateActivity extends AppCompatActivity {
             //add paragraph to document
             document.add(p4);
 
-            Paragraph padd = new Paragraph(_pdfBodyEDT2.getText().toString().trim());
+            Paragraph padd = new Paragraph(customeremail);
 
                 /* You can also SET FONT and SIZE like this */
             Font paadd= new Font(Font.FontFamily.COURIER,14.0f, Color.GREEN);
@@ -325,7 +337,7 @@ public class PdfCreateActivity extends AppCompatActivity {
 
            /* Anchor anchor = new Anchor("First Chapter", catFont);
             anchor.setName("First Chapter");*/
-            Paragraph p12 = new Paragraph("ORDER NUMBER");
+            Paragraph p12 = new Paragraph("BILL ID:"+billid);
             Font paraFont12= new Font(Font.FontFamily.HELVETICA);
             paraFont12.setSize(18);
             p12.setAlignment(Paragraph.ALIGN_RIGHT);
@@ -382,23 +394,17 @@ public class PdfCreateActivity extends AppCompatActivity {
             c1.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(c1);
 
-            c1 = new PdfPCell(new Phrase("TOTAL"));
-            c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-            table.addCell(c1);
-            table.setHeaderRows(1);
 
-            table.addCell("1.0");
-            table.addCell("1.1");
-            table.addCell("1.2");
-            table.addCell("1.4");
-            table.addCell("2.1");
-            table.addCell("2.2");
-            table.addCell("2.3");
-            table.addCell("2.4");
-            table.addCell("");
-            table.addCell("SUBTOTAL(in rupees):");
-            table.addCell("");
-            table.addCell("subtotal here");
+            table.addCell(prodname);
+            table.addCell(prodquan);
+            table.addCell(prodsp);
+            table.addCell(" ");
+            table.addCell(" ");
+            table.addCell(" ");
+
+            table.addCell("SUBTOTAL(in Rupees):");
+            table.addCell(" ");
+            table.addCell(prodsp);
             /*table.addCell("VAT %");
             table.addCell("");
             table.addCell("in rupees");
@@ -407,34 +413,28 @@ public class PdfCreateActivity extends AppCompatActivity {
             table.addCell("here");*/
             document.add(table);
 
-            Paragraph p8 = new Paragraph("\n\nVAT%");
+            Paragraph p8 = new Paragraph("\n\nVAT%: "+ vat);
             Font paraFont8= new Font(Font.FontFamily.HELVETICA);
             paraFont8.setSize(16);
             p8.setAlignment(Paragraph.ALIGN_CENTER);
             p8.setFont(paraFont8);
 
             document.add(p8);
-            Paragraph p9 = new Paragraph("vat percentage here");
+            Paragraph p9 = new Paragraph("\n\nVAT AMOUNT: "+ totalvat);
             Font paraFont9= new Font(Font.FontFamily.HELVETICA);
             paraFont9.setSize(16);
-            p9.setAlignment(Paragraph.ALIGN_RIGHT);
+            p9.setAlignment(Paragraph.ALIGN_CENTER);
             p9.setFont(paraFont9);
-
             document.add(p9);
-            Paragraph p10 = new Paragraph("\n\nGRAND TOTAL");
+
+            Paragraph p10 = new Paragraph("\n\nGRAND TOTAL : Rs."+total);
             Font paraFont10= new Font(Font.FontFamily.HELVETICA);
-            paraFont10.setSize(18);
+            paraFont10.setSize(22);
             p10.setAlignment(Paragraph.ALIGN_CENTER);
             p10.setFont(paraFont10);
 
             document.add(p10);
-            Paragraph p11 = new Paragraph("grand total here");
-            Font paraFont11= new Font(Font.FontFamily.HELVETICA);
-            paraFont11.setSize(18);
-            p11.setAlignment(Paragraph.ALIGN_RIGHT);
-            p11.setFont(paraFont11);
 
-            document.add(p11);
 
 
 
@@ -467,11 +467,32 @@ public class PdfCreateActivity extends AppCompatActivity {
             document.close();
             Toast.makeText(this, "Pdf created successfully.", Toast.LENGTH_LONG).show();
 
+
+            // YE WALA MESSAGE SEND KARNE KE LIYE HAI
+           // Intent messageIntent = new Intent(Intent.ACTION_SEND);
+           // messageIntent .setType("*/*");
+           // messageIntent.putExtra(Intent.EXTRA_TEXT, "ThankYou For purchase at our store! Hope to see you again.");
+           // startActivity(Intent.createChooser(messageIntent, "Send Message..."));
+
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            emailIntent .setType("*/*");
+            emailIntent .putExtra(Intent.EXTRA_EMAIL, new String[]{customeremail});
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "ThankYou For purchase at our store! Hope to see you again.");
+
+            Uri uri = Uri.fromFile(myFile);
+            emailIntent .putExtra(Intent.EXTRA_STREAM, uri);
+            emailIntent .putExtra(Intent.EXTRA_SUBJECT, "Purchase at "+compname);
+            startActivity(Intent.createChooser(emailIntent, "Send email..."));
+
         } catch (IOException | DocumentException e) {
             e.printStackTrace();
             Log.e("PDF--->",  "exception", e);
         }
     }
+
+
+
+
 
 
     private static void addContent(Document document) throws DocumentException {

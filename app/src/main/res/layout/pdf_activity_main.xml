@@ -23,66 +23,8 @@
 
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
 
-        android:padding="30dp"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CUSTOMER DETAILS"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            android:paddingTop="50dp"
-            android:paddingBottom="10dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Customer Name: "/>
-            <EditText
-                android:id="@+id/custname"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:hint="Enter Name"
-                android:layout_weight="0.70"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Customer Address: "/>
-            <EditText
-                android:id="@+id/custadd"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:hint="Enter Address"
-                android:layout_weight="0.70"/>
-        </LinearLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/stock_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            />
-    </LinearLayout>
 
 
 </RelativeLayout>

@@ -68,7 +68,7 @@ public class SignupActivity extends AppCompatActivity {
                        // if (response.body().getCode().equals(Consts.SUCCESS)){
                          //   Toast.makeText(getBaseContext(), "Username exists", Toast.LENGTH_LONG).show();
                         signup();
-                        Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                        Intent intent = new Intent(SignupActivity.this, CompanyProfile.class);
                         startActivity(intent);
                     }
 
