@@ -234,7 +234,7 @@ public class PdfCreateActivity extends AppCompatActivity {
                 p1.setFont(paraFont);
             document.add(p1);
 
-            Paragraph p7 = new Paragraph(compadd);
+            Paragraph p7 = new Paragraph(compadd+"\nVAT No: "+vattin+"\nTin No: "+csttin);
 
                 /* Create Set Font and its Size */
             Font paraFont7= new Font(Font.FontFamily.HELVETICA);
