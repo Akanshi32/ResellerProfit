@@ -9,9 +9,35 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:gravity="center"
     android:background="@drawable/appbg"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.vansh.resellerprofit.activity.ContactUs"
     tools:showIn="@layout/activity_contact_us">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="For Activation/Issues, call:"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:autoLink="phone"
+            android:text="+917354273542"/>
+
+
+
+    </LinearLayout>
+
+
 
 </RelativeLayout>
