@@ -44,7 +44,7 @@ public class SplashScreenActivity extends RevealActivity {
     @Override
     public void destroyAnimationFinished() {
         super.destroyAnimationFinished();
-        Intent intent = new Intent(SplashScreenActivity.this, Glogin.class);
+        Intent intent = new Intent(SplashScreenActivity.this, IntroSliderActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
         finish();

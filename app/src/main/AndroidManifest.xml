@@ -28,6 +28,10 @@
             android:label="Google Login"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".activity.IntroSliderActivity"
+            android:label="Introduction"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".activity.SplashScreenActivity"
             android:theme="@style/AppTheme.Transparent">
             <intent-filter>

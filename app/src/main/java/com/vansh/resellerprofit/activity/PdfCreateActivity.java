@@ -174,8 +174,16 @@ public class PdfCreateActivity extends AppCompatActivity {
                 isPDFFromHTML = false;
                 createPdf();
                 break;
+            case R.id.button1:
+                if(Build.VERSION.SDK_INT >= 23)
+                    if(!PermissionUtils.checkAndRequestPermission(PdfCreateActivity.this, REQUEST_CODE_ASK_PERMISSIONS, "You need to grant access to Write Storage", permission[0]))
+                        return;
+                isPDFFromHTML = false;
+                break;
+
         }
     }
+
 
     private void getFile() {
         file = new File(filepath, FILE_FOLDER);
