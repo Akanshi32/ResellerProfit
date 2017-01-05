@@ -80,6 +80,7 @@
             android:layout_width="wrap_content"
             android:text="This Day's Profit:"
             android:padding="5dp"
+            android:textSize="15dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolbar" />
         <TextView
@@ -87,6 +88,8 @@
             android:layout_width="wrap_content"
             android:text="Profit"
             android:padding="5dp"
+            android:textAlignment="center"
+            android:textSize="15dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolbar" />
         </LinearLayout>
@@ -100,12 +103,14 @@
                 android:layout_width="wrap_content"
                 android:text="Total Profit"
                 android:padding="5dp"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/toolbar" />
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Show Profit"
+                android:visibility="gone"
                 android:padding="5dp"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:id="@+id/show" />

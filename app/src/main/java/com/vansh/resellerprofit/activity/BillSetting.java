@@ -163,15 +163,16 @@ public class BillSetting extends AppCompatActivity {
 
     public void openDialogSelect(){
 
-        Dialog dialog3 = new Dialog(this);
+        Dialog dialog3 = new Dialog(this,R.style.Dialog);
         dialog3.setContentView(R.layout.dialog_sold);
 
-        dialog3.setTitle("Sold Items");
+        dialog3.setTitle("\nSold Items");
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog3.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         lp.height = WindowManager.LayoutParams.MATCH_PARENT;
         dialog3.getWindow().setLayout(lp.width, lp.height);
+        dialog3.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
         dialog3.show();
 
 

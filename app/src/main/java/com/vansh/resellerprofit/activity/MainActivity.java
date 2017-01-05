@@ -280,8 +280,8 @@ public class MainActivity extends AppCompatActivity
     public void openDialogSelect(){
         final Dialog dialog = new Dialog(this,R.style.Dialog);
         dialog.setContentView(R.layout.dialog_productid);
-
-        dialog.setTitle("Product Details");
+        dialog.setTitle("\nProduct Details");
+        dialog.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
 
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
@@ -339,8 +339,9 @@ public class MainActivity extends AppCompatActivity
 
 
     public void openDialog(){
-        final Dialog dialog = new Dialog(this);
+        final Dialog dialog = new Dialog(this,R.style.Dialog);
         dialog.setContentView(R.layout.dialog);
+
         Button cancel=(Button) dialog.findViewById(R.id.dialog_cancel);
         Button submit=(Button) dialog.findViewById(R.id.dialog_submit);
         Button scan=(Button) dialog.findViewById(R.id.btn_scan_now);
@@ -352,12 +353,13 @@ public class MainActivity extends AppCompatActivity
         final EditText vendorname=(EditText) dialog.findViewById(R.id.vendorid);
 
 
-        dialog.setTitle("Product Details\n\n");
+        dialog.setTitle("\nProduct Details");
         dialog.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
+
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
         dialog.getWindow().setLayout(lp.width, lp.height);
         dialog.show();
         productid.setText(codeContent);

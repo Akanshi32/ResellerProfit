@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:text="SELL AN ITEM"
         android:textSize="25sp"
+        android:layout_marginBottom="7dp"
         android:textStyle="bold"
         android:paddingBottom="5dp"
         android:textAlignment="center"/>
@@ -29,7 +30,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="3dp"
+        android:padding="1dp"
         android:orientation="horizontal">
 
         <TextView
@@ -38,22 +39,24 @@
             android:layout_weight="0.5"
             android:textSize="20sp"
             android:text="Product ID:"/>
-
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:id="@+id/select" />
         <TextView
             android:layout_width="0dp"
             android:paddingLeft="3dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:textSize="20sp"
+            android:textAlignment="center"
             android:id="@+id/selected"
-            android:text="selected ID"/>
+            />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select"
+            android:layout_marginBottom="7dp"
+            android:id="@+id/select" />
+
 
 
 
@@ -101,7 +104,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add to stock"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
         android:id="@+id/add" />
     <LinearLayout
         android:layout_width="wrap_content"

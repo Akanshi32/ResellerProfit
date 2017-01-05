@@ -12,11 +12,12 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0.9"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/productid"
+            android:textColor="#000000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
@@ -46,6 +47,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="35dp"
+        android:layout_weight="0.1"
         android:orientation="horizontal">
 
         <ImageView
@@ -54,11 +56,12 @@
             android:layout_height="15dp"
             android:layout_centerInParent="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/logo" />
+            android:src="@drawable/resellericon" />
 
 
         <TextView
             android:id="@+id/rating"
+            android:textColor="#000000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"

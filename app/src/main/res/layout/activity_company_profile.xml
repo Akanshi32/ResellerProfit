@@ -7,7 +7,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="20dp"
 
     android:background="@drawable/appbg"
     android:orientation="vertical"
@@ -64,10 +64,12 @@
         <EditText
             android:id="@+id/vattin"
             android:layout_width="0dp"
+            android:inputType="numberDecimal"
             android:layout_height="wrap_content"
             android:hint="Enter VAT TIN"
             android:layout_weight="0.70"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -90,6 +92,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save"
+        android:layout_marginTop="4dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:id="@+id/comsave"/>

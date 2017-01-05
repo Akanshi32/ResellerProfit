@@ -34,6 +34,7 @@
             android:id="@+id/product_i"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:layout_weight="0.70"/>
 
         <Button
@@ -60,6 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Enter VAT%"
+            android:inputType="numberDecimal"
             android:layout_weight="0.70"/>
     </LinearLayout>
     <LinearLayout
@@ -132,6 +134,7 @@
             android:id="@+id/custmob"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:hint="Enter Mobile Number"
             android:layout_weight="0.70"/>
     </LinearLayout>
@@ -144,6 +147,7 @@
         android:gravity="center"
         android:layout_height="wrap_content"
         android:id="@+id/sub"
+        android:layout_marginTop="7dp"
         android:text="Submit"/>
 
 </LinearLayout>
