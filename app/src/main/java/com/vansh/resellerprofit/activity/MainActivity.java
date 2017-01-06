@@ -198,67 +198,79 @@ public class MainActivity extends AppCompatActivity
                 Preferences.setPrefs(Consts.IMEI, imeii, MainActivity.this);
                 Preferences.setPrefs(Consts.SAVEDID, savedid, MainActivity.this);
 
-                foo = Integer.parseInt(_stock.getText().toString());
-                goo = Integer.parseInt(stringQuan);
-
-                if (foo > goo) {
-                    DialogUtil.createDialog("You Don't Have Enough Stock", MainActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                if (imei.getText().toString().isEmpty() || _selected.getText().toString().isEmpty() || _sellingprice.getText().toString().isEmpty() || _stock.getText().toString().isEmpty()) {
+                    DialogUtil.createDialog("Please Fill All the information!", MainActivity.this, new DialogUtil.OnPositiveButtonClick() {
                         @Override
                         public void onClick() {
                             finish();
                         }
                     });
+
+
                 } else {
-                    InputMethodManager inputManager = (InputMethodManager)
-                            getSystemService(Context.INPUT_METHOD_SERVICE);
-
-                    inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                            InputMethodManager.HIDE_NOT_ALWAYS);
-
-                    soldRequest.setItemId(_selected.getText().toString());
-
-                    String text1 = _stock.getText().toString();
-                    int number = Integer.parseInt(text1);
-                    soldRequest.setQuantity(number);
-
-                    soldRequest.setSellingPrice(_sellingprice.getText().toString());
+                    foo = Integer.parseInt(_stock.getText().toString());
+                    goo = Integer.parseInt(stringQuan);
 
 
-                    Call<SoldRequest> call = apiInterface.Sold(soldRequest);
-
-                    final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
-                    dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                    dialog.setMessage("Congrats! You Just Sold An Item.");
-                    dialog.setIndeterminate(true);
-                    dialog.setCanceledOnTouchOutside(false);
-                    dialog.show();
-
-                    call.enqueue(new Callback<SoldRequest>() {
-                        @Override
-                        public void onResponse(Call<SoldRequest> call, Response<SoldRequest> response) {
-
-                            dialog.hide();
-
-
-                            {
-                                Intent i = new Intent(MainActivity.this, BillSetting.class);
-                                startActivity(i);
+                    if (foo > goo) {
+                        DialogUtil.createDialog("You Don't Have Enough Stock", MainActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                            @Override
+                            public void onClick() {
                                 finish();
                             }
+                        });
+                    } else {
+                        InputMethodManager inputManager = (InputMethodManager)
+                                getSystemService(Context.INPUT_METHOD_SERVICE);
 
-                        }
+                        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                                InputMethodManager.HIDE_NOT_ALWAYS);
 
-                        @Override
-                        public void onFailure(Call<SoldRequest> call, Throwable t) {
-                            dialog.hide();
-                            DialogUtil.createDialog("Oops! Please check your internet connection!", MainActivity.this, new DialogUtil.OnPositiveButtonClick() {
-                                @Override
-                                public void onClick() {
+                        soldRequest.setItemId(_selected.getText().toString());
+
+                        String text1 = _stock.getText().toString();
+                        int number = Integer.parseInt(text1);
+                        soldRequest.setQuantity(number);
+
+                        soldRequest.setSellingPrice(_sellingprice.getText().toString());
+
+
+                        Call<SoldRequest> call = apiInterface.Sold(soldRequest);
+
+                        final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+                        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                        dialog.setMessage("Congrats! You Just Sold An Item.");
+                        dialog.setIndeterminate(true);
+                        dialog.setCanceledOnTouchOutside(false);
+                        dialog.show();
+
+                        call.enqueue(new Callback<SoldRequest>() {
+                            @Override
+                            public void onResponse(Call<SoldRequest> call, Response<SoldRequest> response) {
+
+                                dialog.hide();
+
+
+                                {
+                                    Intent i = new Intent(MainActivity.this, BillSetting.class);
+                                    startActivity(i);
+                                    finish();
                                 }
-                            });
-                        }
-                    });
 
+                            }
+
+                            @Override
+                            public void onFailure(Call<SoldRequest> call, Throwable t) {
+                                dialog.hide();
+                                DialogUtil.createDialog("Oops! Please check your internet connection!", MainActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                                    @Override
+                                    public void onClick() {
+                                    }
+                                });
+                            }
+                        });
+
+                    }
                 }
             }
         });
@@ -438,48 +450,56 @@ public class MainActivity extends AppCompatActivity
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (productid.getText().toString().isEmpty() || costprice.getText().toString().isEmpty() || stock.getText().toString().isEmpty()) {
+                    DialogUtil.createDialog("Please Fill All the information!", MainActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                        @Override
+                        public void onClick() {
+                            finish();
+                        }
+                    });
+
+                }
+                else {
+                    stockRequest.setItemId(productid.getText().toString());
+                    stockRequest.setInvoiceNo(invoiceno.getText().toString());
+                    stockRequest.setVendorName(vendorname.getText().toString());
+                    String text = stock.getText().toString();
+                    int number = Integer.parseInt(text);
+                    stockRequest.setStock(number);
+                    stockRequest.setCostPrice(costprice.getText().toString());
+                    stockRequest.setPurchaseDate(ISO8601Utils.format(myCalendar.getTime()));
 
 
-                stockRequest.setItemId(productid.getText().toString());
-                stockRequest.setInvoiceNo(invoiceno.getText().toString());
-                stockRequest.setVendorName(vendorname.getText().toString());
-                String text = stock.getText().toString();
-                int number = Integer.parseInt(text);
-                stockRequest.setStock(number);
-                stockRequest.setCostPrice(costprice.getText().toString());
-                stockRequest.setPurchaseDate(ISO8601Utils.format(myCalendar.getTime()));
+                    Call<StockRequest> call = apiInterface.Stock(stockRequest);
+
+                    final ProgressDialog dialog2 = new ProgressDialog(MainActivity.this);
+                    dialog2.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    dialog2.setMessage("Adding the item to your inventory");
+                    dialog2.setIndeterminate(true);
+                    dialog2.setCanceledOnTouchOutside(false);
+                    dialog2.show();
 
 
-                Call<StockRequest> call = apiInterface.Stock(stockRequest);
-
-                final ProgressDialog dialog2 = new ProgressDialog(MainActivity.this);
-                dialog2.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                dialog2.setMessage("Adding the item to your inventory");
-                dialog2.setIndeterminate(true);
-                dialog2.setCanceledOnTouchOutside(false);
-                dialog2.show();
+                    call.enqueue(new Callback<StockRequest>() {
+                        @Override
+                        public void onResponse(Call<StockRequest> call, Response<StockRequest> response) {
+                            dialog2.hide();
 
 
-                call.enqueue(new Callback<StockRequest>() {
-                    @Override
-                    public void onResponse(Call<StockRequest> call, Response<StockRequest> response) {
-                    dialog2.hide();
+                        }
 
+                        @Override
+                        public void onFailure(Call<StockRequest> call, Throwable t) {
+                            dialog2.hide();
+                            DialogUtil.createDialog("Oops! Please check your internet connection!", MainActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                                @Override
+                                public void onClick() {
+                                }
+                            });
+                        }
+                    });
 
-                    }
-
-                    @Override
-                    public void onFailure(Call<StockRequest> call, Throwable t) {
-                        dialog2.hide();
-                        DialogUtil.createDialog("Oops! Please check your internet connection!", MainActivity.this, new DialogUtil.OnPositiveButtonClick() {
-                            @Override
-                            public void onClick() {
-                            }
-                        });
-                    }
-                });
-
-
+                }
 
                 dialog.dismiss();
             }

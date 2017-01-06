@@ -34,4 +34,5 @@ public class Consts {
     public static final String SAVEDID = "SAVED ID";
     public static final String IDNAME = "ID NAME";
     public static final String ID = "ID";
+    public static final String PATH = "PATH";
 }

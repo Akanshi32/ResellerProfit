@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -231,11 +232,15 @@ public class PdfCreateActivity extends AppCompatActivity {
             //Add content
                /* Create Paragraph and Set Font */
              /* Inserting Image in PDF */
+            String path=Preferences.getPrefs(Consts.PATH,PdfCreateActivity.this);
+            Uri myUri = Uri.parse("file://"+path);
+
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            Bitmap bitmap = BitmapFactory.decodeResource(getBaseContext().getResources(), R.mipmap.ic_launcher);
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), myUri);
+
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100 , stream);
             Image myImg = Image.getInstance(stream.toByteArray());
-            myImg.scaleAbsolute(50,50);
+            myImg.scaleAbsolute(100,100);
             myImg.setAlignment(Image.ALIGN_RIGHT);
 
             //add image to document

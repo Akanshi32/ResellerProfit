@@ -15,6 +15,7 @@ import com.vansh.resellerprofit.R;
 import com.vansh.resellerprofit.model.SignUpRequest;
 import com.vansh.resellerprofit.rest.ApiClient;
 import com.vansh.resellerprofit.rest.ApiInterface;
+import com.vansh.resellerprofit.utility.DialogUtil;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -56,26 +57,38 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                signUpRequest.setName(_nameText.getText().toString());
-                signUpRequest.setEmail(_email.getText().toString());
-                signUpRequest.setCompanyName(_company.getText().toString());
-                signUpRequest.setPhone(_mobile.getText().toString());
-                Call<SignUpRequest> call = apiInterface.SignUp(signUpRequest);
+                if (_nameText.getText().toString().isEmpty() || _email.getText().toString().isEmpty() || _company.getText().toString().isEmpty()|| _mobile.getText().toString().isEmpty()) {
+                    DialogUtil.createDialog("Please Fill All the information!", SignupActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                        @Override
+                        public void onClick() {
+                            finish();
+                        }
+                    });
 
-                call.enqueue(new Callback<SignUpRequest>() {
-                    @Override
-                    public void onResponse(Call<SignUpRequest> call, Response<SignUpRequest> response) {
-                       // if (response.body().getCode().equals(Consts.SUCCESS)){
-                         //   Toast.makeText(getBaseContext(), "Username exists", Toast.LENGTH_LONG).show();
-                        signup();
-                        Intent intent = new Intent(SignupActivity.this, CompanyProfile.class);
-                        startActivity(intent);
-                    }
+                }
+                else {
 
-                    @Override
-                    public void onFailure(Call<SignUpRequest> call, Throwable t) {
-                    }
-                });
+                    signUpRequest.setName(_nameText.getText().toString());
+                    signUpRequest.setEmail(_email.getText().toString());
+                    signUpRequest.setCompanyName(_company.getText().toString());
+                    signUpRequest.setPhone(_mobile.getText().toString());
+                    Call<SignUpRequest> call = apiInterface.SignUp(signUpRequest);
+
+                    call.enqueue(new Callback<SignUpRequest>() {
+                        @Override
+                        public void onResponse(Call<SignUpRequest> call, Response<SignUpRequest> response) {
+                            // if (response.body().getCode().equals(Consts.SUCCESS)){
+                            //   Toast.makeText(getBaseContext(), "Username exists", Toast.LENGTH_LONG).show();
+                            signup();
+                            Intent intent = new Intent(SignupActivity.this, CompanyProfile.class);
+                            startActivity(intent);
+                        }
+
+                        @Override
+                        public void onFailure(Call<SignUpRequest> call, Throwable t) {
+                        }
+                    });
+                }
             }
         });
 

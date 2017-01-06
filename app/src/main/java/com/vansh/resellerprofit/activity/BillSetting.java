@@ -84,7 +84,7 @@ public class BillSetting extends AppCompatActivity {
         ButterKnife.bind(this);
 
         imei.setText(Preferences.getPrefs(Consts.IMEI,BillSetting.this));
-        String imeiii=imei.getText().toString();
+        final String imeiii=imei.getText().toString();
         Preferences.setPrefs(Consts.IMEI,imeiii,BillSetting.this);
 
 
@@ -119,60 +119,71 @@ public class BillSetting extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                if (sold.getText().toString().isEmpty() || vat.getText().toString().isEmpty() || custnam.getText().toString().isEmpty() || custemail.getText().toString().isEmpty()||paymethod.getText().toString().isEmpty()||custmob.getText().toString().isEmpty()||imei.getText().toString().isEmpty()) {
+                    DialogUtil.createDialog("Please Fill All the information!", BillSetting.this, new DialogUtil.OnPositiveButtonClick() {
+                        @Override
+                        public void onClick() {
+                            finish();
+                        }
+                    });
 
 
-                soldRequest.setCompanyName(Preferences.getPrefs(Consts.Name,BillSetting.this));
-                soldRequest.setAddress(Preferences.getPrefs(Consts.Address,BillSetting.this));
-                soldRequest.setCstTin(Preferences.getPrefs(Consts.CST,BillSetting.this));
-                soldRequest.setVatTin(Preferences.getPrefs(Consts.VAT,BillSetting.this));
-                soldRequest.setSoldId(list);
+                }
+                else {
+                    soldRequest.setCompanyName(Preferences.getPrefs(Consts.Name, BillSetting.this));
+                    soldRequest.setAddress(Preferences.getPrefs(Consts.Address, BillSetting.this));
+                    soldRequest.setCstTin(Preferences.getPrefs(Consts.CST, BillSetting.this));
+                    soldRequest.setVatTin(Preferences.getPrefs(Consts.VAT, BillSetting.this));
+                    soldRequest.setSoldId(list);
 
-                Integer myNum = Integer.parseInt(vat.getText().toString());
-                soldRequest.setVatPercent(myNum);
-                Long myNum1 = Long.parseLong(custmob.getText().toString());
-                soldRequest.setCustomerMobile(myNum1);
+                    Integer myNum = Integer.parseInt(vat.getText().toString());
+                    soldRequest.setVatPercent(myNum);
+                    Long myNum1 = Long.parseLong(custmob.getText().toString());
+                    soldRequest.setCustomerMobile(myNum1);
 
-                soldRequest.setCustomerName(custnam.getText().toString());
-                soldRequest.setCustomerEmail(custemail.getText().toString());
-                soldRequest.setPaymentMethod(paymethod.getText().toString());
-
-
-                Call<BillSettingResponse> call = apiInterface.billsetrequest(soldRequest);
-
-                final ProgressDialog dialog = new ProgressDialog(BillSetting.this);
-                dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                dialog.setMessage("Congrats! You Just Sold An Item.");
-                dialog.setIndeterminate(true);
-                dialog.setCanceledOnTouchOutside(false);
-                dialog.show();
-
-                call.enqueue(new Callback<BillSettingResponse>() {
-                    @Override
-                    public void onResponse(Call<BillSettingResponse> call, Response<BillSettingResponse> response) {
-
-                        dialog.hide();
-                        Data data=response.body().getData();
-                        prodid=data.getId().toString();
+                    soldRequest.setCustomerName(custnam.getText().toString());
+                    soldRequest.setCustomerEmail(custemail.getText().toString());
+                    soldRequest.setPaymentMethod(paymethod.getText().toString());
 
 
-                        {Intent it = new Intent(BillSetting.this, PdfCreateActivity.class);
-                            it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            it.putExtra("prodid",prodid);
-                            startActivity(it);}
+                    Call<BillSettingResponse> call = apiInterface.billsetrequest(soldRequest);
 
-                    }
+                    final ProgressDialog dialog = new ProgressDialog(BillSetting.this);
+                    dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    dialog.setMessage("Congrats! You Just Sold An Item.");
+                    dialog.setIndeterminate(true);
+                    dialog.setCanceledOnTouchOutside(false);
+                    dialog.show();
 
-                    @Override
-                    public void onFailure(Call<BillSettingResponse> call, Throwable t) {
-                        dialog.hide();
-                        DialogUtil.createDialog("Oops! Please check your internet connection!", BillSetting.this, new DialogUtil.OnPositiveButtonClick() {
-                            @Override
-                            public void onClick() {
+                    call.enqueue(new Callback<BillSettingResponse>() {
+                        @Override
+                        public void onResponse(Call<BillSettingResponse> call, Response<BillSettingResponse> response) {
+
+                            dialog.hide();
+                            Data data = response.body().getData();
+                            prodid = data.getId().toString();
+
+
+                            {
+                                Intent it = new Intent(BillSetting.this, PdfCreateActivity.class);
+                                it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                it.putExtra("prodid", prodid);
+                                startActivity(it);
                             }
-                        });
-                    }
-                });
 
+                        }
+
+                        @Override
+                        public void onFailure(Call<BillSettingResponse> call, Throwable t) {
+                            dialog.hide();
+                            DialogUtil.createDialog("Oops! Please check your internet connection!", BillSetting.this, new DialogUtil.OnPositiveButtonClick() {
+                                @Override
+                                public void onClick() {
+                                }
+                            });
+                        }
+                    });
+                }
             }
         });
 

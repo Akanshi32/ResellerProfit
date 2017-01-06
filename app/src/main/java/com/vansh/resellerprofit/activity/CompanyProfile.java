@@ -3,10 +3,12 @@ package com.vansh.resellerprofit.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,9 +21,15 @@ import android.widget.Toast;
 
 import com.vansh.resellerprofit.R;
 import com.vansh.resellerprofit.utility.Consts;
+import com.vansh.resellerprofit.utility.DialogUtil;
 import com.vansh.resellerprofit.utility.Preferences;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class CompanyProfile extends AppCompatActivity {
     EditText ed1,ed2,ed3,ed4;
@@ -32,9 +40,6 @@ public class CompanyProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_profile);
-
-
-
 
 
         imageview = (ImageView)findViewById(R.id.complogo);
@@ -49,22 +54,32 @@ public class CompanyProfile extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name  = ed1.getText().toString();
-                String addr  = ed2.getText().toString();
-                String vat  = ed3.getText().toString();
-                String cst  = ed4.getText().toString();
 
-                Preferences.setPrefs(Consts.Name,name,CompanyProfile.this);
-                Preferences.setPrefs(Consts.Address,addr,CompanyProfile.this);
-                Preferences.setPrefs(Consts.VAT,vat,CompanyProfile.this);
-                Preferences.setPrefs(Consts.CST,cst,CompanyProfile.this);
-
+                if (ed1.getText().toString().isEmpty() || ed2.getText().toString().isEmpty() || ed3.getText().toString().isEmpty() || ed4.getText().toString().isEmpty()) {
+                    DialogUtil.createDialog("Please Fill All the information!", CompanyProfile.this, new DialogUtil.OnPositiveButtonClick() {
+                        @Override
+                        public void onClick() {
+                            finish();
+                        }
+                    });
 
 
-                Toast.makeText(CompanyProfile.this,"Saved", Toast.LENGTH_LONG).show();
-                Intent it = new Intent(CompanyProfile.this,MainActivity.class);
-                startActivity(it);
+                }
+                else {
+                    String name = ed1.getText().toString();
+                    String addr = ed2.getText().toString();
+                    String vat = ed3.getText().toString();
+                    String cst = ed4.getText().toString();
 
+                    Preferences.setPrefs(Consts.Name, name, CompanyProfile.this);
+                    Preferences.setPrefs(Consts.Address, addr, CompanyProfile.this);
+                    Preferences.setPrefs(Consts.VAT, vat, CompanyProfile.this);
+                    Preferences.setPrefs(Consts.CST, cst, CompanyProfile.this);
+
+                    startActivity(new Intent(CompanyProfile.this, MainActivity.class));
+                    Toast.makeText(CompanyProfile.this, "Saved!", Toast.LENGTH_LONG)
+                            .show();
+                }
             }
 
         });
@@ -80,6 +95,8 @@ public class CompanyProfile extends AppCompatActivity {
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(pickPhoto , 1);//one can be replaced with any action code
 
+
+
             }
         });
 
@@ -94,10 +111,31 @@ public class CompanyProfile extends AppCompatActivity {
                 if(resultCode == RESULT_OK){
                     Uri selectedImage = imageReturnedIntent.getData();
                     imageview.setImageURI(selectedImage);
+                    String path=getRealPathFromURI(this,selectedImage);
+
+                    Preferences.setPrefs(Consts.PATH,path,CompanyProfile.this);
+
+
                 }
                 break;
         }
     }
+
+    public String getRealPathFromURI(Context context, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
+
 
 
 }
