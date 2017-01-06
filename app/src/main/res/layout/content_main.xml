@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_gravity="center"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="35dp"
@@ -21,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SELL AN ITEM"
-        android:textSize="25sp"
+        android:textSize="35sp"
         android:layout_marginBottom="7dp"
         android:textStyle="bold"
         android:paddingBottom="5dp"
@@ -54,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select"
+            android:theme="@style/AppTheme.Button"
             android:layout_marginBottom="7dp"
             android:id="@+id/select" />
 
@@ -100,11 +102,32 @@
             android:layout_weight="0.70"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.50"
+            android:textSize="20sp"
+            android:text="IMEI No: "/>
+        <EditText
+            android:id="@+id/imei"
+            android:layout_width="0dp"
+            android:hint="Enter IMEI"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_weight="0.70"/>
+    </LinearLayout>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add to stock"
         android:layout_marginTop="5dp"
+        android:layout_gravity="center"
         android:layout_marginBottom="10dp"
         android:id="@+id/add" />
     <LinearLayout
@@ -113,19 +136,7 @@
         android:orientation="horizontal">
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Show Profit"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:paddingBottom="10dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="10dp"
-        android:id="@+id/show" />
-
-
-    <TextView
+        <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"

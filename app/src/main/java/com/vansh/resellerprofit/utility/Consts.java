@@ -30,4 +30,5 @@ public class Consts {
     public static final String Address = "companyAddress";
     public static final String VAT = "VAT";
     public static final String CST = "CST";
+    public static final String IMEI = "IMEI";
 }

@@ -52,7 +52,9 @@ import com.vansh.resellerprofit.adapter.StockAdapter;
 import com.vansh.resellerprofit.model.*;
 import com.vansh.resellerprofit.rest.ApiClient;
 import com.vansh.resellerprofit.rest.ApiInterface;
+import com.vansh.resellerprofit.utility.Consts;
 import com.vansh.resellerprofit.utility.DialogUtil;
+import com.vansh.resellerprofit.utility.Preferences;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -358,9 +360,18 @@ public class PdfCreateActivity extends AppCompatActivity {
             document.add(p12);
 
 
-          /* *//* Paragraph subPara = new Paragraph("Subcategory 1", subFont);*//*
-           *//* Section subCatPart = catPart.addSection(subPara);*//*
-            subCatPart.add(new Paragraph("BILL:"));*/
+           Paragraph p16 = new Paragraph("\nIMEI:"+ Preferences.getPrefs(Consts.IMEI,PdfCreateActivity.this));
+            Font paraFont16= new Font(Font.FontFamily.HELVETICA);
+            paraFont16.setSize(16);
+            p16.setAlignment(Paragraph.ALIGN_LEFT);
+            p16.setFont(paraFont16);
+
+            document.add(p16);
+
+           /* Paragraph subPara = new Paragraph("Subcategory 1", subFont);*/
+           /* Section subCatPart = catPart.addSection(subPara);*/
+            //subCatPart.add(new Paragraph("BILL:"));
+
 
            /* subPara = new Paragraph("Subcategory 2", subFont);
             subCatPart = catPart.addSection(subPara);

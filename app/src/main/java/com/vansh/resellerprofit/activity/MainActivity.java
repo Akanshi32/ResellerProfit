@@ -54,7 +54,9 @@ import com.vansh.resellerprofit.model.StockRequest;
 import com.vansh.resellerprofit.model.StockResponse;
 import com.vansh.resellerprofit.rest.ApiClient;
 import com.vansh.resellerprofit.rest.ApiInterface;
+import com.vansh.resellerprofit.utility.Consts;
 import com.vansh.resellerprofit.utility.DialogUtil;
+import com.vansh.resellerprofit.utility.Preferences;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -74,6 +76,8 @@ public class MainActivity extends AppCompatActivity
 
     @Bind(R.id.stock)
     EditText _stock;
+    @Bind(R.id.imei)
+    EditText imei;
     @Bind(R.id.sellingprice)
     EditText _sellingprice;
     @Bind(R.id.select)
@@ -82,10 +86,10 @@ public class MainActivity extends AppCompatActivity
     Button _add;
     @Bind(R.id.selected)
     TextView _selected;
-    @Bind(R.id.profit_tv)
+    /*@Bind(R.id.profit_tv)
     TextView _profit;
     @Bind(R.id.show)
-     Button showprofit;
+     Button showprofit*/;
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("dd - MM - yyyy", Locale.getDefault());
 
 
@@ -119,7 +123,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        TimeZone tz = TimeZone.getTimeZone("UTC");
+      /*  TimeZone tz = TimeZone.getTimeZone("UTC");
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'"); // Quoted "Z" to indicate UTC, no timezone offset
         df.setTimeZone(tz);
         String nowAsISO = df.format(new Date());
@@ -150,7 +154,7 @@ public class MainActivity extends AppCompatActivity
                 // Log error here since request failed
                 Log.e("Error", t.toString());
             }
-        });
+        });*/
 
 
 
@@ -159,7 +163,6 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 openDialogSelect();
-                _profit.setText("");
             }
         });
 
@@ -179,6 +182,9 @@ public class MainActivity extends AppCompatActivity
         _add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String imeii=imei.getText().toString();
+                Preferences.setPrefs(Consts.IMEI,imeii,MainActivity.this);
+
 
                 InputMethodManager inputManager = (InputMethodManager)
                         getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -373,6 +379,8 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
+
+
 
         final Button btDate = (Button) dialog.findViewById(R.id.purchase_date);
 
@@ -583,10 +591,6 @@ public class MainActivity extends AppCompatActivity
             Intent it = new Intent(MainActivity.this, CalendarActivity.class);
             startActivity(it);
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
-
-        } else if (id == R.id.nav_faq) {
-            Intent it = new Intent(MainActivity.this, FaqActivity.class);
-            startActivity(it);
 
         } else if (id == R.id.nav_contact) {
             Intent it = new Intent(MainActivity.this, ContactUs.class);

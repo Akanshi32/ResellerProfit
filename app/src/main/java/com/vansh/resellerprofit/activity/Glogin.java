@@ -62,8 +62,7 @@ public class Glogin extends AppCompatActivity implements
     private LinearLayout llProfileLayout;
     private ImageView imgProfilePic;
     private TextView txtName, txtEmail,mIdTokenTextView;
-    @Bind(R.id.link_signup)
-    TextView _signupLink;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,16 +107,6 @@ public class Glogin extends AppCompatActivity implements
       //  btnSignIn.setSize(SignInButton.SIZE_STANDARD);
       //  btnSignIn.setScopes(gso.getScopeArray());
 
-
-        _signupLink.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Start the Signup activity
-                Intent intent = new Intent(Glogin.this, SignupActivity.class);
-                startActivity(intent);
-            }
-        });
 
 
     }
@@ -174,8 +163,6 @@ public class Glogin extends AppCompatActivity implements
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
 
-            Log.e(TAG, "display name: " + acct.getDisplayName());
-            Log.e(TAG, "Token ID: " + acct.getIdToken());
 
             final String personName = acct.getDisplayName();
             String personPhotoUrl = acct.getPhotoUrl().toString();
@@ -185,8 +172,6 @@ public class Glogin extends AppCompatActivity implements
             final String idToken = acct.getIdToken();
             // TODO(user): send token to server and validate server-side
 
-            Log.e(TAG, "Name: " + personName + ", email: " + email
-                    + ", Image: " + personPhotoUrl);
 
            /* txtName.setText(personName);
 
@@ -198,7 +183,6 @@ public class Glogin extends AppCompatActivity implements
                     .into(imgProfilePic);*/
 
             Preferences.setPrefs(Consts.TOKEN_SP_KEY,idToken ,Glogin.this);
-            Log.e(TAG, "SP KEY: " + Preferences.getPrefs(Consts.TOKEN_SP_KEY,Glogin.this));
 
 
 
@@ -250,9 +234,9 @@ public class Glogin extends AppCompatActivity implements
     }
 
     public void onFinish() {
-        Boolean isFirstRun=getSharedPreferences("PREFERENCE",MODE_PRIVATE).getBoolean("isFirstRun",true);
+        Boolean isFirstRun1=getSharedPreferences("PREFERENCE1",MODE_PRIVATE).getBoolean("isFirstRun1",true);
 
-        if(isFirstRun)
+        if(isFirstRun1)
         {
             //show start activity
 
@@ -260,8 +244,8 @@ public class Glogin extends AppCompatActivity implements
             Toast.makeText(Glogin.this, "Welcome!", Toast.LENGTH_LONG)
                     .show();
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
-            getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
-                    .putBoolean("isFirstRun", false).commit();
+            getSharedPreferences("PREFERENCE1", MODE_PRIVATE).edit()
+                    .putBoolean("isFirstRun1", false).commit();
         }
 
         else{

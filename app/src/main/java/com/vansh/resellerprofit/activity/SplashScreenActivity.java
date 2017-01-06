@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.vansh.resellerprofit.Customs.RevealActivity;
 import com.vansh.resellerprofit.R;
@@ -30,7 +31,6 @@ public class SplashScreenActivity extends RevealActivity {
 
         showRevealEffect(mSavedInstanceState, findViewById(R.id.activity_splash_screen));
 
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -44,10 +44,29 @@ public class SplashScreenActivity extends RevealActivity {
     @Override
     public void destroyAnimationFinished() {
         super.destroyAnimationFinished();
-        Intent intent = new Intent(SplashScreenActivity.this, IntroSliderActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
-        finish();
+        onFinish();
+    }
+
+    public void onFinish() {
+        Boolean isFirstRun=getSharedPreferences("PREFERENCE",MODE_PRIVATE).getBoolean("isFirstRun",true);
+
+        if(isFirstRun)
+        {
+            //show start activity
+
+            startActivity(new Intent(SplashScreenActivity.this, IntroSliderActivity.class));
+            Toast.makeText(SplashScreenActivity.this, "Welcome!", Toast.LENGTH_LONG)
+                    .show();
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+            getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
+                    .putBoolean("isFirstRun", false).commit();
+        }
+
+        else{
+
+            Intent i = new Intent(SplashScreenActivity.this, Glogin.class);
+            startActivity(i);
+            finish();}
     }
 }
 

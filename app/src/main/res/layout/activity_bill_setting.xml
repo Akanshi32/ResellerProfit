@@ -138,6 +138,25 @@
             android:hint="Enter Mobile Number"
             android:layout_weight="0.70"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.50"
+            android:textSize="20sp"
+            android:text="IMEI Number: "/>
+        <EditText
+            android:id="@+id/imei"
+            android:layout_width="0dp"
+            android:hint="Enter IMEI"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_weight="0.70"/>
+    </LinearLayout>
 
 
 

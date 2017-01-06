@@ -9,6 +9,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 
 import com.vansh.resellerprofit.Customs.PreferenceManager;
 import com.vansh.resellerprofit.R;
+import com.vansh.resellerprofit.utility.Preferences;
 
 public class IntroSliderActivity extends AppCompatActivity {
     private ViewPager viewPager;
@@ -28,17 +30,12 @@ public class IntroSliderActivity extends AppCompatActivity {
     private TextView[] dots;
     private int[] layouts;
     private Button btnSkip, btnNext;
-    private PreferenceManager preferenceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        preferenceManager=new PreferenceManager(this);
-        if(!preferenceManager.ifFirstTimeLaunch())
-        {
-            launchLoginScreen();
-            finish();
-        }
+
+
         if(Build.VERSION.SDK_INT>=21){
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
@@ -138,10 +135,8 @@ public class IntroSliderActivity extends AppCompatActivity {
         }
     };
 
-    private void launchLoginScreen(){
-        preferenceManager.setFirstTimeLaunch(false);
+    public void launchLoginScreen(){
         startActivity(new Intent(this, Glogin.class));
-        finish();
     }
 
     //Making notification bar transparent

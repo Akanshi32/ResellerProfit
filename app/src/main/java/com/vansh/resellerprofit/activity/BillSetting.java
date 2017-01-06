@@ -47,6 +47,8 @@ public class BillSetting extends AppCompatActivity {
     @Bind(R.id.sub)
     Button sub;
 
+    @Bind(R.id.imei)
+    EditText imei;
     @Bind(R.id.selectt)
     Button select;
 
@@ -105,6 +107,9 @@ public class BillSetting extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                imei.setText(Preferences.getPrefs(Consts.IMEI,BillSetting.this));
+                String imeiii=imei.getText().toString();
+                Preferences.setPrefs(Consts.IMEI,imeiii,BillSetting.this);
 
                 soldRequest.setCompanyName(Preferences.getPrefs(Consts.Name,BillSetting.this));
                 soldRequest.setAddress(Preferences.getPrefs(Consts.Address,BillSetting.this));

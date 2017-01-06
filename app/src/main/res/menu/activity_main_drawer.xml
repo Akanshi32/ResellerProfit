@@ -28,10 +28,6 @@
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_faq"
-                android:icon="@drawable/ic_faq_black_24dp"
-                android:title="FAQs" />
-            <item
                 android:id="@+id/nav_contact"
                 android:icon="@drawable/ic_contact_black_24dp"
                 android:title="Contact Us" />
