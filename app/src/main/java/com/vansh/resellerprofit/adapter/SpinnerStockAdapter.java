@@ -63,6 +63,7 @@ public class SpinnerStockAdapter extends RecyclerView.Adapter<SpinnerStockAdapte
                 Intent intent = new Intent(context, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("name",stock.get(position).getItemId());
+                intent.putExtra("quan",stock.get(position).getStock().toString());
                 context.startActivity(intent);
 
             }

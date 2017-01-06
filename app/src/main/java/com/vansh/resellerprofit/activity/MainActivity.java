@@ -74,6 +74,15 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private ProgressDialog mProgressDialog;
 
+
+    String stringQuan;
+    String stringData;
+
+    int foo;
+    int goo;
+
+    String imeii;
+    String savedid;
     @Bind(R.id.stock)
     EditText _stock;
     @Bind(R.id.imei)
@@ -168,7 +177,8 @@ public class MainActivity extends AppCompatActivity
 
 
         Intent intent = getIntent();
-        String stringData= intent.getStringExtra("name");
+        stringData= intent.getStringExtra("name");
+        stringQuan= intent.getStringExtra("quan");
         _selected.setText(stringData);
 
 
@@ -182,8 +192,11 @@ public class MainActivity extends AppCompatActivity
         _add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String imeii=imei.getText().toString();
+                imeii=imei.getText().toString();
+                savedid=_selected.getText().toString();
+
                 Preferences.setPrefs(Consts.IMEI,imeii,MainActivity.this);
+                Preferences.setPrefs(Consts.SAVEDID,savedid,MainActivity.this);
 
 
                 InputMethodManager inputManager = (InputMethodManager)
@@ -216,6 +229,23 @@ public class MainActivity extends AppCompatActivity
 
                     dialog.hide();
 
+                        foo = Integer.parseInt(_stock.getText().toString());
+                        goo = Integer.parseInt(stringQuan);
+
+                        if(foo>goo){
+                            DialogUtil.createDialog("You Don't Have Enough Stock", MainActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                                @Override
+                                public void onClick() {
+                                    finish();
+                                }
+                            });
+                        }
+
+                        else
+                        {Intent i = new Intent(MainActivity.this, BillSetting.class);
+                        startActivity(i);
+                        finish();}
+
                     }
 
                     @Override
@@ -229,19 +259,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
 
-
-                Snackbar.make(view, "Congrats on selling the product", Snackbar.LENGTH_LONG);
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent i = new Intent(MainActivity.this, BillSetting.class);
-                        startActivity(i);
-                        finish();
-                    }
-                }, TIME_OUT);
-
-
-            }
+                            }
         });
 
 

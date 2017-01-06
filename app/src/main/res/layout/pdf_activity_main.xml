@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:text="Create PDF"
             android:onClick="onClick"
+            android:theme="@style/AppTheme.Button"
             android:layout_marginTop="25dp"
             android:id="@+id/button2" />
         <Button

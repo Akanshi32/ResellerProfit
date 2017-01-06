@@ -83,6 +83,11 @@ public class BillSetting extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        imei.setText(Preferences.getPrefs(Consts.IMEI,BillSetting.this));
+        String imeiii=imei.getText().toString();
+        Preferences.setPrefs(Consts.IMEI,imeiii,BillSetting.this);
+
+
 
         final BillSettingRequest soldRequest = new BillSettingRequest();
         final ApiInterface apiInterface = ApiClient.getClient(this).create(ApiInterface.class);
@@ -98,18 +103,23 @@ public class BillSetting extends AppCompatActivity {
 
         Intent intent = getIntent();
         String stringData= intent.getStringExtra("id");
-        list.add(stringData);
         String nameid= intent.getStringExtra("name");
         sold.setText(nameid);
+
+        if (sold.getText().toString().equals(""))
+        {sold.setText(Preferences.getPrefs(Consts.SAVEDID,BillSetting.this));
+            list.add(Preferences.getPrefs(Consts.ID,BillSetting.this));
+        }
+        else
+        {list.add(stringData);
+            }
 
 
         sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                imei.setText(Preferences.getPrefs(Consts.IMEI,BillSetting.this));
-                String imeiii=imei.getText().toString();
-                Preferences.setPrefs(Consts.IMEI,imeiii,BillSetting.this);
+
 
                 soldRequest.setCompanyName(Preferences.getPrefs(Consts.Name,BillSetting.this));
                 soldRequest.setAddress(Preferences.getPrefs(Consts.Address,BillSetting.this));
@@ -143,6 +153,8 @@ public class BillSetting extends AppCompatActivity {
                         dialog.hide();
                         Data data=response.body().getData();
                         prodid=data.getId().toString();
+
+
                         {Intent it = new Intent(BillSetting.this, PdfCreateActivity.class);
                             it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             it.putExtra("prodid",prodid);

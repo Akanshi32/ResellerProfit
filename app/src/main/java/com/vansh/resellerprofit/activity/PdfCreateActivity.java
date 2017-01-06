@@ -117,7 +117,12 @@ public class PdfCreateActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
+
         final String id = intent.getStringExtra("prodid");
+        if(id.equals(""));
+        {
+
+            }
 
 
         Call<BillGenerate> call = apiService.generate(id);
