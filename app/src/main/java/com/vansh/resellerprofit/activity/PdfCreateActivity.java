@@ -34,6 +34,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.List;
 import com.itextpdf.text.ListItem;
@@ -241,9 +242,10 @@ public class PdfCreateActivity extends AppCompatActivity {
             document.add(myImg);
                 Paragraph p1 = new Paragraph(compname);
 
+
                 /* Create Set Font and its Size */
-                Font paraFont= new Font(Font.FontFamily.HELVETICA);
-                paraFont.setSize(20);
+                Font paraFont= new Font(Font.FontFamily.HELVETICA,30);
+
                 p1.setAlignment(Paragraph.ALIGN_LEFT);
                 p1.setFont(paraFont);
             document.add(p1);

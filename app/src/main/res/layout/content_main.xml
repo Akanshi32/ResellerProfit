@@ -9,7 +9,7 @@
     android:layout_gravity="center"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="35dp"
+    android:paddingTop="25dp"
     android:layout_margin="15dp"
     android:orientation="vertical"
     android:clickable="true"
@@ -22,11 +22,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SELL AN ITEM"
-        android:textSize="35sp"
-        android:layout_marginBottom="7dp"
+        android:textSize="38sp"
+        android:fontFamily="serif"
+        android:layout_marginBottom="15dp"
         android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:elevation="5dp"
+
+
         android:paddingBottom="5dp"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:shadowColor="@color/colorPrimaryDark"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="2"
+        android:typeface="serif" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:textSize="20sp"
-            android:text="Product ID:"/>
+            android:text="Product ID:"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         <TextView
             android:layout_width="0dp"
             android:paddingLeft="3dp"
@@ -57,7 +68,11 @@
             android:text="Select"
             android:theme="@style/AppTheme.Button"
             android:layout_marginBottom="7dp"
-            android:id="@+id/select" />
+            android:id="@+id/select"
+            android:elevation="24dp"
+            android:shadowDx="7"
+            android:shadowRadius="5"
+            android:shadowDy="7" />
 
 
 
@@ -73,12 +88,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:textSize="20sp"
-            android:text="Selling Price: "/>
+            android:text="Selling Price: "
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         <EditText
             android:id="@+id/sellingprice"
             android:layout_width="0dp"
             android:inputType="number"
-            android:hint="Enter selling price"
+            android:textColorHint="@color/colorPrimary"
+            android:hint="enter selling price"
             android:layout_height="wrap_content"
             android:layout_weight="0.70"/>
     </LinearLayout>
@@ -92,12 +109,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.50"
             android:textSize="20sp"
-            android:text="Quantity: "/>
+            android:text="Quantity: "
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         <EditText
             android:id="@+id/stock"
             android:layout_width="0dp"
-            android:hint="Enter quantity"
+            android:hint="enter quantity"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/colorPrimary"
             android:inputType="number"
             android:layout_weight="0.70"/>
     </LinearLayout>
@@ -112,12 +131,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.50"
             android:textSize="20sp"
-            android:text="IMEI No: "/>
+            android:text="IMEI No: "
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         <EditText
             android:id="@+id/imei"
             android:layout_width="0dp"
-            android:hint="Enter IMEI"
+            android:hint="enter IMEI"
             android:layout_height="wrap_content"
+            android:typeface="monospace"
+            android:textColorHint="@color/colorPrimary"
             android:inputType="number"
             android:layout_weight="0.70"/>
     </LinearLayout>
@@ -125,12 +147,16 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add to stock"
+        android:text="Sell"
         android:theme="@style/AppTheme.Button"
         android:layout_marginTop="5dp"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
-        android:id="@+id/add" />
+        android:id="@+id/add"
+        android:elevation="24dp"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="3" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
