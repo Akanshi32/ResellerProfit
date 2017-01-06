@@ -35,6 +35,7 @@ import com.vansh.resellerprofit.model.LoginResponse;
 import com.vansh.resellerprofit.rest.ApiClient;
 import com.vansh.resellerprofit.rest.ApiInterface;
 import com.vansh.resellerprofit.utility.Consts;
+import com.vansh.resellerprofit.utility.DialogUtil;
 import com.vansh.resellerprofit.utility.Preferences;
 
 import java.util.HashMap;
@@ -191,29 +192,40 @@ public class Glogin extends AppCompatActivity implements
             loginResponseCall.enqueue(new Callback<LoginResponse>() {
                 @Override
                 public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                    if (response.body().getSuccess()){
-                        hideProgressDialog();
-                        Toast.makeText(getBaseContext(),response.body().getMessage(), Toast.LENGTH_LONG).show();
-                        onFinish();
-
-
-                    }
-                    else
-
+                    if (response.body().getMessage().equals("100"))
                     {
-                        Toast.makeText(getBaseContext(),"Welcome", Toast.LENGTH_LONG).show();
+                        DialogUtil.createDialog("Please call at +917354273542 to activate the Application", Glogin.this, new DialogUtil.OnPositiveButtonClick() {
+                            @Override
+                            public void onClick() {
+                                finish();
+                            }
+                        });
+                    }
+                       else {
+
+                        if (response.body().getSuccess()) {
+                            hideProgressDialog();
+                            Toast.makeText(getBaseContext(), response.body().getMessage(), Toast.LENGTH_LONG).show();
+                            onFinish();
 
 
+                        } else
 
-                        {Intent it = new Intent(Glogin.this, SignupActivity.class);
-                        it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        it.putExtra("name",personName);
-                        it.putExtra("ema",email);
-                        startActivity(it);}
+                        {
+                            Toast.makeText(getBaseContext(), "Welcome", Toast.LENGTH_LONG).show();
+
+
+                            {
+                                Intent it = new Intent(Glogin.this, SignupActivity.class);
+                                it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                it.putExtra("name", personName);
+                                it.putExtra("ema", email);
+                                startActivity(it);
+                            }
+
+                        }
 
                     }
-
-
 
                 }
 

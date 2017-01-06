@@ -192,74 +192,75 @@ public class MainActivity extends AppCompatActivity
         _add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imeii=imei.getText().toString();
-                savedid=_selected.getText().toString();
+                imeii = imei.getText().toString();
+                savedid = _selected.getText().toString();
 
-                Preferences.setPrefs(Consts.IMEI,imeii,MainActivity.this);
-                Preferences.setPrefs(Consts.SAVEDID,savedid,MainActivity.this);
+                Preferences.setPrefs(Consts.IMEI, imeii, MainActivity.this);
+                Preferences.setPrefs(Consts.SAVEDID, savedid, MainActivity.this);
+
+                foo = Integer.parseInt(_stock.getText().toString());
+                goo = Integer.parseInt(stringQuan);
+
+                if (foo > goo) {
+                    DialogUtil.createDialog("You Don't Have Enough Stock", MainActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                        @Override
+                        public void onClick() {
+                            finish();
+                        }
+                    });
+                } else {
+                    InputMethodManager inputManager = (InputMethodManager)
+                            getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                    inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                            InputMethodManager.HIDE_NOT_ALWAYS);
+
+                    soldRequest.setItemId(_selected.getText().toString());
+
+                    String text1 = _stock.getText().toString();
+                    int number = Integer.parseInt(text1);
+                    soldRequest.setQuantity(number);
+
+                    soldRequest.setSellingPrice(_sellingprice.getText().toString());
 
 
-                InputMethodManager inputManager = (InputMethodManager)
-                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                    Call<SoldRequest> call = apiInterface.Sold(soldRequest);
 
-                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);
+                    final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+                    dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    dialog.setMessage("Congrats! You Just Sold An Item.");
+                    dialog.setIndeterminate(true);
+                    dialog.setCanceledOnTouchOutside(false);
+                    dialog.show();
 
-                soldRequest.setItemId(_selected.getText().toString());
+                    call.enqueue(new Callback<SoldRequest>() {
+                        @Override
+                        public void onResponse(Call<SoldRequest> call, Response<SoldRequest> response) {
 
-                String text1 = _stock.getText().toString();
-                int number = Integer.parseInt(text1);
-                soldRequest.setQuantity(number);
-
-                soldRequest.setSellingPrice(_sellingprice.getText().toString());
+                            dialog.hide();
 
 
-                Call<SoldRequest> call = apiInterface.Sold(soldRequest);
+                            {
+                                Intent i = new Intent(MainActivity.this, BillSetting.class);
+                                startActivity(i);
+                                finish();
+                            }
 
-                final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
-                dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                dialog.setMessage("Congrats! You Just Sold An Item.");
-                dialog.setIndeterminate(true);
-                dialog.setCanceledOnTouchOutside(false);
-                dialog.show();
+                        }
 
-                call.enqueue(new Callback<SoldRequest>() {
-                    @Override
-                    public void onResponse(Call<SoldRequest> call, Response<SoldRequest> response) {
-
-                    dialog.hide();
-
-                        foo = Integer.parseInt(_stock.getText().toString());
-                        goo = Integer.parseInt(stringQuan);
-
-                        if(foo>goo){
-                            DialogUtil.createDialog("You Don't Have Enough Stock", MainActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                        @Override
+                        public void onFailure(Call<SoldRequest> call, Throwable t) {
+                            dialog.hide();
+                            DialogUtil.createDialog("Oops! Please check your internet connection!", MainActivity.this, new DialogUtil.OnPositiveButtonClick() {
                                 @Override
                                 public void onClick() {
-                                    finish();
                                 }
                             });
                         }
+                    });
 
-                        else
-                        {Intent i = new Intent(MainActivity.this, BillSetting.class);
-                        startActivity(i);
-                        finish();}
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<SoldRequest> call, Throwable t) {
-                        dialog.hide();
-                        DialogUtil.createDialog("Oops! Please check your internet connection!", MainActivity.this, new DialogUtil.OnPositiveButtonClick() {
-                            @Override
-                            public void onClick() {
-                            }
-                        });
-                    }
-                });
-
-                            }
+                }
+            }
         });
 
 
