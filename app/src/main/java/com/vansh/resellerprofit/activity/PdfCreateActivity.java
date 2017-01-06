@@ -28,6 +28,7 @@ import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -39,6 +40,7 @@ import com.itextpdf.text.ListItem;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -72,6 +74,8 @@ import java.util.Locale;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.itextpdf.text.Rectangle.BOX;
 
 public class PdfCreateActivity extends AppCompatActivity {
 
@@ -262,7 +266,7 @@ public class PdfCreateActivity extends AppCompatActivity {
                 //add paragraph to document
                 document.add(p7);
 
-            Paragraph p19 = new Paragraph("PAYMENT METHOD:\n"+paymentmethod);
+            Paragraph p19 = new Paragraph("PAYMENT METHOD: "+paymentmethod);
 
                 /* Create Set Font and its Size */
             Font paraFont19= new Font(Font.FontFamily.HELVETICA);
@@ -298,7 +302,7 @@ public class PdfCreateActivity extends AppCompatActivity {
                 document.add(p2);
 */
 
-            Paragraph p3 = new Paragraph("\nCUSTOMER DETAILS:");
+            Paragraph p3 = new Paragraph("CUSTOMER DETAILS:");
 
                 /* Create Set Font and its Size */
             Font paraFont3= new Font(Font.FontFamily.HELVETICA);
@@ -355,18 +359,11 @@ public class PdfCreateActivity extends AppCompatActivity {
             Paragraph p12 = new Paragraph("BILL ID:"+billid);
             Font paraFont12= new Font(Font.FontFamily.HELVETICA);
             paraFont12.setSize(18);
-            p12.setAlignment(Paragraph.ALIGN_RIGHT);
+            p12.setAlignment(Paragraph.ALIGN_LEFT);
             p12.setFont(paraFont12);
 
             document.add(p12);
-            // Second parameter is the number of the chapter
-            Paragraph p6 = new Paragraph("\nBILL:");
-            Font paraFont6= new Font(Font.FontFamily.HELVETICA);
-            paraFont6.setSize(16);
-            p6.setAlignment(Paragraph.ALIGN_LEFT);
-            p6.setFont(paraFont6);
 
-            document.add(p6);
 
            Paragraph p16 = new Paragraph("\nIMEI:"+ Preferences.getPrefs(Consts.IMEI,PdfCreateActivity.this));
             Font paraFont16= new Font(Font.FontFamily.HELVETICA);
@@ -379,6 +376,7 @@ public class PdfCreateActivity extends AppCompatActivity {
            /* Paragraph subPara = new Paragraph("Subcategory 1", subFont);*/
            /* Section subCatPart = catPart.addSection(subPara);*/
             //subCatPart.add(new Paragraph("BILL:"));
+
 
            /* subPara = new Paragraph("Subcategory 2", subFont);
             subCatPart = catPart.addSection(subPara);
@@ -397,7 +395,13 @@ public class PdfCreateActivity extends AppCompatActivity {
 
             // now add all this to the document
 
+            Paragraph p8 = new Paragraph("\n");
+            Font paraFont8= new Font(Font.FontFamily.HELVETICA);
+            paraFont8.setSize(16);
+            p8.setAlignment(Paragraph.ALIGN_CENTER);
+            p8.setFont(paraFont8);
 
+            document.add(p8);
             PdfPTable table = new PdfPTable(3);
 
             // t.setBorderColor(BaseColor.GRAY);
@@ -428,15 +432,15 @@ public class PdfCreateActivity extends AppCompatActivity {
             table.addCell("SUBTOTAL(in Rupees):");
             table.addCell(" ");
             table.addCell(prodsp);
-            /*table.addCell("VAT %");
+            table.addCell("VAT Amout");
             table.addCell("");
-            table.addCell("in rupees");
+            table.addCell(totalvat);
             table.addCell("GRAND TOTAL:");
             table.addCell("");
-            table.addCell("here");*/
+            table.addCell(total);
             document.add(table);
 
-            Paragraph p8 = new Paragraph("\nVAT%: "+ vat);
+           /* Paragraph p8 = new Paragraph("\nVAT%: "+ vat);
             Font paraFont8= new Font(Font.FontFamily.HELVETICA);
             paraFont8.setSize(16);
             p8.setAlignment(Paragraph.ALIGN_CENTER);
@@ -449,14 +453,40 @@ public class PdfCreateActivity extends AppCompatActivity {
             p9.setAlignment(Paragraph.ALIGN_CENTER);
             p9.setFont(paraFont9);
             document.add(p9);
-
-            Paragraph p10 = new Paragraph("\nGRAND TOTAL : Rs."+total);
+*/
+            Paragraph p10 = new Paragraph("GRAND TOTAL : Rs."+total);
             Font paraFont10= new Font(Font.FontFamily.HELVETICA);
             paraFont10.setSize(22);
             p10.setAlignment(Paragraph.ALIGN_CENTER);
             p10.setFont(paraFont10);
 
             document.add(p10);
+
+            Paragraph p13 = new Paragraph("For:" +compname);
+            paraFont10.setSize(22);
+            p13.setAlignment(Paragraph.ALIGN_RIGHT);
+            p13.setFont(paraFont10);
+
+            document.add(p13);
+
+            Paragraph p14 = new Paragraph("\nSIGNATURE");
+            paraFont10.setSize(20);
+            p14.setAlignment(Paragraph.ALIGN_RIGHT);
+            p14.setFont(paraFont10);
+
+            document.add(p14);
+
+            Paragraph p11 = new Paragraph("\nTERMS AND CONDITIONS:-\n1.Goods once sold will not be taken back or exchanged.\n2.Payment within due days otherwise @24% interest will be charged.\n3. We are not responsible for any breakage, shortage, leakage, damage or any kind of complaints as soon as goods are sold.");
+            Font paraFont11= new Font(Font.FontFamily.HELVETICA);
+            paraFont11.setSize(12);
+            p11.setAlignment(Paragraph.ALIGN_LEFT);
+            p11.setFont(paraFont11);
+
+            document.add(p11);
+
+
+
+
 
 
 
