@@ -143,17 +143,12 @@ public class PdfCreateActivity extends AppCompatActivity {
         Call<BillGenerate> call = apiService.generate(id);
 
 
-        final ProgressDialog dialog = new ProgressDialog(PdfCreateActivity.this);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMessage("Creating Bill");
-        dialog.setIndeterminate(true);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
+        Toast.makeText(PdfCreateActivity.this, "Please Wait While The Bill Is Being Created...", Toast.LENGTH_LONG).show();
 
-                call.enqueue(new Callback<BillGenerate>() {
+
+        call.enqueue(new Callback<BillGenerate>() {
                     @Override
                     public void onResponse(Call<BillGenerate> call, final Response<BillGenerate> response) {
-                        dialog.hide();
                         Bill bills = response.body().getBills();
                         custname=bills.getCustomerName().toString();
                         customeremail=bills.getCustomerEmail().toString();
@@ -181,21 +176,26 @@ public class PdfCreateActivity extends AppCompatActivity {
                         total=bills.getTotalSp().toString();
                         totalvat=bills.getVatAmount().toString();
 
+                        if(Build.VERSION.SDK_INT >= 23)
+                            if(!PermissionUtils.checkAndRequestPermission(PdfCreateActivity.this, REQUEST_CODE_ASK_PERMISSIONS, "You need to grant access to Write Storage", permission[0]))
+                                return;
+                        isPDFFromHTML = false;
+                        createPdf();
+
                     }
 
 
                     @Override
                     public void onFailure(Call<BillGenerate> call, Throwable t) {
                         // Log error here since request failed
-                        Log.e("Error", t.toString());
+                        DialogUtil.createDialog("Oops! Please check your internet connection!", PdfCreateActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                            @Override
+                            public void onClick() {
+                                finish();
+                            }
+                        });
                     }
                 });
-
-        if(Build.VERSION.SDK_INT >= 23)
-            if(!PermissionUtils.checkAndRequestPermission(PdfCreateActivity.this, REQUEST_CODE_ASK_PERMISSIONS, "You need to grant access to Write Storage", permission[0]))
-                return;
-        isPDFFromHTML = false;
-        createPdf();
 
 
     }
