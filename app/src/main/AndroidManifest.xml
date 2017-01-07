@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
 
 
     <application
@@ -50,15 +52,7 @@
                 android:name=".PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity
-            android:name=".activity.FaqActivity"
-            android:label="FAQs"
-            android:parentActivityName=".activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name=".PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
+
         <activity
             android:name=".activity.ContactUs"
             android:label="Contact Us"
@@ -98,7 +92,7 @@
 
         <activity
             android:name=".activity.CalendarActivity"
-            android:label="Sales-Datewise"
+            android:label="Profit-Datewise"
             android:parentActivityName=".activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

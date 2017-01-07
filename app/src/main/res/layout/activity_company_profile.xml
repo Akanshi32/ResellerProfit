@@ -27,6 +27,7 @@
             android:id="@+id/companyname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:inputType="textCapWords"
             android:hint="Enter company name"
             android:layout_weight="0.70"/>
     </LinearLayout>
@@ -46,6 +47,7 @@
             android:id="@+id/comaddress"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:inputType="textCapWords"
             android:hint="Enter address"
             android:layout_weight="0.70"/>
     </LinearLayout>
@@ -91,30 +93,29 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
-        android:theme="@style/AppTheme.Button"
-        android:layout_marginTop="4dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:id="@+id/comsave"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Add Company Logo"
         android:theme="@style/AppTheme.Button"
         android:layout_marginTop="4dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:id="@+id/addimage"/>
+        android:id="@+id/addimage"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.Button"
+        android:text="Save"
+        android:layout_marginTop="4dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:id="@+id/comsave"
+        />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-
         android:id="@+id/complogo"/>
-
-
 
 
 </LinearLayout>

@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
         android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
@@ -40,9 +41,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="18sp"
+                    android:textSize="22sp"
                     android:textColor="#FFFFFF"
                     android:gravity="center"/>
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/newlogo"
+                    android:id="@+id/addimage"
+                    android:paddingLeft="40dp"
+                    />
 
                 <com.github.sundeepk.compactcalendarview.CompactCalendarView
                     android:id="@+id/compactcalendar_view"
@@ -59,71 +68,18 @@
                     app:compactCalendarTextColor="#fff"
                     app:compactCalendarTextSize="12sp" />
 
+
+                <TextView
+                    android:paddingTop="8dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="22sp"
+                    android:text="Swipe Left/Right To Change Between Months"/>
             </LinearLayout>
 
         </android.support.v7.widget.Toolbar>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:padding="10dp"
-            android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="10dp"
-            >
-
-        <TextView
-            android:id="@+id/profit"
-            android:layout_width="wrap_content"
-            android:text="This Day's Profit:"
-            android:padding="5dp"
-            android:textSize="15dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/toolbar" />
-        <TextView
-            android:id="@+id/pro"
-            android:layout_width="wrap_content"
-            android:text="Profit"
-            android:padding="5dp"
-            android:textAlignment="center"
-            android:textSize="15dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/toolbar" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:text="Total Profit"
-                android:padding="5dp"
-                android:visibility="gone"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/toolbar" />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Show Profit"
-                android:visibility="gone"
-                android:padding="5dp"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:id="@+id/show" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:id="@+id/profit_tv"
-                android:text=""/>
-        </LinearLayout>
-        </LinearLayout>
 
     </LinearLayout>
 

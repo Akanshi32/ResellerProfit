@@ -80,6 +80,7 @@
             android:id="@+id/custname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:inputType="textCapWords"
             android:hint="Enter Name"
             android:layout_weight="0.70"/>
     </LinearLayout>
@@ -118,6 +119,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Enter Payment Method"
+            android:inputType="textCapWords"
             android:layout_weight="0.70"/>
     </LinearLayout>
     <LinearLayout
@@ -148,8 +150,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.50"
-            android:textSize="20sp"
-            android:text="IMEI Number: "/>
+            android:text="IMEI: "/>
         <EditText
             android:id="@+id/imei"
             android:layout_width="0dp"
@@ -157,6 +158,16 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:layout_weight="0.70"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scan"
+            android:theme="@style/AppTheme.Button"
+            android:id="@+id/imeiscan"
+            android:elevation="24dp"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:shadowRadius="3" />
     </LinearLayout>
 
 
@@ -169,7 +180,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/sub"
         android:layout_marginTop="7dp"
-        android:text="Submit"/>
+        android:text="Create Bill"/>
 
 </LinearLayout>
 </LinearLayout>

@@ -74,13 +74,13 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private ProgressDialog mProgressDialog;
 
-
+    String ok;
     String stringQuan;
     String stringData;
 
     int foo;
     int goo;
-
+    String cc="skf";
     String imeii;
     String savedid;
     @Bind(R.id.stock)
@@ -93,6 +93,8 @@ public class MainActivity extends AppCompatActivity
     Button _selectbutt;
     @Bind(R.id.add)
     Button _add;
+    @Bind(R.id.imeiscan)
+    Button imeiscan;
     @Bind(R.id.selected)
     TextView _selected;
     /*@Bind(R.id.profit_tv)
@@ -107,7 +109,8 @@ public class MainActivity extends AppCompatActivity
     Button cancel,submit;
     ImageView addButton;
     public String codeFormat,codeContent,c;
-
+    EditText productid;
+    EditText imeiresult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,6 +184,15 @@ public class MainActivity extends AppCompatActivity
         stringQuan= intent.getStringExtra("quan");
         _selected.setText(stringData);
 
+       imeiscan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cc="imei";
+                scanNow(view);
+            }
+        });
+
+
 
 
 
@@ -192,6 +204,8 @@ public class MainActivity extends AppCompatActivity
         _add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 imeii = imei.getText().toString();
                 savedid = _selected.getText().toString();
 
@@ -382,7 +396,7 @@ public class MainActivity extends AppCompatActivity
         Button cancel=(Button) dialog.findViewById(R.id.dialog_cancel);
         Button submit=(Button) dialog.findViewById(R.id.dialog_submit);
         Button scan=(Button) dialog.findViewById(R.id.btn_scan_now);
-        final EditText productid=(EditText) dialog.findViewById(R.id.productid);
+        productid=(EditText) dialog.findViewById(R.id.productid);
 
         final EditText stock=(EditText) dialog.findViewById(R.id.stock);
         final EditText costprice=(EditText) dialog.findViewById(R.id.costprice);
@@ -399,15 +413,12 @@ public class MainActivity extends AppCompatActivity
         lp.height = WindowManager.LayoutParams.MATCH_PARENT;
         dialog.getWindow().setLayout(lp.width, lp.height);
         dialog.show();
-        productid.setText(codeContent);
 
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cc="pro";
                 scanNow(v);
-                dialog.dismiss();
-
-
             }
         });
 
@@ -547,11 +558,18 @@ public class MainActivity extends AppCompatActivity
 
         if (scanningResult != null) {
             //we have a result
-            codeContent = scanningResult.getContents();
-            codeFormat = scanningResult.getFormatName();
+
 
             // display it on screen
-            openDialog();
+            if(cc.equals("imei"))
+            {   codeContent = scanningResult.getContents();
+                codeFormat = scanningResult.getFormatName();
+                imei.setText(codeContent);}
+            if(cc.equals("pro"))
+            {   codeContent = scanningResult.getContents();
+                codeFormat = scanningResult.getFormatName();
+                productid.setText(codeContent);
+                }
 
 
 

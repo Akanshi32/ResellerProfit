@@ -1,6 +1,7 @@
 package com.vansh.resellerprofit.activity;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -13,14 +14,17 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -73,6 +77,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -82,6 +88,12 @@ import static com.itextpdf.text.Rectangle.BOX;
 public class PdfCreateActivity extends AppCompatActivity {
 
     final ArrayList<String> list = new ArrayList<String>();
+
+
+    @Bind(R.id.external)
+    Button external;
+    @Bind(R.id.message)
+    Button message;
 
     String vat;
     String total;
@@ -102,6 +114,8 @@ public class PdfCreateActivity extends AppCompatActivity {
     String customeremail;
 
 
+
+
     java.util.List<SoldId> uniqueid;
     String paymentmethod;
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
@@ -115,7 +129,7 @@ public class PdfCreateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pdf_activity_main);
-
+        ButterKnife.bind(this);
 
 
         final ApiInterface apiService =
@@ -128,9 +142,18 @@ public class PdfCreateActivity extends AppCompatActivity {
 
         Call<BillGenerate> call = apiService.generate(id);
 
+
+        final ProgressDialog dialog = new ProgressDialog(PdfCreateActivity.this);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setMessage("Creating Bill");
+        dialog.setIndeterminate(true);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
                 call.enqueue(new Callback<BillGenerate>() {
                     @Override
                     public void onResponse(Call<BillGenerate> call, final Response<BillGenerate> response) {
+                        dialog.hide();
                         Bill bills = response.body().getBills();
                         custname=bills.getCustomerName().toString();
                         customeremail=bills.getCustomerEmail().toString();
@@ -168,21 +191,19 @@ public class PdfCreateActivity extends AppCompatActivity {
                     }
                 });
 
-
+        if(Build.VERSION.SDK_INT >= 23)
+            if(!PermissionUtils.checkAndRequestPermission(PdfCreateActivity.this, REQUEST_CODE_ASK_PERMISSIONS, "You need to grant access to Write Storage", permission[0]))
+                return;
+        isPDFFromHTML = false;
+        createPdf();
 
 
     }
 
     public void onClick(View view) {
         switch(view.getId()){
-            case R.id.button2:
-                if(Build.VERSION.SDK_INT >= 23)
-                    if(!PermissionUtils.checkAndRequestPermission(PdfCreateActivity.this, REQUEST_CODE_ASK_PERMISSIONS, "You need to grant access to Write Storage", permission[0]))
-                        return;
-                isPDFFromHTML = false;
-                createPdf();
-                break;
-            case R.id.button1:
+
+            case R.id.message:
                 if(Build.VERSION.SDK_INT >= 23)
                     if(!PermissionUtils.checkAndRequestPermission(PdfCreateActivity.this, REQUEST_CODE_ASK_PERMISSIONS, "You need to grant access to Write Storage", permission[0]))
                         return;
@@ -202,13 +223,15 @@ public class PdfCreateActivity extends AppCompatActivity {
     }
 
     private void createPdf()  {
+
         try {
+
             getFile();
             //Create time stamp
             Date date = new Date() ;
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(date);
             String timeStamp2 = new SimpleDateFormat("dd/MM/yyyy\nHH:mm:ss", Locale.getDefault()).format(date);
-            File myFile = new File(file.getAbsolutePath()+ File.separator + timeStamp + ".pdf");
+            final File myFile = new File(file.getAbsolutePath()+ File.separator + timeStamp + ".pdf");
             myFile.createNewFile();
             OutputStream output = new FileOutputStream(myFile);
 
@@ -240,7 +263,7 @@ public class PdfCreateActivity extends AppCompatActivity {
 
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100 , stream);
             Image myImg = Image.getInstance(stream.toByteArray());
-            myImg.scaleAbsolute(100,100);
+            myImg.scaleAbsolute(50,50);
             myImg.setAlignment(Image.ALIGN_RIGHT);
 
             //add image to document
@@ -281,7 +304,7 @@ public class PdfCreateActivity extends AppCompatActivity {
                 //add paragraph to document
                 document.add(p19);
 
-            Paragraph p5 = new Paragraph("BILLING DATE:"+ timeStamp2);
+            Paragraph p5 = new Paragraph("BILLING DATE: "+ timeStamp2);
 
                 /* Create Set Font and its Size */
             Font paraFont5= new Font(Font.FontFamily.HELVETICA);
@@ -358,7 +381,7 @@ public class PdfCreateActivity extends AppCompatActivity {
 
            /* Anchor anchor = new Anchor("First Chapter", catFont);
             anchor.setName("First Chapter");*/
-            Paragraph p12 = new Paragraph("BILL ID:"+billid);
+            Paragraph p12 = new Paragraph("BILL ID: "+billid);
             Font paraFont12= new Font(Font.FontFamily.HELVETICA);
             paraFont12.setSize(18);
             p12.setAlignment(Paragraph.ALIGN_LEFT);
@@ -367,7 +390,7 @@ public class PdfCreateActivity extends AppCompatActivity {
             document.add(p12);
 
 
-           Paragraph p16 = new Paragraph("\nIMEI:"+ Preferences.getPrefs(Consts.IMEI,PdfCreateActivity.this));
+           Paragraph p16 = new Paragraph("IMEI: "+ Preferences.getPrefs(Consts.IMEI,PdfCreateActivity.this));
             Font paraFont16= new Font(Font.FontFamily.HELVETICA);
             paraFont16.setSize(16);
             p16.setAlignment(Paragraph.ALIGN_LEFT);
@@ -478,7 +501,7 @@ public class PdfCreateActivity extends AppCompatActivity {
 
             document.add(p14);
 
-            Paragraph p11 = new Paragraph("\nTERMS AND CONDITIONS:-\n1.Goods once sold will not be taken back or exchanged.\n2.Payment within due days otherwise @24% interest will be charged.\n3. We are not responsible for any breakage, shortage, leakage, damage or any kind of complaints as soon as goods are sold.");
+            Paragraph p11 = new Paragraph("TERMS AND CONDITIONS:-\n1.Goods once sold will not be taken back or exchanged.\n2.Payment within due days otherwise, interest will be charged.\n3. We are not responsible for any breakage, shortage, leakage, damage or any kind of complaints as soon as goods are sold.");
             Font paraFont11= new Font(Font.FontFamily.HELVETICA);
             paraFont11.setSize(12);
             p11.setAlignment(Paragraph.ALIGN_LEFT);
@@ -520,24 +543,42 @@ public class PdfCreateActivity extends AppCompatActivity {
 
             //Close the document
             document.close();
-            Toast.makeText(this, "Pdf created successfully.", Toast.LENGTH_LONG).show();
+            DialogUtil.createDialog("Pdf Created Successfully and Saved in your device!", PdfCreateActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                @Override
+                public void onClick() {
+                }
+            });
 
 
-            // YE WALA MESSAGE SEND KARNE KE LIYE HAI
-           // Intent messageIntent = new Intent(Intent.ACTION_SEND);
-           // messageIntent .setType("*/*");
-           // messageIntent.putExtra(Intent.EXTRA_TEXT, "ThankYou For purchase at our store! Hope to see you again.");
-           // startActivity(Intent.createChooser(messageIntent, "Send Message..."));
+            message.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(custmobile, null, "ThankYou for your purchase at our store"+ " Hope to see you again soon! "+compname, null, null);
+                    Toast.makeText(PdfCreateActivity.this, "Message has been sent to the Customer successfully!", Toast.LENGTH_LONG).show();
 
-            Intent emailIntent = new Intent(Intent.ACTION_SEND);
-            emailIntent .setType("*/*");
-            emailIntent .putExtra(Intent.EXTRA_EMAIL, new String[]{customeremail});
-            emailIntent.putExtra(Intent.EXTRA_TEXT, "ThankYou For purchase at our store! Hope to see you again.");
 
-            Uri uri = Uri.fromFile(myFile);
-            emailIntent .putExtra(Intent.EXTRA_STREAM, uri);
-            emailIntent .putExtra(Intent.EXTRA_SUBJECT, "Purchase at "+compname);
-            startActivity(Intent.createChooser(emailIntent, "Send email..."));
+                }
+            });
+
+            external.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                    emailIntent .setType("*/*");
+                    emailIntent .putExtra(Intent.EXTRA_EMAIL, new String[]{customeremail});
+
+                    Uri uri = Uri.fromFile(myFile);
+                    emailIntent .putExtra(Intent.EXTRA_STREAM, uri);
+                    emailIntent .putExtra(Intent.EXTRA_SUBJECT, "Purchase at "+compname);
+                    startActivity(Intent.createChooser(emailIntent, "Send email..."));
+
+                }
+            });
+
+
+
 
         } catch (IOException | DocumentException e) {
             e.printStackTrace();

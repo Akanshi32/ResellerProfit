@@ -20,6 +20,7 @@ import com.vansh.resellerprofit.R;
 import com.vansh.resellerprofit.model.ProfitResponse;
 import com.vansh.resellerprofit.rest.ApiClient;
 import com.vansh.resellerprofit.rest.ApiInterface;
+import com.vansh.resellerprofit.utility.DialogUtil;
 
 
 import net.danlew.android.joda.JodaTimeAndroid;
@@ -41,7 +42,6 @@ public class CalendarActivity extends AppCompatActivity {
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("MMM yyyy", Locale.getDefault());
     private Toolbar toolbar;
     private RecyclerView recyclerView;
-    TextView pro;
     private Toolbar toptoolbar;
 
 
@@ -49,13 +49,11 @@ public class CalendarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-        pro=(TextView)findViewById(R.id.pro);
         JodaTimeAndroid.init(this);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("");
-        pro=(TextView)findViewById(R.id.pro);
 
         toptoolbar = (Toolbar) findViewById(R.id.top_toolbar);
         setSupportActionBar(toptoolbar);
@@ -102,7 +100,11 @@ public class CalendarActivity extends AppCompatActivity {
 
                                 dialog.hide();
                         compactCalendarView.showCalendarWithAnimation();
-                        pro.setText(response.body().getProfit().toString());
+                        DialogUtil.createDialog("Your profit for this day is: " + response.body().getProfit().toString(), CalendarActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                            @Override
+                            public void onClick() {
+                            }
+                        });
 
 
                     }

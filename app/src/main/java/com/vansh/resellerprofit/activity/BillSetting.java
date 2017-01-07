@@ -18,7 +18,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.vansh.resellerprofit.R;
 import com.vansh.resellerprofit.adapter.SpinnerSoldAdapter;
 import com.vansh.resellerprofit.adapter.SpinnerStockAdapter;
@@ -46,6 +49,10 @@ public class BillSetting extends AppCompatActivity {
     String prodid;
     @Bind(R.id.sub)
     Button sub;
+    String cc;
+    public String codeFormat,codeContent,c;
+    EditText productid;
+    EditText imeiresult;
 
     @Bind(R.id.imei)
     EditText imei;
@@ -57,6 +64,10 @@ public class BillSetting extends AppCompatActivity {
 
     @Bind(R.id.vat)
     EditText vat;
+
+    @Bind(R.id.imeiscan)
+    Button imeiscan;
+
     @Bind(R.id.custname)
     EditText custnam;
     @Bind(R.id.custmob)
@@ -87,6 +98,13 @@ public class BillSetting extends AppCompatActivity {
         final String imeiii=imei.getText().toString();
         Preferences.setPrefs(Consts.IMEI,imeiii,BillSetting.this);
 
+        imeiscan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cc="imei";
+                scanNow(view);
+            }
+        });
 
 
         final BillSettingRequest soldRequest = new BillSettingRequest();
@@ -150,7 +168,7 @@ public class BillSetting extends AppCompatActivity {
 
                     final ProgressDialog dialog = new ProgressDialog(BillSetting.this);
                     dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                    dialog.setMessage("Congrats! You Just Sold An Item.");
+                    dialog.setMessage("Creating Bill...");
                     dialog.setIndeterminate(true);
                     dialog.setCanceledOnTouchOutside(false);
                     dialog.show();
@@ -243,5 +261,40 @@ public class BillSetting extends AppCompatActivity {
 
     }
 
+
+    public void scanNow(View view){
+
+        IntentIntegrator integrator = new IntentIntegrator(this);
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
+        integrator.setPrompt(this.getString(R.string.scan_bar_code));
+        integrator.setResultDisplayDuration(0);
+        integrator.setWide();  // Wide scanning rectangle, may work better for 1D barcodes
+        integrator.setCameraId(0);  // Use a specific camera of the device
+        integrator.initiateScan();
     }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        //retrieve scan result
+        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+
+        if (scanningResult != null) {
+            //we have a result
+
+
+            // display it on screen
+            if(cc.equals("imei"))
+            {   codeContent = scanningResult.getContents();
+                codeFormat = scanningResult.getFormatName();
+                imei.setText(codeContent);}
+
+
+
+        }else{
+            Toast toast = Toast.makeText(getApplicationContext(),"No scan data received!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
+
+}
 

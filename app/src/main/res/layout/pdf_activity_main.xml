@@ -23,21 +23,22 @@
             android:paddingLeft="40dp"
             android:layout_marginTop="40dp"/>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Create PDF"
-            android:onClick="onClick"
-            android:theme="@style/AppTheme.Button"
-            android:layout_marginTop="25dp"
-            android:id="@+id/button2" />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Share External"
+            android:text="Share External / Email Pdf"
             android:onClick="onClick"
-            android:id="@+id/button1" />
+            android:id="@+id/external" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:theme="@style/AppTheme.Button"
+            android:text="Send Text Message"
+            android:onClick="onClick"
+            android:id="@+id/message" />
 
 
 

@@ -27,7 +27,6 @@
         android:layout_marginBottom="15dp"
         android:textStyle="bold"
         android:textColor="@color/colorPrimary"
-        android:elevation="5dp"
 
 
         android:paddingBottom="5dp"
@@ -48,6 +47,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
+
             android:textSize="20sp"
             android:text="Product ID:"
             android:textColor="@color/common_google_signin_btn_text_dark_focused" />
@@ -66,6 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select"
+
             android:theme="@style/AppTheme.Button"
             android:layout_marginBottom="7dp"
             android:id="@+id/select"
@@ -87,6 +88,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
+
             android:textSize="20sp"
             android:text="Selling Price: "
             android:textColor="@color/common_google_signin_btn_text_dark_focused" />
@@ -107,6 +109,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+
             android:layout_weight="0.50"
             android:textSize="20sp"
             android:text="Quantity: "
@@ -115,6 +118,7 @@
             android:id="@+id/stock"
             android:layout_width="0dp"
             android:hint="enter quantity"
+
             android:layout_height="wrap_content"
             android:textColorHint="@color/colorPrimary"
             android:inputType="number"
@@ -131,6 +135,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.50"
             android:textSize="20sp"
+
             android:text="IMEI No: "
             android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         <EditText
@@ -138,10 +143,19 @@
             android:layout_width="0dp"
             android:hint="enter IMEI"
             android:layout_height="wrap_content"
-            android:typeface="monospace"
             android:textColorHint="@color/colorPrimary"
             android:inputType="number"
             android:layout_weight="0.70"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scan"
+            android:theme="@style/AppTheme.Button"
+            android:id="@+id/imeiscan"
+            android:elevation="24dp"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:shadowRadius="3" />
     </LinearLayout>
 
     <Button
@@ -149,7 +163,7 @@
         android:layout_height="wrap_content"
         android:text="Sell"
         android:theme="@style/AppTheme.Button"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="25dp"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
         android:id="@+id/add"

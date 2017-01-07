@@ -22,7 +22,7 @@ public class ContactUs extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "For Queries, Mail at vanshbadkul@gmail.com", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
