@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity
         ButterKnife.bind(this);
 
         int PERMISSION_ALL = 1;
-        String[] PERMISSIONS = {Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_SMS, Manifest.permission.CAMERA};
+        String[] PERMISSIONS = {Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_SMS, Manifest.permission.CAMERA,Manifest.permission.SEND_SMS};
 
         if(!hasPermissions(this, PERMISSIONS)){
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
@@ -137,40 +137,6 @@ public class MainActivity extends AppCompatActivity
         height = size.y;
         width = size.x;
 
-
-
-      /*  TimeZone tz = TimeZone.getTimeZone("UTC");
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'"); // Quoted "Z" to indicate UTC, no timezone offset
-        df.setTimeZone(tz);
-        String nowAsISO = df.format(new Date());
-
-        ApiInterface apiService =
-                ApiClient.getClient(this).create(ApiInterface.class);
-
-        Call<ProfitResponse> call = apiService.profitDaily(nowAsISO);
-
-        call.enqueue(new Callback<ProfitResponse>() {
-            @Override
-            public void onResponse(Call<ProfitResponse> call, final Response<ProfitResponse> response) {
-
-                showprofit.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-
-                _profit.setText(response.body().getProfit().toString());
-                    }
-                });
-
-            }
-
-
-            @Override
-            public void onFailure(Call<ProfitResponse> call, Throwable t) {
-                // Log error here since request failed
-                Log.e("Error", t.toString());
-            }
-        });*/
 
 
 

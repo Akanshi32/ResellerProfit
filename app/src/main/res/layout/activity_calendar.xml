@@ -68,7 +68,13 @@
                     app:compactCalendarTextColor="#fff"
                     app:compactCalendarTextSize="12sp" />
 
-
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="15dp"
+                android:text="Current Month Profit"
+                android:id="@+id/month"
+                android:background="@color/colorPrimary"/>
                 <TextView
                     android:paddingTop="8dp"
                     android:layout_gravity="center"
@@ -77,6 +83,7 @@
                     android:layout_height="match_parent"
                     android:textSize="22sp"
                     android:text="Swipe Left/Right To Change Between Months"/>
+
             </LinearLayout>
 
         </android.support.v7.widget.Toolbar>
