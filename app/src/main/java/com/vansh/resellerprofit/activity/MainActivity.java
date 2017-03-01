@@ -48,8 +48,11 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.vansh.resellerprofit.R;
 import com.vansh.resellerprofit.adapter.SpinnerStockAdapter;
+import com.vansh.resellerprofit.model.Data;
+import com.vansh.resellerprofit.model.Message;
 import com.vansh.resellerprofit.model.ProfitResponse;
 import com.vansh.resellerprofit.model.SoldRequest;
+import com.vansh.resellerprofit.model.SoldResponse;
 import com.vansh.resellerprofit.model.StockRequest;
 import com.vansh.resellerprofit.model.StockResponse;
 import com.vansh.resellerprofit.rest.ApiClient;
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity
     String ok;
     String stringQuan;
     String stringData;
+    String stringid;
 
     int foo;
     int goo;
@@ -119,7 +123,7 @@ public class MainActivity extends AppCompatActivity
         ButterKnife.bind(this);
 
         int PERMISSION_ALL = 1;
-        String[] PERMISSIONS = {Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_SMS, Manifest.permission.CAMERA};
+        String[] PERMISSIONS = {Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_SMS, Manifest.permission.CAMERA,Manifest.permission.SEND_SMS};
 
         if(!hasPermissions(this, PERMISSIONS)){
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
@@ -133,40 +137,6 @@ public class MainActivity extends AppCompatActivity
         height = size.y;
         width = size.x;
 
-
-
-      /*  TimeZone tz = TimeZone.getTimeZone("UTC");
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'"); // Quoted "Z" to indicate UTC, no timezone offset
-        df.setTimeZone(tz);
-        String nowAsISO = df.format(new Date());
-
-        ApiInterface apiService =
-                ApiClient.getClient(this).create(ApiInterface.class);
-
-        Call<ProfitResponse> call = apiService.profitDaily(nowAsISO);
-
-        call.enqueue(new Callback<ProfitResponse>() {
-            @Override
-            public void onResponse(Call<ProfitResponse> call, final Response<ProfitResponse> response) {
-
-                showprofit.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-
-                _profit.setText(response.body().getProfit().toString());
-                    }
-                });
-
-            }
-
-
-            @Override
-            public void onFailure(Call<ProfitResponse> call, Throwable t) {
-                // Log error here since request failed
-                Log.e("Error", t.toString());
-            }
-        });*/
 
 
 
@@ -249,7 +219,7 @@ public class MainActivity extends AppCompatActivity
                         soldRequest.setSellingPrice(_sellingprice.getText().toString());
 
 
-                        Call<SoldRequest> call = apiInterface.Sold(soldRequest);
+                        Call<SoldResponse> call = apiInterface.Sold(soldRequest);
 
                         final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
                         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -258,9 +228,15 @@ public class MainActivity extends AppCompatActivity
                         dialog.setCanceledOnTouchOutside(false);
                         dialog.show();
 
-                        call.enqueue(new Callback<SoldRequest>() {
+                        call.enqueue(new Callback<SoldResponse>() {
                             @Override
-                            public void onResponse(Call<SoldRequest> call, Response<SoldRequest> response) {
+                            public void onResponse(Call<SoldResponse> call, Response<SoldResponse> response) {
+
+
+                                Message message = response.body().getMessage();
+                                stringid = message.getId().toString();
+                                Preferences.setPrefs(Consts.IDE, stringid, MainActivity.this);
+
 
                                 dialog.hide();
 
@@ -274,7 +250,7 @@ public class MainActivity extends AppCompatActivity
                             }
 
                             @Override
-                            public void onFailure(Call<SoldRequest> call, Throwable t) {
+                            public void onFailure(Call<SoldResponse> call, Throwable t) {
                                 dialog.hide();
                                 DialogUtil.createDialog("Oops! Please check your internet connection!", MainActivity.this, new DialogUtil.OnPositiveButtonClick() {
                                     @Override

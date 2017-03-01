@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
@@ -43,6 +44,8 @@ public class CalendarActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private Toolbar toptoolbar;
+    String date1;
+    String month1;
 
 
     @Override
@@ -59,8 +62,43 @@ public class CalendarActivity extends AppCompatActivity {
         setSupportActionBar(toptoolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toptoolbar.setTitle("");
+        final ApiInterface apiService1 =
+                ApiClient.getClient(this).create(ApiInterface.class);
+
+        Button month = (Button) findViewById(R.id.month);
+        month.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Date dat=new Date();
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+                df.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
+                final String nowAsIS = df.format(dat);
 
 
+                Call<ProfitResponse> call = apiService1.profitResponse(nowAsIS);
+
+                call.enqueue(new Callback<ProfitResponse>() {
+                    @Override
+                    public void onResponse(Call<ProfitResponse> call, final Response<ProfitResponse> response) {
+
+                        DialogUtil.createDialog("Your profit for the current Month: " + response.body().getProfit().toString(), CalendarActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                            @Override
+                            public void onClick() {
+                            }
+                        });
+
+
+                    }
+
+
+                    @Override
+                    public void onFailure(Call<ProfitResponse> call, Throwable t) {
+                        // Log error here since request failed
+                        Log.e("Error", t.toString());
+                    }
+                });
+            }
+        });
 
         final CompactCalendarView compactCalendarView = (CompactCalendarView) toolbar.findViewById(R.id.compactcalendar_view);
         final TextView calendarTV = (TextView) toolbar.findViewById(R.id.tv_toolbar_title);
@@ -82,30 +120,44 @@ public class CalendarActivity extends AppCompatActivity {
             @Override
             public void onDayClick(Date dateClicked) {
 
-               final String ook=dateClicked.toString();
-                Log.i("ds",ook);
                 dialog.show();
-
-             /*    TimeZone tz = TimeZone.getTimeZone("UTC");
-               DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'"); // Quoted "Z" to indicate UTC, no timezone offset
-                df.setTimeZone(tz);
-                String nowAsISO = df.format(dateClicked);*/
-                String nowAsISO = ISO8601Utils.format(dateClicked);
+                final String da=dateClicked.toString();
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+                df.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
+                final String nowAsISO = df.format(dateClicked);
 
                 Call<ProfitResponse> call = apiService.profitDaily(nowAsISO);
+                Call<ProfitResponse> call1 = apiService.profitResponse(nowAsISO);
 
                 call.enqueue(new Callback<ProfitResponse>() {
                     @Override
                     public void onResponse(Call<ProfitResponse> call, final Response<ProfitResponse> response) {
+                        date1=response.body().getProfit().toString();
 
-                                dialog.hide();
+
+                    }
+
+
+                    @Override
+                    public void onFailure(Call<ProfitResponse> call, Throwable t) {
+                        // Log error here since request failed
+                        Log.e("Error", t.toString());
+                    }
+                });
+
+                call1.enqueue(new Callback<ProfitResponse>() {
+                    @Override
+                    public void onResponse(Call<ProfitResponse> call, final Response<ProfitResponse> response) {
+
+
+                        month1=response.body().getProfit().toString();
+                        dialog.hide();
                         compactCalendarView.showCalendarWithAnimation();
-                        DialogUtil.createDialog("Your profit for this day is: " + response.body().getProfit().toString(), CalendarActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                        DialogUtil.createDialog("Selected Date: "+da+"\nProfit For This DATE is: " + date1+ "\nProfit For MONTH Belonging To This Date: "+ month1 , CalendarActivity.this, new DialogUtil.OnPositiveButtonClick() {
                             @Override
                             public void onClick() {
                             }
                         });
-
 
                     }
 

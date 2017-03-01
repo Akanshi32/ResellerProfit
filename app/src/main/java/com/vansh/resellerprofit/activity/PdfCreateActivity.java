@@ -555,7 +555,13 @@ public class PdfCreateActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage(custmobile, null, "ThankYou for your purchase at our store"+ " Hope to see you again soon! "+compname, null, null);
-                    Toast.makeText(PdfCreateActivity.this, "Message has been sent to the Customer successfully!", Toast.LENGTH_LONG).show();
+                    DialogUtil.createDialog("Message has been sent successfully to the Customer at " +custmobile, PdfCreateActivity.this, new DialogUtil.OnPositiveButtonClick() {
+                        @Override
+                        public void onClick() {
+                            finish();
+                        }
+                    });
+
 
 
                 }

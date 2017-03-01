@@ -81,12 +81,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="CST TIN: "/>
+            android:text="CST: "/>
         <EditText
             android:id="@+id/csttin"
             android:layout_width="0dp"
-            android:hint="Enter CST TIN"
-            android:inputType="number"
+            android:hint="Enter CST"
             android:layout_height="wrap_content"
             android:layout_weight="0.70"/>
     </LinearLayout>

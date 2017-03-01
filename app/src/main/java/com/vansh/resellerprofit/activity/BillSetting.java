@@ -126,7 +126,7 @@ public class BillSetting extends AppCompatActivity {
 
         if (sold.getText().toString().equals(""))
         {sold.setText(Preferences.getPrefs(Consts.SAVEDID,BillSetting.this));
-            list.add(Preferences.getPrefs(Consts.ID,BillSetting.this));
+            list.add(Preferences.getPrefs(Consts.IDE,BillSetting.this));
         }
         else
         {list.add(stringData);
