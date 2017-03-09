@@ -195,15 +195,15 @@ public class TabbedMain extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return " ";
+                    return null;
                 case 1:
-                    return " ";
+                    return null;
                 case 2:
-                    return " ";
+                    return null;
                 case 3:
-                    return " ";
+                    return null;
                 case 4:
-                    return " ";
+                    return null;
 
             }
             return null;
