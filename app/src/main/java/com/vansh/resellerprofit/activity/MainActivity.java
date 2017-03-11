@@ -626,7 +626,7 @@ public class MainActivity extends AppCompatActivity
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 
         } else if (id == R.id.nav_contact) {
-            Intent it = new Intent(MainActivity.this, ContactUs.class);
+            Intent it = new Intent(MainActivity.this, BillSetting.class);
             startActivity(it);
 
 

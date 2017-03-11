@@ -26,7 +26,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".activity.Glogin"
+            android:name=".activity.TabbedMain"
             android:label="Google Login"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -108,7 +108,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".activity.TabbedMain"
+            android:name=".activity.Glogin"
             android:label="@string/title_activity_tabbed_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

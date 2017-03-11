@@ -18,7 +18,7 @@ public class Bill {
     private String companyName;
     @SerializedName("vat_percent")
     @Expose
-    private Integer vatPercent;
+    private Float vatPercent;
     @SerializedName("address")
     @Expose
     private String address;
@@ -51,10 +51,10 @@ public class Bill {
     private Integer sellingPrice;
     @SerializedName("vat_amount")
     @Expose
-    private Integer vatAmount;
+    private Float vatAmount;
     @SerializedName("total_sp")
     @Expose
-    private Integer totalSp;
+    private Float totalSp;
 
     public String getId() {
         return id;
@@ -80,11 +80,11 @@ public class Bill {
         this.companyName = companyName;
     }
 
-    public Integer getVatPercent() {
+    public Float getVatPercent() {
         return vatPercent;
     }
 
-    public void setVatPercent(Integer vatPercent) {
+    public void setVatPercent(Float vatPercent) {
         this.vatPercent = vatPercent;
     }
 
@@ -168,19 +168,19 @@ public class Bill {
         this.sellingPrice = sellingPrice;
     }
 
-    public Integer getVatAmount() {
+    public Float getVatAmount() {
         return vatAmount;
     }
 
-    public void setVatAmount(Integer vatAmount) {
+    public void setVatAmount(Float vatAmount) {
         this.vatAmount = vatAmount;
     }
 
-    public Integer getTotalSp() {
+    public Float getTotalSp() {
         return totalSp;
     }
 
-    public void setTotalSp(Integer totalSp) {
+    public void setTotalSp(Float totalSp) {
         this.totalSp = totalSp;
     }
 
