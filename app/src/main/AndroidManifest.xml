@@ -28,7 +28,12 @@
         <activity
             android:name=".activity.TabbedMain"
             android:label="Google Login"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".activity.IntroSliderActivity"
             android:label="Introduction"
@@ -109,13 +114,9 @@
         </activity>
         <activity
             android:name=".activity.Glogin"
-            android:label="@string/title_activity_tabbed_main"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
     </application>
 
