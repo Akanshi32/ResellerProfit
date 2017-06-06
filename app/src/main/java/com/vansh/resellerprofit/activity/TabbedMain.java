@@ -1,5 +1,7 @@
 package com.vansh.resellerprofit.activity;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.vansh.resellerprofit.R;
@@ -38,6 +41,7 @@ public class TabbedMain extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +146,22 @@ public class TabbedMain extends AppCompatActivity {
             {
                 case 1: {
                     rootView = inflater.inflate(R.layout.fragmenttab1, container, false);
+                    TextView trans = (TextView) rootView.findViewById(R.id.trans);
+                    trans.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            final Dialog dialog = new Dialog(rootView.getContext());
+                            dialog.setContentView(R.layout.newdialog);
+                            dialog.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
+
+                            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                            lp.copyFrom(dialog.getWindow().getAttributes());
+                            lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                            lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+                            dialog.getWindow().setLayout(lp.width, lp.height);
+                            dialog.show();
+                        }
+                    });
                     break;
                 }
                 case 2: {
@@ -209,4 +229,7 @@ public class TabbedMain extends AppCompatActivity {
             return null;
         }
     }
+
+
+
 }
