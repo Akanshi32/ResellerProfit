@@ -152,13 +152,14 @@ public class TabbedMain extends AppCompatActivity {
                         public void onClick(View view) {
                             final Dialog dialog = new Dialog(rootView.getContext());
                             dialog.setContentView(R.layout.newdialog);
-                            dialog.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
+                            dialog.getWindow().setBackgroundDrawableResource(R.color.colorTrans);
 
                             WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
                             lp.copyFrom(dialog.getWindow().getAttributes());
                             lp.width = WindowManager.LayoutParams.MATCH_PARENT;
                             lp.height = WindowManager.LayoutParams.MATCH_PARENT;
                             dialog.getWindow().setLayout(lp.width, lp.height);
+                            dialog.setCanceledOnTouchOutside(true);
                             dialog.show();
                         }
                     });
