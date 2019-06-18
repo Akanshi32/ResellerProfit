@@ -37,9 +37,9 @@ import com.vansh.resellerprofit.utility.Consts;
 import com.vansh.resellerprofit.utility.Preferences;
 
 import java.util.HashMap;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
+//
+//import butterknife.Bind;
+//import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -17,7 +17,6 @@ import com.vansh.resellerprofit.model.Stock;
 
 import java.util.List;
 
-import butterknife.Bind;
 public class SpinnerStockAdapter extends RecyclerView.Adapter<SpinnerStockAdapter.MovieViewHolder> {
 
     private List<Stock> stock;

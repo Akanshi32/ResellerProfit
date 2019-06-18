@@ -37,7 +37,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,35 +47,35 @@ public class BillSetting extends AppCompatActivity {
 
     final ArrayList<String> list = new ArrayList<String>();
     String prodid;
-    @Bind(R.id.sub)
+    @BindView(R.id.sub)
     Button sub;
     String cc;
     public String codeFormat,codeContent,c;
     EditText productid;
     EditText imeiresult;
 
-    @Bind(R.id.imei)
+    @BindView(R.id.imei)
     EditText imei;
-    @Bind(R.id.selectt)
+    @BindView(R.id.selectt)
     Button select;
 
-    @Bind(R.id.product_i)
+    @BindView(R.id.product_i)
     TextView sold;
 
-    @Bind(R.id.vat)
+    @BindView(R.id.vat)
     EditText vat;
 
-    @Bind(R.id.imeiscan)
+    @BindView(R.id.imeiscan)
     Button imeiscan;
 
-    @Bind(R.id.custname)
+    @BindView(R.id.custname)
     EditText custnam;
-    @Bind(R.id.custmob)
+    @BindView(R.id.custmob)
     EditText custmob;
 
-    @Bind(R.id.custemail)
+    @BindView(R.id.custemail)
     EditText custemail;
-    @Bind(R.id.paymethod)
+    @BindView(R.id.paymethod)
     EditText paymethod;
 
 

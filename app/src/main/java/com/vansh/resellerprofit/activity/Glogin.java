@@ -42,7 +42,6 @@ import java.util.HashMap;
 
 import javax.microedition.khronos.opengles.GL;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;

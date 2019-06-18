@@ -17,7 +17,7 @@ import com.vansh.resellerprofit.rest.ApiClient;
 import com.vansh.resellerprofit.rest.ApiInterface;
 import com.vansh.resellerprofit.utility.DialogUtil;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,17 +26,17 @@ import retrofit2.Response;
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
 
-    @Bind(R.id.username)
+    @BindView(R.id.username)
     EditText _nameText;
-    @Bind(R.id.btn_signup)
+    @BindView(R.id.btn_signup)
     Button _signupButton;
-    @Bind(R.id.link_login)
+    @BindView(R.id.link_login)
     TextView _loginLink;
-    @Bind(R.id.email)
+    @BindView(R.id.email)
     TextView _email;
-    @Bind(R.id.mobile)
+    @BindView(R.id.mobile)
     TextView _mobile;
-    @Bind(R.id.company)
+    @BindView(R.id.company)
     TextView _company;
 
     @Override

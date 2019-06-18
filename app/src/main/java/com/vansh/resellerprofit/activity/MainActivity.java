@@ -66,7 +66,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -87,23 +87,23 @@ public class MainActivity extends AppCompatActivity
     String cc="skf";
     String imeii;
     String savedid;
-    @Bind(R.id.stock)
+    @BindView(R.id.stock)
     EditText _stock;
-    @Bind(R.id.imei)
+    @BindView(R.id.imei)
     EditText imei;
-    @Bind(R.id.sellingprice)
+    @BindView(R.id.sellingprice)
     EditText _sellingprice;
-    @Bind(R.id.select)
+    @BindView(R.id.select)
     Button _selectbutt;
-    @Bind(R.id.add)
+    @BindView(R.id.add)
     Button _add;
-    @Bind(R.id.imeiscan)
+    @BindView(R.id.imeiscan)
     Button imeiscan;
-    @Bind(R.id.selected)
+    @BindView(R.id.selected)
     TextView _selected;
-    /*@Bind(R.id.profit_tv)
+    /*@BindView(R.id.profit_tv)
     TextView _profit;
-    @Bind(R.id.show)
+    @BindView(R.id.show)
      Button showprofit*/;
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("dd - MM - yyyy", Locale.getDefault());
 
