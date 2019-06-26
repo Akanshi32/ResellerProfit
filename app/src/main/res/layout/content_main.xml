@@ -4,53 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="20dp"
+
+    android:layout_centerInParent="true"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/bg2"
     android:layout_gravity="center"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="25dp"
-    android:layout_margin="15dp"
+    android:layout_marginLeft="50dp"
+    android:layout_marginRight="50dp"
     android:orientation="vertical"
+    
     android:clickable="true"
     android:focusableInTouchMode="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.vansh.resellerprofit.activity.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+
+
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SELL AN ITEM"
-        android:textSize="38sp"
-        android:fontFamily="serif"
-        android:layout_marginBottom="15dp"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/monty"
+        android:text="Product ID"
 
-
-        android:paddingBottom="5dp"
-        android:textAlignment="center"
-        android:shadowColor="@color/colorPrimaryDark"
-        android:shadowDx="3"
-        android:shadowDy="3"
-        android:shadowRadius="2"
-        android:typeface="serif" />
+        android:textColor="@color/white"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="1dp"
+        android:layout_marginBottom="16dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-
-            android:textSize="20sp"
-            android:text="Product ID:"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         <TextView
             android:layout_width="0dp"
             android:paddingLeft="3dp"
@@ -58,6 +50,8 @@
             android:layout_weight="0.5"
             android:textSize="20sp"
             android:textAlignment="center"
+
+            android:textColor="@color/white"
             android:id="@+id/selected"
             />
 
@@ -66,12 +60,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select"
-
-            android:theme="@style/AppTheme.Button"
+            android:textAllCaps="false"
+            android:background="@drawable/btnbg"
             android:layout_marginBottom="7dp"
             android:id="@+id/select"
-            android:elevation="24dp"
+            android:elevation="4dp"
             android:shadowDx="7"
+            android:textSize="14dp"
+            android:fontFamily="@font/monty"
             android:shadowRadius="5"
             android:shadowDy="7" />
 
@@ -79,70 +75,69 @@
 
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
 
-            android:textSize="20sp"
-            android:text="Selling Price: "
-            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="200dp"
+            android:layout_gravity="center"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Selling Price"
+            app:met_hideUnderline="true"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            app:met_textColor="@color/white"
+            android:fontFamily="@font/monty"
+            android:textStyle="bold"
             android:id="@+id/sellingprice"
-            android:layout_width="0dp"
+            android:textColor="@color/colorPrimary"
             android:inputType="number"
-            android:textColorHint="@color/colorPrimary"
-            android:hint="enter selling price"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.70"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
 
-            android:layout_weight="0.50"
-            android:textSize="20sp"
-            android:text="Quantity: "
-            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
-        <EditText
+            android:hint="Enter selling price"
+            android:layout_weight="0.70"/>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="200dp"
+        android:layout_gravity="center"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelText="Quantity"
+        app:met_hideUnderline="true"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        app:met_textColor="@color/white"
+        android:fontFamily="@font/monty"
+        android:textStyle="bold"
+
             android:id="@+id/stock"
-            android:layout_width="0dp"
-            android:hint="enter quantity"
+            android:hint="Enter quantity"
 
-            android:layout_height="wrap_content"
             android:textColorHint="@color/colorPrimary"
             android:inputType="number"
             android:layout_weight="0.70"/>
-    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="3dp"
+        android:layout_marginBottom="50dp"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.50"
-            android:textSize="20sp"
 
-            android:text="IMEI No: "
-            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="200dp"
+            android:layout_gravity="center"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="IMEI"
+            app:met_hideUnderline="true"
+            android:layout_height="50dp"
+            app:met_textColor="@color/white"
+            android:fontFamily="@font/monty"
+            android:textStyle="bold"
+
             android:id="@+id/imei"
-            android:layout_width="0dp"
-            android:hint="enter IMEI"
-            android:layout_height="wrap_content"
+
+            android:hint="Enter IMEI"
+
+            android:textColor="@color/white"
+
             android:textColorHint="@color/colorPrimary"
             android:inputType="number"
             android:layout_weight="0.70"/>
@@ -150,27 +145,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Scan"
-            android:theme="@style/AppTheme.Button"
+            android:background="@drawable/btnbg"
             android:id="@+id/imeiscan"
-            android:elevation="24dp"
+
             android:shadowDx="4"
+            android:elevation="4dp"
+            android:textAllCaps="false"
             android:shadowDy="4"
+            android:textSize="14dp"
+            android:fontFamily="@font/monty"
             android:shadowRadius="3" />
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sell"
-        android:theme="@style/AppTheme.Button"
-        android:layout_marginTop="25dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/add"
-        android:elevation="24dp"
-        android:shadowDx="4"
-        android:shadowDy="4"
-        android:shadowRadius="3" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -185,4 +172,6 @@
         android:textColor="#000000"
         android:text=""/>
     </LinearLayout>
+
+
 </LinearLayout>

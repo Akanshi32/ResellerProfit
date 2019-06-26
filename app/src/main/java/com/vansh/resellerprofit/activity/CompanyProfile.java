@@ -11,6 +11,7 @@ import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.scwang.wave.MultiWaveHeader;
 import com.vansh.resellerprofit.R;
 import com.vansh.resellerprofit.utility.Consts;
 import com.vansh.resellerprofit.utility.DialogUtil;
@@ -30,6 +32,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Arrays;
 
 public class CompanyProfile extends AppCompatActivity {
     EditText ed1,ed2,ed3,ed4;
@@ -50,6 +53,7 @@ public class CompanyProfile extends AppCompatActivity {
 
         b1=(Button)findViewById(R.id.comsave);
         b2=(Button)findViewById(R.id.addimage);
+
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +105,6 @@ public class CompanyProfile extends AppCompatActivity {
         });
 
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {

@@ -5,9 +5,13 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 
+import com.scwang.wave.MultiWaveHeader;
 import com.vansh.resellerprofit.R;
+
+import java.util.Arrays;
 
 public class ContactUs extends AppCompatActivity {
 
@@ -27,7 +31,9 @@ public class ContactUs extends AppCompatActivity {
             }
         });
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
     }
 
 }

@@ -43,7 +43,9 @@ public class CalendarActivity extends AppCompatActivity {
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("MMM yyyy", Locale.getDefault());
     private Toolbar toolbar;
     private RecyclerView recyclerView;
-    private Toolbar toptoolbar;
+
+
+
     String date1;
     String month1;
 
@@ -54,18 +56,10 @@ public class CalendarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calendar);
         JodaTimeAndroid.init(this);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("");
-
-        toptoolbar = (Toolbar) findViewById(R.id.top_toolbar);
-        setSupportActionBar(toptoolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toptoolbar.setTitle("");
         final ApiInterface apiService1 =
                 ApiClient.getClient(this).create(ApiInterface.class);
 
-        Button month = (Button) findViewById(R.id.month);
+        TextView month =  findViewById(R.id.month);
         month.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,8 +94,8 @@ public class CalendarActivity extends AppCompatActivity {
             }
         });
 
-        final CompactCalendarView compactCalendarView = (CompactCalendarView) toolbar.findViewById(R.id.compactcalendar_view);
-        final TextView calendarTV = (TextView) toolbar.findViewById(R.id.tv_toolbar_title);
+        final CompactCalendarView compactCalendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
+        final TextView calendarTV = (TextView) findViewById(R.id.tv_toolbar_title);
 
 
         final ProgressDialog dialog = new ProgressDialog(this);

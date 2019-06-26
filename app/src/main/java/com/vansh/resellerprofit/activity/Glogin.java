@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +31,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.scwang.wave.MultiWaveHeader;
 import com.vansh.resellerprofit.R;
 import com.vansh.resellerprofit.model.LoginResponse;
 import com.vansh.resellerprofit.rest.ApiClient;
@@ -38,6 +40,7 @@ import com.vansh.resellerprofit.utility.Consts;
 import com.vansh.resellerprofit.utility.DialogUtil;
 import com.vansh.resellerprofit.utility.Preferences;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.microedition.khronos.opengles.GL;
@@ -57,7 +60,7 @@ public class Glogin extends AppCompatActivity implements
     private GoogleApiClient mGoogleApiClient;
     private ProgressDialog mProgressDialog;
 
-    private SignInButton btnSignIn;
+    private LinearLayout btnSignIn;
     private Button btnSignOut, btnRevokeAccess;
     private LinearLayout llProfileLayout;
     private ImageView imgProfilePic;
@@ -70,7 +73,16 @@ public class Glogin extends AppCompatActivity implements
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
+        btnSignIn =  findViewById(R.id.btn_sign_in);
+
+//        MultiWaveHeader waveHeader = findViewById(R.id.waveHeader);
+//        String[] waves = new String[]{
+//                "5,4,1.9,0.2,50"
+//        };
+//        waveHeader.setWaves(TextUtils.join(" ", Arrays.asList(waves)));
+//        waveHeader.setWaveHeight(350);
+//        waveHeader.setGradientAngle(170);
+//        waveHeader.setProgress(.8f);
 
 
         View decorView = getWindow().getDecorView();
@@ -101,7 +113,7 @@ public class Glogin extends AppCompatActivity implements
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-        setGooglePlusButtonText(btnSignIn,"LOGIN USING GOOGLE");
+        //setGooglePlusButtonText(btnSignIn,"LOGIN USING GOOGLE");
 
         // Customizing G+ button
       //  btnSignIn.setSize(SignInButton.SIZE_STANDARD);

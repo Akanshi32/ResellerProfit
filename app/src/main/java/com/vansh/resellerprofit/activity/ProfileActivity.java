@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.scwang.wave.MultiWaveHeader;
 import com.vansh.resellerprofit.R;
 import com.vansh.resellerprofit.model.LoginResponse;
 import com.vansh.resellerprofit.rest.ApiClient;
@@ -36,6 +38,7 @@ import com.vansh.resellerprofit.rest.ApiInterface;
 import com.vansh.resellerprofit.utility.Consts;
 import com.vansh.resellerprofit.utility.Preferences;
 
+import java.util.Arrays;
 import java.util.HashMap;
 //
 //import butterknife.Bind;
@@ -79,7 +82,6 @@ public class ProfileActivity extends AppCompatActivity implements
         btnSignIn.setOnClickListener(this);
         btnSignOut.setOnClickListener(this);
         btnRevokeAccess.setOnClickListener(this);
-
 
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

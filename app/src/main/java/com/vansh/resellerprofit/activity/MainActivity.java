@@ -22,6 +22,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
@@ -46,6 +47,7 @@ import android.widget.Toast;
 import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.scwang.wave.MultiWaveHeader;
 import com.vansh.resellerprofit.R;
 import com.vansh.resellerprofit.adapter.SpinnerStockAdapter;
 import com.vansh.resellerprofit.model.Data;
@@ -96,7 +98,7 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.select)
     Button _selectbutt;
     @BindView(R.id.add)
-    Button _add;
+    TextView _add;
     @BindView(R.id.imeiscan)
     Button imeiscan;
     @BindView(R.id.selected)
@@ -136,8 +138,6 @@ public class MainActivity extends AppCompatActivity
         display.getSize(size);
         height = size.y;
         width = size.x;
-
-
 
 
 
@@ -589,7 +589,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             Intent it = new Intent(MainActivity.this, CompanyProfile.class);
             startActivity(it);
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+//            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 
             return true;
         }
@@ -613,29 +613,27 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_stock) {
             Intent it = new Intent(MainActivity.this, Stock.class);
             startActivity(it);
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+//            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 
         } else if (id == R.id.nav_sold) {
             Intent it = new Intent(MainActivity.this, SoldActivity.class);
             startActivity(it);
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+//            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 
         } else if (id == R.id.nav_calendar) {
             Intent it = new Intent(MainActivity.this, CalendarActivity.class);
             startActivity(it);
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+//            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 
         } else if (id == R.id.nav_contact) {
-            Intent it = new Intent(MainActivity.this, BillSetting.class);
+            Intent it = new Intent(MainActivity.this, ContactUs.class);
             startActivity(it);
-
-
         }
 
         else if (id == R.id.nav_pdf) {
-
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
-
+            Intent it = new Intent(MainActivity.this, BillSetting.class);
+            startActivity(it);
+//            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
         }
 
 

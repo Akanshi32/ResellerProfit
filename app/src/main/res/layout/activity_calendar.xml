@@ -5,90 +5,124 @@
     android:id="@+id/activity_calendar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/appbg"
     >
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/top_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:titleTextColor="#FFFFFF"
-            app:elevation="4dp"
-            android:layout_alignParentTop="true"
-            android:background="?attr/colorPrimary"
+        android:background="#f5f5f5">
 
 
-            />
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark">
-
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
+                android:background="#f5f5f5"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_toolbar_title"
+                    android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
+                    android:layout_centerHorizontal="true"
                     android:layout_gravity="center_horizontal"
                     android:textSize="22sp"
-                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/monty"
+                    android:text="Sales Calendar"
+                    android:layout_margin="50dp"
+                    android:textColor="@color/colorPrimaryDark"
                     android:gravity="center"/>
-                <ImageView
-                    android:layout_gravity="center"
-                    android:layout_width="200dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/newlogo"
-                    android:id="@+id/addimage"
-                    android:paddingLeft="40dp"
-                    />
 
-                <com.github.sundeepk.compactcalendarview.CompactCalendarView
-                    android:id="@+id/compactcalendar_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:layout_gravity="center_horizontal"
-                    app:compactCalendarBackgroundColor="@color/colorPrimaryDark"
-                    app:compactCalendarCurrentDayBackgroundColor="@color/colorPrimaryDark"
-                    app:compactCalendarCurrentDayIndicatorStyle="fill_large_indicator"
-                    app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorPrimary"
-                    app:compactCalendarEventIndicatorStyle="small_indicator"
-                    app:compactCalendarOtherMonthDaysTextColor="#534c4c"
-                    app:compactCalendarTargetHeight="250dp"
-                    app:compactCalendarTextColor="#fff"
-                    app:compactCalendarTextSize="12sp" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingRight="15dp"
-                android:text="Current Month Profit"
-                android:id="@+id/month"
-                android:background="@color/colorPrimary"/>
                 <TextView
-                    android:paddingTop="8dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
+                    android:id="@+id/tv_toolbar_title"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_below="@+id/monthll"
+                    android:layout_gravity="center_horizontal"
                     android:textSize="22sp"
-                    android:text="Swipe Left/Right To Change Between Months"/>
+                    android:fontFamily="@font/monty"
+                    android:layout_margin="50dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:gravity="center"/>
 
-            </LinearLayout>
 
-        </android.support.v7.widget.Toolbar>
+                <LinearLayout
+                    android:id="@+id/ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="344dp"
+                    android:layout_below="@+id/title"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="56dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/bg2"
+                    android:elevation="20dp"
+                    android:padding="10dp">
 
-    </LinearLayout>
+                    <com.github.sundeepk.compactcalendarview.CompactCalendarView
+                        android:id="@+id/compactcalendar_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginRight="10dp"
+
+                        app:compactCalendarBackgroundColor="@color/colorPrimaryDark"
+                        app:compactCalendarCurrentDayBackgroundColor="#F48FB1"
+                        app:compactCalendarCurrentDayIndicatorStyle="fill_large_indicator"
+                        app:compactCalendarCurrentSelectedDayBackgroundColor="#C5CAE9"
+                        app:compactCalendarEventIndicatorStyle="small_indicator"
+                        app:compactCalendarOtherMonthDaysTextColor="#534c4c"
+                        app:compactCalendarTargetHeight="250dp"
+                        app:compactCalendarTextColor="#fff"
+                        app:compactCalendarTextSize="14sp"
+                        />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll"
+                    android:id="@+id/monthll"
+                    android:background="@drawable/background"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
+                    android:layout_marginTop="-20dp"
+                    android:elevation="24dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="#C5CAE9"
+                android:textSize="16dp"
+                android:fontFamily="@font/monty"
+                android:text="Current Month Profit"
+                android:textColor="@color/white"
+
+                android:id="@+id/month"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginBottom="-2dp"
+                    android:fontFamily="@font/monty"
+                    android:gravity="center"
+                    android:padding="10dp"
+
+                    android:text="Swipe Left/Right To Change Between Months"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+
+
+    </RelativeLayout>
 
 
 

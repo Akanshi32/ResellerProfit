@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.scwang.wave.MultiWaveHeader;
 import com.vansh.resellerprofit.R;
 import com.vansh.resellerprofit.adapter.SpinnerSoldAdapter;
 import com.vansh.resellerprofit.adapter.SpinnerStockAdapter;
@@ -33,6 +35,7 @@ import com.vansh.resellerprofit.utility.DialogUtil;
 import com.vansh.resellerprofit.utility.Preferences;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -90,7 +93,8 @@ public class BillSetting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bill_setting);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         ButterKnife.bind(this);
 

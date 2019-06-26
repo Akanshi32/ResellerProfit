@@ -15,11 +15,11 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/app_name"
+            android:label=" "
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.Calendar"
-            android:label="Sales-Datewise"
+            android:label=" "
             android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name=".PARENT_ACTIVITY"
@@ -27,7 +27,7 @@
         </activity>
         <activity
             android:name=".activity.TabbedMain"
-            android:label="Google Login"
+            android:label=" "
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.IntroSliderActivity"
@@ -40,7 +40,7 @@
         </activity>
         <activity
             android:name=".activity.Stock"
-            android:label="Stock"
+            android:label=" "
             android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name=".PARENT_ACTIVITY"
@@ -48,7 +48,7 @@
         </activity>
         <activity
             android:name=".activity.ContactUs"
-            android:label="Contact Us"
+            android:label=" "
             android:parentActivityName=".activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -57,10 +57,10 @@
         </activity>
         <activity
             android:name=".activity.SignupActivity"
-            android:label="Sign up" />
+            android:label=" " />
         <activity
             android:name=".activity.ProfileActivity"
-            android:label="Profile"
+            android:label=" "
             android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name=".PARENT_ACTIVITY"
@@ -94,6 +94,7 @@
         <activity
             android:name=".activity.BillSetting"
             android:label="Generate Bill"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name=".PARENT_ACTIVITY"
@@ -102,6 +103,7 @@
         <activity
             android:name=".activity.CompanyProfile"
             android:label="Company Profile"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name=".PARENT_ACTIVITY"

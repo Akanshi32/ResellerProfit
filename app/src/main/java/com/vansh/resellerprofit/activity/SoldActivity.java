@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 
+import com.scwang.wave.MultiWaveHeader;
 import com.vansh.resellerprofit.R;
 import com.vansh.resellerprofit.adapter.SoldViewAdapter;
 import com.vansh.resellerprofit.adapter.StockAdapter;
@@ -15,6 +17,7 @@ import com.vansh.resellerprofit.rest.ApiClient;
 import com.vansh.resellerprofit.rest.ApiInterface;
 import com.vansh.resellerprofit.utility.DialogUtil;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 

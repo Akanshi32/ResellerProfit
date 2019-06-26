@@ -1,40 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@drawable/appbg"
+    android:background="#f5f5f5"
     tools:context="com.vansh.resellerprofit.activity.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:background="#f5f5f5"
+        app:elevation="0dp"
+        android:layout_height="wrap_content">
 
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
+            android:background="#f5f5f5"
+
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="56dp" />
 
 
 
     </android.support.design.widget.AppBarLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sell an item"
+        android:textSize="26sp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/monty"
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:paddingBottom="5dp"
+        android:textAlignment="center"
+ />
+
+
+
     <include layout="@layout/content_main" />
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:elevation="24dp"
+        android:layout_below="@+id/content_main"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="-40dp"
+        android:background="@drawable/background">
+
+        <TextView
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/btnbg"
+            android:fontFamily="@font/monty"
+            android:paddingLeft="50dp"
+            android:paddingTop="16dp"
+            android:paddingRight="50dp"
+            android:paddingBottom="16dp"
+            android:text="Sell"
+            android:elevation="4dp"
+            android:textSize="16dp" />
+    </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:layout_margin="@dimen/fab_margin"
         android:tint="@android:color/white"
         app:srcCompat="@android:drawable/ic_input_add" />
 
-
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

@@ -1,84 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#F5F5F5"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
-
-    android:background="@drawable/appbg">
-
+    >
     <LinearLayout
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="64dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp">
-
-
-        <ImageView android:src="@drawable/newlogo"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="10dp"
-            android:paddingLeft="20dp"
-            android:layout_gravity="center_horizontal" />
+        android:gravity="center"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Manage Your Profit In Just A Click!"
-            android:textStyle="italic"
-            android:textColor="#FFFFFF"
-            android:textSize="20dp"
-            android:textAlignment="center"
-           />
-
-      <!--  &lt;!&ndash;  Email Label &ndash;&gt;
-        <android.support.design.widget.TextInputLayout
+            android:layout_height="40dp"
+            android:textSize="28dp"
+            android:gravity="left"
+            android:layout_marginLeft="40dp"
+            android:textColor="#A8A8A8"
+            android:fontFamily="@font/monty"
+            android:text="Welcome to "/>
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:hint="Email" />
-        </android.support.design.widget.TextInputLayout>
+            android:layout_height="50dp"
+            android:layout_marginRight="30dp"
+            android:fontFamily="@font/monty"
+            android:textSize="38dp"
+            android:textColor="#B39DDB"
+            android:gravity="right"
+            android:textStyle="bold"
+            android:text="Reseller Profit"/>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:elevation="16dp"
+        android:id="@+id/ll1"
+        android:layout_marginTop="330dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="150dp"
+        android:background="@drawable/bg2"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/icon1">
 
-        &lt;!&ndash;  Password Label &ndash;&gt;
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="Password"/>
-        </android.support.design.widget.TextInputLayout>
--->
-
-        <!--<com.google.android.gms.common.SignInButton
-            android:id="@+id/btn_sign_ini"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"/>
--->
-
-
-        <com.google.android.gms.common.SignInButton
+        <LinearLayout
             android:id="@+id/btn_sign_in"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="180dp"
-            android:layout_marginBottom="20dp"
-            android:text="Login Using Google" />
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/btnbg"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="16dp"
+                android:src="@drawable/googleicon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:fontFamily="@font/monty"
+                android:gravity="center"
+                android:layout_marginRight="12dp"
+                android:text="Login with Google"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
 
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:elevation="20dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginRight="30dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/background">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:src="@drawable/storelady"/>
 
     </LinearLayout>
-</ScrollView>
+
+
+
+    <!--  &lt;!&ndash;  Email Label &ndash;&gt;
+      <android.support.design.widget.TextInputLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:layout_marginBottom="8dp">
+          <EditText android:id="@+id/input_email"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:inputType="textEmailAddress"
+              android:hint="Email" />
+      </android.support.design.widget.TextInputLayout>
+
+      &lt;!&ndash;  Password Label &ndash;&gt;
+      <android.support.design.widget.TextInputLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:layout_marginBottom="8dp">
+          <EditText android:id="@+id/input_password"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:inputType="textPassword"
+              android:hint="Password"/>
+      </android.support.design.widget.TextInputLayout>
+-->
+
+    <!--<com.google.android.gms.common.SignInButton
+        android:id="@+id/btn_sign_ini"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"/>
+-->
+
+
+
+
+    <com.google.android.gms.common.SignInButton
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+    </com.google.android.gms.common.SignInButton>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+
+        android:layout_marginBottom="25dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/monty"
+        android:text="An app by "/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:fontFamily="@font/monty"
+            android:text="H.O.C"
+            android:textColor="#B39DDB"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+</RelativeLayout>
