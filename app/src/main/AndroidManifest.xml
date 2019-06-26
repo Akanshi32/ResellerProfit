@@ -27,7 +27,7 @@
         </activity>
         <activity
             android:name=".activity.TabbedMain"
-            android:label=" "
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.IntroSliderActivity"
@@ -111,7 +111,7 @@
         </activity>
         <activity
             android:name=".activity.Glogin"
-            android:label="@string/title_activity_tabbed_main"
+            android:label="Reseller Profit"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
