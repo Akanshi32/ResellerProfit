@@ -307,8 +307,7 @@ public class MainActivity extends AppCompatActivity
     public void openDialogSelect(){
         final Dialog dialog = new Dialog(this,R.style.Dialog);
         dialog.setContentView(R.layout.dialog_productid);
-        dialog.setTitle("\nProduct Details");
-        dialog.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
+        dialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
 
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
@@ -380,8 +379,7 @@ public class MainActivity extends AppCompatActivity
         final EditText vendorname=(EditText) dialog.findViewById(R.id.vendorid);
 
 
-        dialog.setTitle("\nProduct Details");
-        dialog.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
+        dialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
 
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());

@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#B39DDB</color>
     <color name="colorAccent">#F5F5F5</color>
     <color name="logo">#b5121b</color>
+    <color name="transparent">#00000000</color>
 
     <color name="dot_light_screen2">#d1395c</color>
     <color name="dot_dark_screen4">#14a895</color>

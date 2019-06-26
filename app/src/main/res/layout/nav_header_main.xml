@@ -44,7 +44,7 @@
             android:textSize="16sp"
             android:gravity="center"
             android:fontFamily="@font/monty"
-            android:textColor="@color/white"
+            android:textColor="#000000"
             android:textAlignment="center"
             />
     </LinearLayout>

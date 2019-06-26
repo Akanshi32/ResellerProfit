@@ -1,38 +1,54 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="15dp"
-    android:paddingTop="30dp"
-    android:layout_marginTop="5dp"
-    android:padding="5dp"
-    android:background="#FFFFFF"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/transparent"
+    android:paddingTop="60dp"
     android:layout_height="match_parent">
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="30dp"
+        android:paddingTop="60dp"
+        android:elevation="10dp"
+        android:paddingBottom="60dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:id="@+id/dialogll"
+        android:background="@drawable/bg2">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:padding="3dp"
         android:paddingTop="10dp"
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:id="@+id/pur"
-            android:textColor="#000000"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:fontFamily="@font/monty"
+            android:textColor="@color/white"
             android:text="Purchase Date: "/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.50"
-
+            android:layout_alignParentRight="true"
+            android:padding="10dp"
+            android:fontFamily="@font/monty"
+            android:textColor="#000000"
+            android:background="@drawable/btnbg"
             android:id="@+id/purchase_date"
             android:text="Select DATE"/>
-    </LinearLayout>
+    </RelativeLayout>
 
 
 
@@ -42,18 +58,20 @@
         android:padding="3dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="0dp"
-            android:textColor="#000000"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Invoice Number: "/>
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Invoice Number"
+            app:met_hideUnderline="true"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            app:met_textColor="@color/white"
+            android:fontFamily="@font/monty"
+            android:textStyle="bold"
             android:id="@+id/invoiceno"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:hint="Enter Invoice Number"
-            android:layout_weight="0.70"/>
+           />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,20 +79,21 @@
         android:padding="3dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="0dp"
-            android:textColor="#000000"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:inputType="textCapWords"
-            android:text="Vendor Name: "/>
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Vendor Name"
+            app:met_hideUnderline="true"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            app:met_textColor="@color/white"
+            android:fontFamily="@font/monty"
+            android:textStyle="bold"
             android:id="@+id/vendorid"
-            android:layout_width="0dp"
             android:inputType="textCapSentences"
-            android:layout_height="wrap_content"
             android:hint="Enter Vendor Name"
-            android:layout_weight="0.70"/>
+           />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -82,18 +101,18 @@
         android:padding="3dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="0dp"
-            android:textColor="#000000"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.4"
-            android:padding="0.5dp"
-
-            android:text="Product ID \n(Name|UniqueID): "/>
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Product Name/ Unique ID"
+            app:met_hideUnderline="true"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            app:met_textColor="@color/white"
+            android:fontFamily="@font/monty"
+            android:textStyle="bold"
             android:id="@+id/productid"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:inputType="textCapWords"
             android:hint="Name | ID"
             android:layout_weight="0.40"/>
@@ -111,18 +130,20 @@
         android:layout_height="wrap_content"
         android:padding="3dp"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:textColor="#000000"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Cost Price: "/>
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Cost Price"
+            app:met_hideUnderline="true"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            app:met_textColor="@color/white"
+            android:fontFamily="@font/monty"
+            android:textStyle="bold"
             android:id="@+id/costprice"
-            android:layout_width="0dp"
             android:hint="Enter cost price"
             android:inputType="number"
-            android:layout_height="wrap_content"
             android:layout_weight="0.70"/>
     </LinearLayout>
     <LinearLayout
@@ -130,44 +151,81 @@
         android:layout_height="wrap_content"
         android:padding="3dp"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:textColor="#000000"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.50"
-            android:text="Stock Quantity: "/>
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Quantity"
+            app:met_hideUnderline="true"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            app:met_textColor="@color/white"
+            android:fontFamily="@font/monty"
+            android:textStyle="bold"
             android:id="@+id/stock"
-            android:layout_width="0dp"
             android:hint="Enter quantity"
             android:inputType="number"
-            android:layout_height="wrap_content"
             android:layout_weight="0.70"/>
     </LinearLayout>
 
+
+    </LinearLayout>
     <LinearLayout
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:layout_marginRight="20dp"
+        android:elevation="20dp"
+        android:layout_toLeftOf="@+id/llsubmit"
+        android:layout_below="@id/dialogll"
+        android:layout_marginTop="-50dp"
+        android:layout_alignBaseline="@+id/dialogll"
+        android:background="@drawable/background">
+    <Button
+        android:id="@+id/dialog_cancel"
         android:layout_width="match_parent"
-        android:layout_height="40sp"
-        android:paddingTop="8dp"
-        android:padding="1sp">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="14dp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/monty"
+        android:elevation="4dp"
+        android:padding="10dp"
+        android:background="@drawable/btnbg"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Cancel"/>
+    </LinearLayout>
 
-
-
-        <Button
-            android:id="@+id/dialog_cancel"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.50"
-            android:text="Cancel"/>
-
-        <Button
-            android:id="@+id/dialog_submit"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.50"
-            android:text="Submit"/>
-
+    <LinearLayout
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:elevation="20dp"
+        android:id="@+id/llsubmit"
+        android:layout_below="@id/dialogll"
+        android:layout_marginTop="-50dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/background">
+    <Button
+        android:id="@+id/dialog_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="14dp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/monty"
+        android:elevation="4dp"
+        android:padding="10dp"
+        android:background="@drawable/btnbg"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Submit"/>
 
     </LinearLayout>
 
-</LinearLayout>
+
+</RelativeLayout>

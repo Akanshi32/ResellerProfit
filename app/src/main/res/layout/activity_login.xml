@@ -55,6 +55,7 @@
             android:layout_centerVertical="true"
             android:background="@drawable/btnbg"
             android:gravity="center"
+            android:elevation="6dp"
             android:orientation="horizontal">
 
             <ImageView
