@@ -524,15 +524,19 @@ public class PdfCreateActivity extends AppCompatActivity {
             // messageIntent.putExtra(Intent.EXTRA_TEXT, "ThankYou For purchase at our store! Hope to see you again.");
             // startActivity(Intent.createChooser(messageIntent, "Send Message..."));
 
-            Intent emailIntent = new Intent(Intent.ACTION_SEND);
-            emailIntent .setType("*/*");
-            emailIntent .putExtra(Intent.EXTRA_EMAIL, new String[]{customeremail});
-            emailIntent.putExtra(Intent.EXTRA_TEXT, "ThankYou For purchase at our store! Hope to see you again.");
+            try {
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent .setType("*/*");
+                emailIntent .putExtra(Intent.EXTRA_EMAIL, new String[]{customeremail});
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "ThankYou For purchase at our store! Hope to see you again.");
 
-            Uri uri = Uri.fromFile(myFile);
-            emailIntent .putExtra(Intent.EXTRA_STREAM, uri);
-            emailIntent .putExtra(Intent.EXTRA_SUBJECT, "Purchase at "+compname);
-            startActivity(Intent.createChooser(emailIntent, "Send email..."));
+                Uri uri = Uri.fromFile(myFile);
+                emailIntent .putExtra(Intent.EXTRA_STREAM, uri);
+                emailIntent .putExtra(Intent.EXTRA_SUBJECT, "Purchase at "+compname);
+                startActivity(Intent.createChooser(emailIntent, "Send email..."));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         } catch (IOException | DocumentException e) {
             e.printStackTrace();

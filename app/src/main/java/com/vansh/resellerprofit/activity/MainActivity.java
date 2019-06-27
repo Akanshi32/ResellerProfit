@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity
     String stringQuan;
     String stringData;
     String stringid;
+    ProgressDialog dialog;
 
     int foo;
     int goo;
@@ -221,12 +222,16 @@ public class MainActivity extends AppCompatActivity
 
                         Call<SoldResponse> call = apiInterface.Sold(soldRequest);
 
-                        final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
-                        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                        dialog.setMessage("Congrats! You Just Sold An Item.");
-                        dialog.setIndeterminate(true);
-                        dialog.setCanceledOnTouchOutside(false);
-                        dialog.show();
+                        try {
+                            dialog = new ProgressDialog(MainActivity.this);
+                            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                            dialog.setMessage("Congrats! You Just Sold An Item.");
+                            dialog.setIndeterminate(true);
+                            dialog.setCanceledOnTouchOutside(false);
+                            dialog.show();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
                         call.enqueue(new Callback<SoldResponse>() {
                             @Override
