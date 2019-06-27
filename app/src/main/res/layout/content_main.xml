@@ -50,7 +50,8 @@
             android:layout_weight="0.5"
             android:textSize="20sp"
             android:textAlignment="center"
-
+            android:text="Not Selected"
+            android:fontFamily="@font/monty"
             android:textColor="@color/white"
             android:id="@+id/selected"
             />

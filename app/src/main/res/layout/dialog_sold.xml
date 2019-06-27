@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_margin="15dp"
-    android:background="#FFFFFF"
+    android:background="@drawable/bg2"
     android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/sold_recycler_view_spinner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="40dp"
         android:scrollbars="horizontal"
         />
 

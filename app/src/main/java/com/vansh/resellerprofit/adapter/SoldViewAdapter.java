@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.vansh.resellerprofit.R;
@@ -22,7 +23,7 @@ public class SoldViewAdapter extends RecyclerView.Adapter<SoldViewAdapter.MovieV
 
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout stockLayout;
+        RelativeLayout stockLayout;
         TextView productid;
         TextView stock;
         TextView costprice;
@@ -31,7 +32,7 @@ public class SoldViewAdapter extends RecyclerView.Adapter<SoldViewAdapter.MovieV
 
         public MovieViewHolder(View v) {
             super(v);
-            stockLayout = (LinearLayout) v.findViewById(R.id.stock_layout);
+            stockLayout = (RelativeLayout) v.findViewById(R.id.stock_layout);
             productid = (TextView) v.findViewById(R.id.productid);
             stock = (TextView) v.findViewById(R.id.stock);
             costprice = (TextView) v.findViewById(R.id.costprice);

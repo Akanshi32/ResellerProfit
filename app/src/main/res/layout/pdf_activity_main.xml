@@ -1,39 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp"
     android:orientation="vertical"
-    android:background="@drawable/appbg">
+    android:background="#f5f5f5">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:layout_marginTop="10dp"
-        android:paddingBottom="3dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg2"
+        android:padding="40dp"
+        android:elevation="30dp"
+        android:layout_centerVertical="true"
+        android:layout_margin="30dp"
         android:id="@+id/linearLayout">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/newlogo"
-            android:id="@+id/addimage"
-            android:paddingLeft="40dp"
-            android:layout_marginTop="40dp"/>
+
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
+            android:fontFamily="@font/monty"
             android:text="Create PDF"
             android:onClick="onClick"
-            android:theme="@style/AppTheme.Button"
-            android:layout_marginTop="25dp"
+            android:elevation="20dp"
+            android:background="@drawable/btnbg"
+            android:textSize="18dp"
             android:id="@+id/button2" />
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="5dp"
             android:text="Share External"
             android:onClick="onClick"
@@ -46,5 +44,5 @@
 
 
 
-</LinearLayout>
+</RelativeLayout>
 

@@ -61,8 +61,8 @@
             android:fontFamily="@font/monty"
             android:textAlignment="center"
             android:textColor="#ffffff"
-            android:textSize="14dp"
-            android:textStyle="bold" />
+            android:text="Not selected"
+            android:textSize="14dp"/>
 
         <Button
             android:layout_width="wrap_content"

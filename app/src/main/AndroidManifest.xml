@@ -70,6 +70,7 @@
         <activity
             android:name=".activity.PdfCreateActivity"
             android:label="Generate Invoice Pdf"
+
             android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name=".PARENT_ACTIVITY"
