@@ -97,8 +97,6 @@ public class ProfileActivity extends AppCompatActivity implements
         // Customizing G+ button
       btnSignIn.setSize(SignInButton.SIZE_STANDARD);
       btnSignIn.setScopes(gso.getScopeArray());
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
     }
 
